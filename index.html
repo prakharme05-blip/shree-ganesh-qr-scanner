@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shree Ganesh QR Scanner</title>
+
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .scanner-box {
+      width: 100%;
+      max-width: 500px;
+      background: #fff;
+      color: #111;
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0 0 5px;
+      font-size: 22px;
+    }
+
+    .subtitle {
+      color: #777;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    #reader {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    #result {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f3f3f3;
+      word-break: break-all;
+      font-size: 14px;
+    }
+
+    .status {
+      text-align: center;
+      margin-top: 12px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 13px;
+      border: none;
+      border-radius: 8px;
+      background: #111;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="scanner-box">
+
+    <h1>SHREE GANESH</h1>
+    <div class="subtitle">MARBLES AND GRANITES · INVENTORY</div>
+
+    <div id="reader"></div>
+
+    <div id="result">
+      Scan a product QR code
+    </div>
+
+    <div class="status" id="status">
+      Starting camera...
+    </div>
+
+    <button onclick="startScanner()">
+      📷 START SCANNER
+    </button>
+
+  </div>
+
+  <script>
+
+    let scanner = null;
+    let scanned = false;
+
+    function startScanner() {
+
+      if (scanner) {
+        try {
+          scanner.clear();
+        } catch (e) {}
+      }
+
+      scanned = false;
+
+      document.getElementById("status").textContent =
+        "Allow camera access and scan the product QR.";
+
+      scanner = new Html5Qrcode("reader");
+
+      scanner.start(
+        { facingMode: "environment" },
+
+        {
+          fps: 10,
+          qrbox: {
+            width: 250,
+            height: 250
+          }
+        },
+
+        function(decodedText) {
+
+          if (scanned) return;
+
+          scanned = true;
+
+          document.getElementById("result").textContent =
+            "Product QR: " + decodedText;
+
+          document.getElementById("status").textContent =
+            "QR scanned successfully.";
+
+          scanner.stop().catch(function() {});
+
+        },
+
+        function(errorMessage) {
+          // Ignore scanning errors while searching.
+        }
+
+      ).catch(function(error) {
+
+        document.getElementById("status").textContent =
+          "Camera could not start. Please allow camera access.";
+
+        console.error(error);
+
+      });
+    }
+
+    startScanner();
+
+  </script>
+
+</body>
+</html>
