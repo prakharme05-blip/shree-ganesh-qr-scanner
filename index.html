@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
@@ -7,7 +7,7 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
   >
 
   <title>SHREE GANESH Inventory</title>
@@ -25,582 +25,1124 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
-      padding: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background: #111;
       color: #111;
       font-family: Arial, sans-serif;
+      min-height: 100vh;
+      padding: 20px;
     }
 
     .app {
       width: 100%;
-      max-width: 480px;
-      background: #fff;
-      border-radius: 18px;
-      padding: 22px;
-      box-shadow: 0 10px 35px rgba(0,0,0,.25);
+      max-width: 520px;
+      margin: 0 auto;
     }
 
-    h1 {
-      margin: 0;
+    /* HEADER */
+
+    .header {
+      background: #111;
+      color: white;
+      padding: 10px 4px 22px;
+    }
+
+    .brand {
       font-size: 25px;
-      letter-spacing: .3px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
     }
 
     .subtitle {
       margin-top: 5px;
-      margin-bottom: 20px;
-      color: #777;
+      color: #999;
       font-size: 13px;
-      letter-spacing: .2px;
+      letter-spacing: 0.3px;
+    }
+
+    .staff-label {
+      margin-top: 14px;
+      color: #bbb;
+      font-size: 13px;
+    }
+
+    /* MAIN CARD */
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 12px;
+    }
+
+    /* BUTTONS */
+
+    .scan-button {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 18px;
+      background: #111;
+      color: white;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .scan-button:active {
+      transform: scale(0.99);
+    }
+
+    .search-button {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 10px;
+      background: white;
+      color: #111;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* SEARCH */
+
+    .search-area {
+      display: none;
+      margin-top: 14px;
+    }
+
+    .search-area.show {
+      display: block;
+    }
+
+    .search-input {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .search-action {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 8px;
+      background: #111;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* SCANNER */
+
+    .scanner-area {
+      display: none;
+      margin-top: 14px;
+    }
+
+    .scanner-area.show {
+      display: block;
     }
 
     #reader {
       width: 100%;
       overflow: hidden;
       border-radius: 12px;
-    }
-
-    #result {
-      margin-top: 15px;
-      padding: 16px;
-      border-radius: 11px;
-      background: #f3f3f3;
-      font-size: 15px;
-      line-height: 1.6;
-      word-break: break-word;
-    }
-
-    .product-name {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .info {
-      color: #555;
-      margin: 5px 0;
-    }
-
-    .stock {
-      margin-top: 14px;
-      font-size: 27px;
-      font-weight: 700;
-    }
-
-    .status {
-      margin-top: 5px;
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    .in {
-      color: #218739;
-    }
-
-    .low {
-      color: #a66500;
-    }
-
-    .out {
-      color: #b12626;
-    }
-
-    #message {
-      margin-top: 12px;
-      text-align: center;
-      color: #666;
-      font-size: 14px;
-      min-height: 20px;
-    }
-
-    button {
-      width: 100%;
-      margin-top: 15px;
-      padding: 16px;
-      border: 0;
-      border-radius: 10px;
       background: #111;
-      color: #fff;
+    }
+
+    .close-button {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 10px;
+      background: #111;
+      color: white;
       font-size: 15px;
-      font-weight: 700;
+      font-weight: bold;
       cursor: pointer;
     }
 
-    button:active {
-      transform: scale(.99);
+    /* STATUS */
+
+    .status {
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+      margin-top: 14px;
+      min-height: 20px;
+    }
+
+    /* PRODUCT */
+
+    .product-card {
+      display: none;
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      margin-top: 12px;
+    }
+
+    .product-card.show {
+      display: block;
+    }
+
+    .product-name {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .info {
+      margin: 7px 0;
+      font-size: 15px;
+      color: #555;
+    }
+
+    .info strong {
+      color: #111;
+    }
+
+    .stock-number {
+      font-size: 28px;
+      font-weight: 800;
+      margin-top: 18px;
+    }
+
+    .stock-status {
+      font-size: 16px;
+      font-weight: 800;
+      margin-top: 5px;
+    }
+
+    .in-stock {
+      color: #218838;
+    }
+
+    .low-stock {
+      color: #b26a00;
+    }
+
+    .out-stock {
+      color: #c62828;
+    }
+
+    .new-scan {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 18px;
+      background: #111;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* LOADING */
+
+    .loading {
+      text-align: center;
+      color: #666;
+      padding: 15px 0;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      body {
+        padding: 12px;
+      }
+
+      .brand {
+        font-size: 23px;
+      }
+
+      .card,
+      .product-card {
+        border-radius: 16px;
+      }
+
     }
 
   </style>
 
 </head>
 
+
 <body>
 
-  <main class="app">
 
-    <h1>SHREE GANESH</h1>
+<div class="app">
+
+
+  <!-- HEADER -->
+
+  <div class="header">
+
+    <div class="brand">
+      SHREE GANESH
+    </div>
 
     <div class="subtitle">
       MARBLES AND GRANITES · INVENTORY
     </div>
 
-    <div id="reader"></div>
-
-    <div id="result">
-      Scan a product QR code
+    <div class="staff-label">
+      Staff Inventory
     </div>
 
-    <div id="message">
-      Starting camera...
-    </div>
+  </div>
 
-    <button onclick="startScanner()">
-      📷 START SCANNER
+
+  <!-- MAIN -->
+
+  <div class="card">
+
+
+    <!-- SCAN -->
+
+    <button
+      class="scan-button"
+      onclick="openScanner()"
+    >
+      📷 &nbsp; SCAN QR
     </button>
 
-  </main>
+
+    <!-- SEARCH -->
+
+    <button
+      class="search-button"
+      onclick="toggleSearch()"
+    >
+      🔎 &nbsp; SEARCH PRODUCT
+    </button>
 
 
-  <script>
+    <div
+      id="searchArea"
+      class="search-area"
+    >
 
-    // =================================================
-    // APPS SCRIPT API
-    // =================================================
+      <input
+        id="searchInput"
+        class="search-input"
+        type="text"
+        placeholder="Enter product barcode"
+        autocomplete="off"
+      >
 
-    const API_URL =
-      "https://script.google.com/macros/s/AKfycbyPhd5eC7F9lZoPfJ2KyejFVcah7VC-1k4PfmiP7tP-rmnUrlKPiCa_G_8EfrNk6sf-/exec";
+      <button
+        class="search-action"
+        onclick="searchProduct()"
+      >
+        SEARCH
+      </button>
 
-
-    let scanner = null;
-    let scanned = false;
-    let requestScript = null;
-
-
-    // =================================================
-    // START SCANNER
-    // =================================================
-
-    async function startScanner() {
-
-      scanned = false;
-
-      const resultBox =
-        document.getElementById("result");
-
-      const message =
-        document.getElementById("message");
+    </div>
 
 
-      resultBox.textContent =
-        "Scan a product QR code";
+    <!-- SCANNER -->
+
+    <div
+      id="scannerArea"
+      class="scanner-area"
+    >
+
+      <div id="reader"></div>
+
+      <button
+        class="close-button"
+        onclick="closeScanner()"
+      >
+        CLOSE SCANNER
+      </button>
+
+    </div>
 
 
-      message.textContent =
-        "Allow camera access and scan the product QR.";
+    <!-- STATUS -->
+
+    <div
+      id="status"
+      class="status"
+    >
+    </div>
 
 
-      // Remove old scanner
-      if (scanner) {
-
-        try {
-          await scanner.stop();
-        } catch (e) {}
-
-        try {
-          await scanner.clear();
-        } catch (e) {}
-
-        scanner = null;
-      }
+  </div>
 
 
-      // Remove old API request
-      if (requestScript) {
-        requestScript.remove();
-        requestScript = null;
-      }
+  <!-- PRODUCT RESULT -->
+
+  <div
+    id="productCard"
+    class="product-card"
+  >
+
+    <div
+      id="productName"
+      class="product-name"
+    >
+    </div>
 
 
-      scanner =
-        new Html5Qrcode("reader");
+    <div class="info">
+      <strong>Barcode:</strong>
+      <span id="productBarcode"></span>
+    </div>
 
 
-      scanner.start(
+    <div class="info">
+      <strong>Brand:</strong>
+      <span id="productBrand"></span>
+    </div>
 
-        {
-          facingMode: {
-            ideal: "environment"
-          }
-        },
 
-        {
-          fps: 10,
+    <div class="info">
+      <strong>Size:</strong>
+      <span id="productSize"></span>
+    </div>
 
-          qrbox: {
-            width: 250,
-            height: 250
-          }
-        },
 
-        function(decodedText) {
+    <div class="info">
+      <strong>Finish:</strong>
+      <span id="productFinish"></span>
+    </div>
 
-          handleScan(decodedText);
 
-        },
+    <div
+      id="stockNumber"
+      class="stock-number"
+    >
+    </div>
 
-        function(errorMessage) {
 
-          // Ignore normal QR scanning errors.
+    <div
+      id="stockStatus"
+      class="stock-status"
+    >
+    </div>
 
-        }
 
-      ).catch(function(error) {
+    <button
+      class="new-scan"
+      onclick="resetProduct()"
+    >
+      📷 SCAN ANOTHER
+    </button>
 
-        console.error(error);
+  </div>
 
-        message.textContent =
-          "Camera could not start. Allow camera access and try again.";
 
-      });
+</div>
+
+
+<script>
+
+
+/*
+====================================================
+GOOGLE APPS SCRIPT API
+====================================================
+*/
+
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbyPhd5eC7F9lZoPfJ2KyejFVcah7VC-1k4PfmiP7tP-rmnUrlKPiCa_G_8EfrNk6sf-/exec";
+
+
+let scanner = null;
+
+let scannerRunning = false;
+
+
+/*
+====================================================
+OPEN SCANNER
+====================================================
+*/
+
+async function openScanner() {
+
+
+  document
+    .getElementById("productCard")
+    .classList
+    .remove("show");
+
+
+  document
+    .getElementById("scannerArea")
+    .classList
+    .add("show");
+
+
+  document
+    .getElementById("status")
+    .textContent =
+      "Starting camera...";
+
+
+  try {
+
+
+    /*
+     * Get available cameras first.
+     */
+
+    const cameras =
+      await Html5Qrcode
+        .getCameras();
+
+
+    if (
+      !cameras ||
+      cameras.length === 0
+    ) {
+
+      throw new Error(
+        "No camera found."
+      );
 
     }
 
 
-    // =================================================
-    // QR RESULT
-    // =================================================
-
-    async function handleScan(decodedText) {
-
-      if (scanned) {
-        return;
-      }
-
-      scanned = true;
-
-
-      const barcode =
-        String(decodedText || "").trim();
-
-
-      const resultBox =
-        document.getElementById("result");
-
-      const message =
-        document.getElementById("message");
-
-
-      if (!barcode) {
-
-        scanned = false;
-
-        message.textContent =
-          "Invalid QR code. Try again.";
-
-        return;
-      }
-
-
-      resultBox.textContent =
-        "Product QR: " + barcode;
-
-
-      message.textContent =
-        "Finding product...";
-
-
-      // Stop camera after successful scan
-      if (scanner) {
-
-        try {
-          await scanner.stop();
-        } catch (e) {}
-
-      }
-
-
-      lookupProduct(barcode);
-
-    }
-
-
-    // =================================================
-    // LOOKUP PRODUCT
-    // =================================================
-
-    function lookupProduct(barcode) {
-
-      const resultBox =
-        document.getElementById("result");
-
-      const message =
-        document.getElementById("message");
-
-
-      const callbackName =
-        "qrProduct_" +
-        Date.now() +
-        "_" +
-        Math.floor(Math.random() * 10000);
-
-
-      let finished = false;
-
-
-      // 10 second timeout
-      const timeout =
-        setTimeout(function() {
-
-          if (finished) {
-            return;
-          }
-
-          finished = true;
-
-          delete window[callbackName];
-
-
-          if (requestScript) {
-            requestScript.remove();
-            requestScript = null;
-          }
-
-
-          message.textContent =
-            "Could not connect to inventory. Please try again.";
-
-        }, 10000);
-
-
-      // JSONP callback
-      window[callbackName] =
-        function(response) {
-
-          if (finished) {
-            return;
-          }
-
-          finished = true;
-
-          clearTimeout(timeout);
-
-          delete window[callbackName];
-
-
-          if (requestScript) {
-            requestScript.remove();
-            requestScript = null;
-          }
-
-
-          // Product not found
-          if (
-            !response ||
-            !response.success ||
-            !response.product
-          ) {
-
-            resultBox.textContent =
-              "Product not found";
-
-            message.textContent =
-              "Barcode: " + barcode;
-
-            return;
-          }
-
-
-          showProduct(response.product);
-
-        };
-
-
-      // Create JSONP request
-      requestScript =
-        document.createElement("script");
-
-
-      requestScript.src =
-        API_URL +
-        "?barcode=" +
-        encodeURIComponent(barcode) +
-        "&callback=" +
-        encodeURIComponent(callbackName) +
-        "&t=" +
-        Date.now();
-
-
-      requestScript.onerror =
-        function() {
-
-          if (finished) {
-            return;
-          }
-
-          finished = true;
-
-          clearTimeout(timeout);
-
-          delete window[callbackName];
-
-
-          message.textContent =
-            "Could not connect to inventory. Please try again.";
-
-
-          requestScript.remove();
-
-          requestScript = null;
-
-        };
-
-
-      document.body.appendChild(requestScript);
-
-    }
-
-
-    // =================================================
-    // SHOW PRODUCT
-    // =================================================
-
-    function showProduct(product) {
-
-      const resultBox =
-        document.getElementById("result");
-
-      const message =
-        document.getElementById("message");
-
-
-      let statusText =
-        "IN STOCK";
-
-      let statusClass =
-        "in";
+    /*
+     * Prefer rear/environment camera.
+     */
+
+    let selectedCamera =
+      cameras[0].id;
+
+
+    for (
+      let i = 0;
+      i < cameras.length;
+      i++
+    ) {
+
+      const label =
+        String(
+          cameras[i].label || ""
+        ).toLowerCase();
 
 
       if (
-        Number(product.stock) <= 0
+        label.includes("back") ||
+        label.includes("rear") ||
+        label.includes("environment")
       ) {
 
-        statusText =
-          "OUT OF STOCK";
+        selectedCamera =
+          cameras[i].id;
 
-        statusClass =
-          "out";
-
-      }
-
-
-      else if (
-        Number(product.minimumStock) > 0 &&
-        Number(product.stock) <=
-          Number(product.minimumStock)
-      ) {
-
-        statusText =
-          "LOW STOCK";
-
-        statusClass =
-          "low";
+        break;
 
       }
-
-
-      resultBox.innerHTML =
-
-        '<div class="product-name">' +
-          escapeHTML(product.product) +
-        '</div>' +
-
-        '<div class="info">' +
-          '<strong>Barcode:</strong> ' +
-          escapeHTML(product.barcode) +
-        '</div>' +
-
-        '<div class="info">' +
-          '<strong>Brand:</strong> ' +
-          escapeHTML(product.brand || "-") +
-        '</div>' +
-
-        '<div class="info">' +
-          '<strong>Size:</strong> ' +
-          escapeHTML(product.size || "-") +
-        '</div>' +
-
-        '<div class="info">' +
-          '<strong>Finish:</strong> ' +
-          escapeHTML(product.finish || "-") +
-        '</div>' +
-
-        '<div class="stock">' +
-          'Stock: ' +
-          escapeHTML(product.stock) +
-        '</div>' +
-
-        '<div class="status ' +
-          statusClass +
-          '">' +
-          statusText +
-        '</div>';
-
-
-      message.textContent =
-        "Product found successfully.";
 
     }
 
 
-    // =================================================
-    // HTML ESCAPING
-    // =================================================
+    /*
+     * Create scanner.
+     */
 
-    function escapeHTML(value) {
+    if (scanner) {
 
-      return String(
-        value == null ? "" : value
-      )
+      try {
 
-        .replace(
-          /&/g,
-          "&amp;"
-        )
+        await scanner.clear();
 
-        .replace(
-          /</g,
-          "&lt;"
-        )
+      }
 
-        .replace(
-          />/g,
-          "&gt;"
-        )
+      catch (e) {}
 
-        .replace(
-          /"/g,
-          "&quot;"
-        )
+    }
 
-        .replace(
-          /'/g,
-          "&#039;"
+
+    scanner =
+      new Html5Qrcode(
+        "reader"
+      );
+
+
+    scannerRunning = true;
+
+
+    await scanner.start(
+
+      selectedCamera,
+
+      {
+
+        fps: 10,
+
+        qrbox: {
+          width: 250,
+          height: 250
+        },
+
+        aspectRatio: 1.0
+
+      },
+
+
+      function(decodedText) {
+
+        handleBarcode(
+          decodedText
         );
 
+      },
+
+
+      function(errorMessage) {
+
+        /*
+         * Normal scanning errors
+         * are ignored.
+         */
+
+      }
+
+    );
+
+
+    document
+      .getElementById("status")
+      .textContent =
+        "Point the camera at the product QR.";
+
+
+  }
+
+  catch (error) {
+
+
+    console.error(
+      "Camera error:",
+      error
+    );
+
+
+    scannerRunning = false;
+
+
+    document
+      .getElementById("status")
+      .textContent =
+        "Camera could not start. Please check camera permission.";
+
+
+  }
+
+}
+
+
+/*
+====================================================
+CLOSE SCANNER
+====================================================
+*/
+
+async function closeScanner() {
+
+
+  if (
+    scanner &&
+    scannerRunning
+  ) {
+
+    try {
+
+      await scanner.stop();
+
     }
 
+    catch (e) {}
 
-    // =================================================
-    // START AUTOMATICALLY
-    // =================================================
+  }
 
-    startScanner();
 
-  </script>
+  scannerRunning = false;
+
+
+  document
+    .getElementById("scannerArea")
+    .classList
+    .remove("show");
+
+
+  document
+    .getElementById("status")
+    .textContent =
+      "";
+
+
+}
+
+
+/*
+====================================================
+HANDLE QR
+====================================================
+*/
+
+function handleBarcode(
+  decodedText
+) {
+
+
+  const barcode =
+    String(
+      decodedText || ""
+    ).trim();
+
+
+  if (!barcode) {
+    return;
+  }
+
+
+  /*
+   * Prevent duplicate scans.
+   */
+
+  if (!scannerRunning) {
+    return;
+  }
+
+
+  scannerRunning = false;
+
+
+  if (scanner) {
+
+    scanner
+      .stop()
+      .catch(function() {});
+
+  }
+
+
+  document
+    .getElementById("status")
+    .textContent =
+      "Finding product...";
+
+
+  findProduct(
+    barcode
+  );
+
+}
+
+
+/*
+====================================================
+FIND PRODUCT
+====================================================
+*/
+
+function findProduct(
+  barcode
+) {
+
+
+  const callbackName =
+    "qrProductCallback_" +
+    Date.now();
+
+
+  window[callbackName] =
+    function(result) {
+
+
+      delete window[
+        callbackName
+      ];
+
+
+      if (
+        !result ||
+        !result.success ||
+        !result.product
+      ) {
+
+        document
+          .getElementById("status")
+          .textContent =
+            "Product not found: " +
+            barcode;
+
+        return;
+
+      }
+
+
+      showProduct(
+        result.product
+      );
+
+
+    };
+
+
+  const script =
+    document.createElement(
+      "script"
+    );
+
+
+  script.src =
+    API_URL +
+    "?barcode=" +
+    encodeURIComponent(
+      barcode
+    ) +
+    "&callback=" +
+    callbackName;
+
+
+  script.onload =
+    function() {
+
+      /*
+       * Give JSONP callback time
+       * to execute.
+       */
+
+      setTimeout(
+        function() {
+
+          if (
+            window[callbackName]
+          ) {
+
+            delete window[
+              callbackName
+            ];
+
+            document
+              .getElementById(
+                "status"
+              )
+              .textContent =
+                "Could not load product.";
+
+          }
+
+        },
+        5000
+      );
+
+    };
+
+
+  script.onerror =
+    function() {
+
+
+      delete window[
+        callbackName
+      ];
+
+
+      document
+        .getElementById("status")
+        .textContent =
+          "Could not connect to inventory.";
+
+
+    };
+
+
+  document
+    .body
+    .appendChild(script);
+
+}
+
+
+/*
+====================================================
+SHOW PRODUCT
+====================================================
+*/
+
+function showProduct(
+  product
+) {
+
+
+  document
+    .getElementById(
+      "productName"
+    )
+    .textContent =
+      product.product || "-";
+
+
+  document
+    .getElementById(
+      "productBarcode"
+    )
+    .textContent =
+      product.barcode || "-";
+
+
+  document
+    .getElementById(
+      "productBrand"
+    )
+    .textContent =
+      product.brand || "-";
+
+
+  document
+    .getElementById(
+      "productSize"
+    )
+    .textContent =
+      product.size || "-";
+
+
+  document
+    .getElementById(
+      "productFinish"
+    )
+    .textContent =
+      product.finish || "-";
+
+
+  document
+    .getElementById(
+      "stockNumber"
+    )
+    .textContent =
+      "Stock: " +
+      Number(product.stock || 0);
+
+
+  const status =
+    document
+      .getElementById(
+        "stockStatus"
+      );
+
+
+  status.className =
+    "stock-status";
+
+
+  if (
+    Number(product.stock || 0) <= 0
+  ) {
+
+    status.textContent =
+      "OUT OF STOCK";
+
+    status.classList
+      .add("out-stock");
+
+  }
+
+
+  else if (
+
+    Number(product.minimumStock || 0) > 0 &&
+
+    Number(product.stock) <=
+      Number(product.minimumStock)
+
+  ) {
+
+    status.textContent =
+      "LOW STOCK";
+
+    status.classList
+      .add("low-stock");
+
+  }
+
+
+  else {
+
+    status.textContent =
+      "IN STOCK";
+
+    status.classList
+      .add("in-stock");
+
+  }
+
+
+  document
+    .getElementById(
+      "productCard"
+    )
+    .classList
+    .add("show");
+
+
+  document
+    .getElementById(
+      "status"
+    )
+    .textContent =
+      "Product found successfully.";
+
+
+}
+
+
+/*
+====================================================
+SEARCH
+====================================================
+*/
+
+function toggleSearch() {
+
+
+  const area =
+    document
+      .getElementById(
+        "searchArea"
+      );
+
+
+  area.classList
+    .toggle("show");
+
+
+  if (
+    area.classList.contains(
+      "show"
+    )
+  ) {
+
+    document
+      .getElementById(
+        "searchInput"
+      )
+      .focus();
+
+  }
+
+}
+
+
+/*
+====================================================
+SEARCH PRODUCT
+====================================================
+*/
+
+function searchProduct() {
+
+
+  const input =
+    document
+      .getElementById(
+        "searchInput"
+      );
+
+
+  const barcode =
+    String(
+      input.value || ""
+    ).trim();
+
+
+  if (!barcode) {
+
+    document
+      .getElementById(
+        "status"
+      )
+      .textContent =
+        "Please enter a barcode.";
+
+    return;
+
+  }
+
+
+  document
+    .getElementById(
+      "status"
+    )
+    .textContent =
+      "Finding product...";
+
+
+  document
+    .getElementById(
+      "productCard"
+    )
+    .classList
+    .remove("show");
+
+
+  findProduct(
+    barcode
+  );
+
+}
+
+
+/*
+====================================================
+RESET
+====================================================
+*/
+
+function resetProduct() {
+
+
+  document
+    .getElementById(
+      "productCard"
+    )
+    .classList
+    .remove("show");
+
+
+  document
+    .getElementById(
+      "status"
+    )
+    .textContent =
+      "";
+
+
+  document
+    .getElementById(
+      "searchInput"
+    )
+    .value = "";
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+
+}
+
+
+</script>
 
 </body>
 
