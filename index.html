@@ -18,14 +18,12 @@
 <title>SHREE GANESH Inventory</title>
 
 
-<!-- QR SCANNER -->
 <script
   src="https://unpkg.com/html5-qrcode"
   type="text/javascript">
 </script>
 
 
-<!-- QR GENERATOR -->
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
 </script>
@@ -124,7 +122,7 @@ body {
 
 
 /* =================================================
-   THEME CONTROL
+   THEME
    ================================================= */
 
 .theme-control {
@@ -135,7 +133,8 @@ body {
 
   gap: 5px;
 
-  margin: 6px 0 10px;
+  margin:
+    6px 0 10px;
 
 }
 
@@ -144,13 +143,15 @@ body {
 
   width: auto;
 
-  padding: 7px 9px;
+  padding:
+    7px 9px;
 
   background: white;
 
   color: #555;
 
-  border: 1px solid #ddd;
+  border:
+    1px solid #ddd;
 
   border-radius: 8px;
 
@@ -211,7 +212,8 @@ button {
 
 button:active {
 
-  transform: scale(.98);
+  transform:
+    scale(.98);
 
 }
 
@@ -222,7 +224,8 @@ button.secondary {
 
   color: #111;
 
-  border: 1px solid #ddd;
+  border:
+    1px solid #ddd;
 
 }
 
@@ -250,7 +253,8 @@ button.secondary {
 
   padding: 13px;
 
-  border: 1px solid #ddd;
+  border:
+    1px solid #ddd;
 
   border-radius: 9px;
 
@@ -279,11 +283,13 @@ button.secondary {
 
   width: auto;
 
-  background: transparent;
+  background:
+    transparent;
 
   color: #777;
 
-  padding: 6px 10px;
+  padding:
+    6px 10px;
 
   font-size: 12px;
 
@@ -320,13 +326,27 @@ button.secondary {
 }
 
 
+.panel-note {
+
+  color: #777;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+
+  margin-bottom: 8px;
+
+}
+
+
 .input {
 
   width: 100%;
 
   padding: 13px;
 
-  border: 1px solid #ddd;
+  border:
+    1px solid #ddd;
 
   border-radius: 9px;
 
@@ -337,6 +357,15 @@ button.secondary {
   background: white;
 
   color: #111;
+
+  outline: none;
+
+}
+
+
+select.input {
+
+  appearance: auto;
 
 }
 
@@ -352,6 +381,54 @@ button.secondary {
   color: #666;
 
   font-size: 13px;
+
+}
+
+
+/* =================================================
+   OPENING PRODUCT PICKER
+   ================================================= */
+
+.opening-product-wrap {
+
+  position: relative;
+
+}
+
+
+.opening-product-help {
+
+  color: #777;
+
+  font-size: 12px;
+
+  margin-top: 5px;
+
+}
+
+
+.selected-product {
+
+  display: none;
+
+  background: #f3f3f3;
+
+  border-radius: 10px;
+
+  padding: 10px;
+
+  margin-top: 8px;
+
+  font-size: 13px;
+
+}
+
+
+.selected-product strong {
+
+  display: block;
+
+  margin-bottom: 3px;
 
 }
 
@@ -614,7 +691,7 @@ button.secondary {
 
 
 /* =================================================
-   DARK MODE
+   DARK
    ================================================= */
 
 body.dark {
@@ -695,7 +772,10 @@ body.dark
 
 
 body.dark
-.variant-badge {
+.variant-badge,
+
+body.dark
+.selected-product {
 
   background: #333;
 
@@ -703,7 +783,7 @@ body.dark
 
 
 /* =================================================
-   HIGHLIGHT MODE
+   HIGHLIGHT
    ================================================= */
 
 body.highlight
@@ -735,8 +815,7 @@ body.highlight
 
   .app {
 
-    padding:
-      10px;
+    padding: 10px;
 
   }
 
@@ -887,9 +966,7 @@ body.highlight
   class="panel">
 
   <div class="panel-title">
-
     Admin Login
-
   </div>
 
 
@@ -971,13 +1048,9 @@ body.highlight
   class="panel">
 
   <div class="panel-title">
-
     👑 Admin
-
   </div>
 
-
-  <!-- OPENING STOCK -->
 
   <button
     onclick="showOpeningStock()">
@@ -986,8 +1059,6 @@ body.highlight
 
   </button>
 
-
-  <!-- STOCK IN -->
 
   <button
     style="margin-top:7px;"
@@ -998,8 +1069,6 @@ body.highlight
   </button>
 
 
-  <!-- STOCK OUT -->
-
   <button
     onclick="showStockOut()">
 
@@ -1007,8 +1076,6 @@ body.highlight
 
   </button>
 
-
-  <!-- ADD MATERIAL -->
 
   <button
     class="secondary"
@@ -1018,8 +1085,6 @@ body.highlight
 
   </button>
 
-
-  <!-- LOGOUT -->
 
   <button
     class="secondary"
@@ -1041,32 +1106,42 @@ body.highlight
   class="panel">
 
   <div class="panel-title">
-
     📦 Opening Stock
+  </div>
+
+
+  <div class="panel-note">
+
+    Search the product by name and enter the
+    physical quantity from your register.
 
   </div>
 
 
-  <div
-    style="
-      color:#777;
-      font-size:13px;
-      margin-bottom:8px;
-    ">
+  <div class="opening-product-wrap">
 
-    Use this for your initial physical-register
-    migration. After setup, use Stock In and
-    Stock Out for daily operations.
+    <input
+      id="openingProductInput"
+      class="input"
+      list="openingProductList"
+      placeholder="Search product name..."
+      autocomplete="off"
+      oninput="selectOpeningProduct()"
+    >
+
+
+    <datalist
+      id="openingProductList">
+    </datalist>
+
+
+    <div
+      id="selectedOpeningProduct"
+      class="selected-product">
+
+    </div>
 
   </div>
-
-
-  <input
-    id="openingBarcode"
-    class="input"
-    placeholder="Barcode"
-    autocomplete="off"
-  >
 
 
   <input
@@ -1126,7 +1201,7 @@ body.highlight
   <input
     id="adminBarcode"
     class="input"
-    placeholder="Barcode"
+    placeholder="Scan or enter barcode"
     autocomplete="off"
   >
 
@@ -1179,7 +1254,7 @@ body.highlight
 
 
 <!-- =================================================
-     ADD MATERIAL
+     ADD NEW MATERIAL
      ================================================= -->
 
 <div
@@ -1187,9 +1262,7 @@ body.highlight
   class="panel">
 
   <div class="panel-title">
-
     Add New Material
-
   </div>
 
 
@@ -1379,8 +1452,7 @@ body.highlight
      RESULTS
      ================================================= -->
 
-<div
-  id="results">
+<div id="results">
 
   <div class="loading">
     Loading inventory...
@@ -1396,7 +1468,7 @@ body.highlight
 
 
 // =====================================================
-// CONFIGURATION
+// CONFIG
 // =====================================================
 
 const API_URL =
@@ -1424,6 +1496,8 @@ let currentQRVariant = "";
 
 let stockMode = "in";
 
+let selectedOpeningBarcode = "";
+
 
 // =====================================================
 // THEME
@@ -1450,7 +1524,6 @@ function setTheme(
       .add(
         "dark"
       );
-
   }
 
 
@@ -1463,7 +1536,6 @@ function setTheme(
       .add(
         "highlight"
       );
-
   }
 
 
@@ -1584,7 +1656,6 @@ function callApi(
     if (finished) {
 
       return;
-
     }
 
 
@@ -1617,7 +1688,6 @@ function callApi(
       if (finished) {
 
         return;
-
       }
 
 
@@ -1649,7 +1719,6 @@ function callApi(
         }
 
         return;
-
       }
 
 
@@ -1771,7 +1840,7 @@ function loadApp() {
 
 
 // =====================================================
-// INVENTORY
+// LOAD INVENTORY
 // =====================================================
 
 function loadInventory() {
@@ -1798,6 +1867,8 @@ function loadInventory() {
           : [];
 
 
+      populateOpeningProducts();
+
       renderInventory(
         inventory
       );
@@ -1814,6 +1885,191 @@ function loadInventory() {
     }
 
   );
+
+}
+
+
+// =====================================================
+// POPULATE OPENING PRODUCT SEARCH
+// =====================================================
+
+function populateOpeningProducts() {
+
+  const datalist =
+    document
+      .getElementById(
+        "openingProductList"
+      );
+
+
+  datalist.innerHTML =
+    "";
+
+
+  inventory.forEach(
+    function(product) {
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+
+      /*
+       * Product name is what Admin searches.
+       *
+       * If multiple entries have the same product
+       * name, include the variant in the display value.
+       */
+
+      let label =
+        product.product;
+
+
+      if (
+        product.variant
+      ) {
+
+        label +=
+          " — " +
+          product.variant;
+
+      }
+
+
+      option.value =
+        label;
+
+
+      option.dataset.barcode =
+        product.barcode;
+
+
+      datalist.appendChild(
+        option
+      );
+
+    }
+  );
+
+}
+
+
+// =====================================================
+// SELECT OPENING PRODUCT
+// =====================================================
+
+function selectOpeningProduct() {
+
+  const input =
+    document
+      .getElementById(
+        "openingProductInput"
+      );
+
+
+  const value =
+    input.value.trim();
+
+
+  const selectedBox =
+    document
+      .getElementById(
+        "selectedOpeningProduct"
+      );
+
+
+  selectedOpeningBarcode =
+    "";
+
+
+  selectedBox.style.display =
+    "none";
+
+
+  if (!value) {
+
+    return;
+  }
+
+
+  const option =
+    Array.from(
+      document
+        .getElementById(
+          "openingProductList"
+        )
+        .options
+    )
+      .find(
+        function(item) {
+
+          return item.value ===
+            value;
+
+        }
+      );
+
+
+  if (!option) {
+
+    return;
+  }
+
+
+  selectedOpeningBarcode =
+    option.dataset.barcode ||
+    "";
+
+
+  const product =
+    inventory.find(
+      function(item) {
+
+        return (
+          String(
+            item.barcode
+          ) ===
+          String(
+            selectedOpeningBarcode
+          )
+        );
+
+      }
+    );
+
+
+  if (!product) {
+
+    return;
+  }
+
+
+  selectedBox.innerHTML = `
+
+    <strong>
+      ${escapeHTML(
+        product.product
+      )}
+    </strong>
+
+    ${
+      product.variant
+        ? escapeHTML(
+            product.variant
+          ) +
+          " · "
+        : ""
+    }
+
+    Current stock:
+    ${Number(product.stock) || 0}
+
+  `;
+
+
+  selectedBox.style.display =
+    "block";
 
 }
 
@@ -2124,9 +2380,7 @@ function searchProducts() {
             product.barcode || ""
           )
             .toLowerCase()
-            .includes(
-              query
-            )
+            .includes(query)
 
           ||
 
@@ -2134,9 +2388,7 @@ function searchProducts() {
             product.product || ""
           )
             .toLowerCase()
-            .includes(
-              query
-            )
+            .includes(query)
 
           ||
 
@@ -2144,9 +2396,7 @@ function searchProducts() {
             product.brand || ""
           )
             .toLowerCase()
-            .includes(
-              query
-            )
+            .includes(query)
 
           ||
 
@@ -2154,9 +2404,7 @@ function searchProducts() {
             product.size || ""
           )
             .toLowerCase()
-            .includes(
-              query
-            )
+            .includes(query)
 
           ||
 
@@ -2164,9 +2412,7 @@ function searchProducts() {
             product.finish || ""
           )
             .toLowerCase()
-            .includes(
-              query
-            )
+            .includes(query)
 
           ||
 
@@ -2174,9 +2420,7 @@ function searchProducts() {
             product.variant || ""
           )
             .toLowerCase()
-            .includes(
-              query
-            )
+            .includes(query)
 
         );
 
@@ -2283,7 +2527,6 @@ async function startScanner() {
       throw new Error(
         "No camera found."
       );
-
     }
 
 
@@ -2306,15 +2549,9 @@ async function startScanner() {
 
 
       if (
-        label.includes(
-          "back"
-        ) ||
-        label.includes(
-          "rear"
-        ) ||
-        label.includes(
-          "environment"
-        )
+        label.includes("back") ||
+        label.includes("rear") ||
+        label.includes("environment")
       ) {
 
         cameraId =
@@ -2331,25 +2568,20 @@ async function startScanner() {
       cameraId,
 
       {
-
         fps:
           10,
 
         qrbox: {
-
           width:
             250,
 
           height:
             250
-
         },
 
         aspectRatio:
           1
-
       },
-
 
       function(decodedText) {
 
@@ -2358,7 +2590,6 @@ async function startScanner() {
         );
 
       },
-
 
       function() {
 
@@ -2395,7 +2626,7 @@ async function startScanner() {
         "scannerStatus"
       )
       .textContent =
-        "Camera could not start. Please allow camera access.";
+      "Camera could not start. Please allow camera access.";
 
   }
 
@@ -2461,14 +2692,6 @@ async function handleQR(
       barcode;
 
 
-  document
-    .getElementById(
-      "openingBarcode"
-    )
-    .value =
-      barcode;
-
-
   const local =
     inventory.find(
       function(product) {
@@ -2526,6 +2749,9 @@ async function handleQR(
       inventory.push(
         product
       );
+
+
+      populateOpeningProducts();
 
 
       showProduct(
@@ -2702,7 +2928,7 @@ async function scanNextProduct() {
 
 
 // =====================================================
-// ADMIN LOGIN UI
+// ADMIN LOGIN
 // =====================================================
 
 function showAdminLogin() {
@@ -2776,10 +3002,8 @@ function adminLogin() {
     "adminLogin",
 
     {
-
       pin:
         pin
-
     },
 
     function(result) {
@@ -3007,10 +3231,8 @@ function adminLogout() {
     "adminLogout",
 
     {
-
       token:
         adminToken
-
     },
 
     function() {
@@ -3071,7 +3293,7 @@ function handleAdminError(
 
 
 // =====================================================
-// SHOW OPENING STOCK
+// OPENING STOCK
 // =====================================================
 
 function showOpeningStock() {
@@ -3099,6 +3321,9 @@ function showOpeningStock() {
       "block";
 
 
+  populateOpeningProducts();
+
+
   document
     .getElementById(
       "openingStockPanel"
@@ -3113,9 +3338,29 @@ function showOpeningStock() {
 
   document
     .getElementById(
-      "openingBarcode"
+      "openingProductInput"
     )
     .focus();
+
+}
+
+
+// =====================================================
+// OPENING PRODUCT HELP
+// =====================================================
+
+function clearOpeningSelection() {
+
+  selectedOpeningBarcode =
+    "";
+
+
+  document
+    .getElementById(
+      "selectedOpeningProduct"
+    )
+    .style.display =
+      "none";
 
 }
 
@@ -3132,6 +3377,33 @@ function closeOpeningStock() {
     )
     .style.display =
       "none";
+
+
+  document
+    .getElementById(
+      "openingProductInput"
+    )
+    .value =
+      "";
+
+
+  document
+    .getElementById(
+      "openingQuantity"
+    )
+    .value =
+      "";
+
+
+  document
+    .getElementById(
+      "openingMessage"
+    )
+    .textContent =
+      "";
+
+
+  clearOpeningSelection();
 
 }
 
@@ -3152,13 +3424,16 @@ function saveOpeningStock() {
   }
 
 
+  /*
+   * Make sure the product is selected
+   * from the datalist and not merely typed.
+   */
+
+  selectOpeningProduct();
+
+
   const barcode =
-    document
-      .getElementById(
-        "openingBarcode"
-      )
-      .value
-      .trim();
+    selectedOpeningBarcode;
 
 
   const openingStock =
@@ -3181,7 +3456,7 @@ function saveOpeningStock() {
   if (!barcode) {
 
     message.textContent =
-      "Enter or scan a barcode.";
+      "Please select a product from the list.";
 
     return;
   }
@@ -3226,9 +3501,8 @@ function saveOpeningStock() {
 
       message.textContent =
 
-        "Opening stock saved: " +
         result.product +
-        " → " +
+        " → Opening stock " +
         result.newStock;
 
 
@@ -3239,6 +3513,11 @@ function saveOpeningStock() {
         .value =
         "";
 
+
+      /*
+       * Keep selected product so the Admin
+       * can quickly enter/fix the same item.
+       */
 
       loadInventory();
 
@@ -3258,11 +3537,12 @@ function saveOpeningStock() {
     }
 
   );
+
 }
 
 
 // =====================================================
-// SHOW STOCK IN
+// STOCK IN
 // =====================================================
 
 function showStockIn() {
@@ -3275,6 +3555,11 @@ function showStockIn() {
 
     return;
   }
+
+
+  closeOpeningStock();
+
+  closeNewMaterial();
 
 
   stockMode =
@@ -3328,7 +3613,7 @@ function showStockIn() {
 
 
 // =====================================================
-// SHOW STOCK OUT
+// STOCK OUT
 // =====================================================
 
 function showStockOut() {
@@ -3341,6 +3626,11 @@ function showStockOut() {
 
     return;
   }
+
+
+  closeOpeningStock();
+
+  closeNewMaterial();
 
 
   stockMode =
@@ -3410,7 +3700,7 @@ function closeStockPanel() {
 
 
 // =====================================================
-// STOCK IN
+// STOCK IN ACTION
 // =====================================================
 
 function stockIn() {
@@ -3532,7 +3822,7 @@ function stockIn() {
 
 
 // =====================================================
-// STOCK OUT
+// STOCK OUT ACTION
 // =====================================================
 
 function stockOut() {
@@ -3981,6 +4271,7 @@ function createNewMaterial() {
     }
 
   );
+
 }
 
 
@@ -4154,7 +4445,7 @@ function generateProductQR(
         "qrBarcode"
       )
       .textContent =
-      "QR generator could not load.";
+        "QR generator could not load.";
 
     return;
   }
@@ -4224,7 +4515,7 @@ function closeQR() {
 
 
 // =====================================================
-// QR DATA
+// GET QR DATA
 // =====================================================
 
 function getQRDataURL_() {
@@ -4600,7 +4891,6 @@ function showError(
       </div>
 
       `;
-
 }
 
 
