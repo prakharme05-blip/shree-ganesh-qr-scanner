@@ -3,501 +3,554 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-  >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+>
 
-  <title>SHREE GANESH Inventory</title>
+<title>SHREE GANESH Inventory</title>
 
-  <script
-    src="https://unpkg.com/html5-qrcode"
-    type="text/javascript">
-  </script>
 
+<!-- Camera / QR scanner -->
+<script
+  src="https://unpkg.com/html5-qrcode"
+  type="text/javascript">
+</script>
 
-  <style>
 
-    * {
-      box-sizing: border-box;
-    }
+<!-- QR generator -->
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+</script>
 
 
-    body {
+<style>
 
-      margin: 0;
+* {
+  box-sizing: border-box;
+}
 
-      background: #f5f5f5;
 
-      color: #111;
+body {
 
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+  margin: 0;
 
-      min-height: 100vh;
+  background: #f5f5f5;
 
-    }
+  color: #111;
 
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
-    .app {
+  min-height: 100vh;
 
-      width: 100%;
+}
 
-      max-width: 900px;
 
-      margin: 0 auto;
+.app {
 
-      padding: 14px;
+  width: 100%;
 
-    }
+  max-width: 900px;
 
+  margin: 0 auto;
 
-    /* =============================================
-       HEADER
-       ============================================= */
+  padding: 14px;
 
-    .header {
+}
 
-      background: #111;
 
-      color: white;
+/* =============================================
+   HEADER
+   ============================================= */
 
-      border-radius: 16px;
+.header {
 
-      padding: 20px;
+  background: #111;
 
-      margin-bottom: 14px;
+  color: white;
 
-    }
+  border-radius: 16px;
 
+  padding: 20px;
 
-    .brand {
+  margin-bottom: 14px;
 
-      font-size: 25px;
+}
 
-      font-weight: 800;
 
-    }
+.brand {
 
+  font-size: 25px;
 
-    .subtitle {
+  font-weight: 800;
 
-      margin-top: 5px;
+}
 
-      color: #aaa;
 
-      font-size: 13px;
+.subtitle {
 
-    }
+  margin-top: 5px;
 
+  color: #aaa;
 
-    .mode {
+  font-size: 13px;
 
-      margin-top: 12px;
+}
 
-      font-size: 13px;
 
-      color: #ddd;
+.mode {
 
-    }
+  margin-top: 12px;
 
+  font-size: 14px;
 
-    /* =============================================
-       MAIN ACTIONS
-       ============================================= */
+  color: #ddd;
 
-    .actions {
+}
 
-      display: grid;
 
-      grid-template-columns:
-        1fr 1fr;
+/* =============================================
+   ACTION BUTTONS
+   ============================================= */
 
-      gap: 10px;
+.actions {
 
-      margin-bottom: 14px;
+  display: grid;
 
-    }
+  grid-template-columns: 1fr 1fr;
 
+  gap: 10px;
 
-    button {
+  margin-bottom: 14px;
 
-      width: 100%;
+}
 
-      border: none;
 
-      border-radius: 11px;
+button {
 
-      padding: 15px;
+  width: 100%;
 
-      background: #111;
+  border: none;
 
-      color: white;
+  border-radius: 11px;
 
-      font-size: 15px;
+  padding: 15px;
 
-      font-weight: 800;
+  background: #111;
 
-      cursor: pointer;
+  color: white;
 
-    }
+  font-size: 15px;
 
+  font-weight: 800;
 
-    button.secondary {
+  cursor: pointer;
 
-      background: white;
+}
 
-      color: #111;
 
-      border: 1px solid #ddd;
+button.secondary {
 
-    }
+  background: white;
 
+  color: #111;
 
-    button.danger {
+  border: 1px solid #ddd;
 
-      background: #b3261e;
+}
 
-    }
 
+button.danger {
 
-    button:active {
+  background: #b3261e;
 
-      transform: scale(.98);
+}
 
-    }
 
+button:active {
 
-    /* =============================================
-       SEARCH
-       ============================================= */
+  transform: scale(.98);
 
-    .search-box {
+}
 
-      background: white;
 
-      border-radius: 14px;
+/* =============================================
+   SEARCH
+   ============================================= */
 
-      padding: 14px;
+.search-box {
 
-      margin-bottom: 14px;
+  background: white;
 
-    }
+  border-radius: 14px;
 
+  padding: 14px;
 
-    .search-input {
+  margin-bottom: 14px;
 
-      width: 100%;
+}
 
-      padding: 14px;
 
-      border: 1px solid #ddd;
+.search-input {
 
-      border-radius: 10px;
+  width: 100%;
 
-      font-size: 16px;
+  padding: 14px;
 
-      outline: none;
+  border: 1px solid #ddd;
 
-    }
+  border-radius: 10px;
 
+  font-size: 16px;
 
-    /* =============================================
-       SCANNER
-       ============================================= */
+  outline: none;
 
-    .scanner-panel {
+}
 
-      display: none;
 
-      background: white;
+/* =============================================
+   SCANNER
+   ============================================= */
 
-      padding: 14px;
+.scanner-panel {
 
-      border-radius: 16px;
+  display: none;
 
-      margin-bottom: 14px;
+  background: white;
 
-    }
+  padding: 14px;
 
+  border-radius: 16px;
 
-    #reader {
+  margin-bottom: 14px;
 
-      width: 100%;
+}
 
-      overflow: hidden;
 
-      border-radius: 12px;
+#reader {
 
-      background: #111;
+  width: 100%;
 
-    }
+  overflow: hidden;
 
+  border-radius: 12px;
 
-    #reader video {
+  background: #111;
 
-      border-radius: 12px;
+}
 
-    }
 
+.scanner-status {
 
-    .scanner-status {
+  text-align: center;
 
-      text-align: center;
+  color: #666;
 
-      color: #666;
+  font-size: 14px;
 
-      font-size: 14px;
+  margin-top: 10px;
 
-      margin-top: 10px;
+  min-height: 20px;
 
-      min-height: 20px;
+}
 
-    }
 
+/* =============================================
+   PRODUCT CARD
+   ============================================= */
 
-    /* =============================================
-       PRODUCT
-       ============================================= */
+.product-card {
 
-    .product-card {
+  background: white;
 
-      background: white;
+  border-radius: 16px;
 
-      border-radius: 16px;
+  padding: 18px;
 
-      padding: 18px;
+  margin-bottom: 12px;
 
-      margin-bottom: 12px;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.06);
 
-      box-shadow:
-        0 2px 8px rgba(0,0,0,.06);
+}
 
-    }
 
+.product-name {
 
-    .product-name {
+  font-size: 22px;
 
-      font-size: 22px;
+  font-weight: 800;
 
-      font-weight: 800;
+  margin-bottom: 12px;
 
-      margin-bottom: 12px;
+}
 
-    }
 
+.info {
 
-    .info {
+  color: #555;
 
-      color: #555;
+  font-size: 14px;
 
-      font-size: 14px;
+  margin: 6px 0;
 
-      margin: 6px 0;
+}
 
-    }
 
+.info strong {
 
-    .info strong {
+  color: #111;
 
-      color: #111;
+}
 
-    }
 
+.stock {
 
-    .stock {
+  font-size: 28px;
 
-      font-size: 28px;
+  font-weight: 800;
 
-      font-weight: 800;
+  margin-top: 16px;
 
-      margin-top: 16px;
+}
 
-    }
 
+.status {
 
-    .status {
+  font-weight: 800;
 
-      font-weight: 800;
+  margin-top: 4px;
 
-      margin-top: 4px;
+}
 
-    }
 
+.green {
 
-    .green {
+  color: #218739;
 
-      color: #218739;
+}
 
-    }
 
+.orange {
 
-    .orange {
+  color: #a66500;
 
-      color: #a66500;
+}
 
-    }
 
+.red {
 
-    .red {
+  color: #b12626;
 
-      color: #b12626;
+}
 
-    }
 
+.scan-next {
 
-    .scan-next {
+  margin-top: 14px;
 
-      margin-top: 14px;
+}
 
-    }
 
+/* =============================================
+   GENERIC PANELS
+   ============================================= */
 
-    /* =============================================
-       LOGIN
-       ============================================= */
+.panel {
 
-    .login-panel {
+  display: none;
 
-      display: none;
+  background: white;
 
-      background: white;
+  border-radius: 16px;
 
-      border-radius: 16px;
+  padding: 16px;
 
-      padding: 16px;
+  margin-bottom: 14px;
 
-      margin-bottom: 14px;
+}
 
-    }
 
+.panel-title {
 
-    .panel-title {
+  font-size: 19px;
 
-      font-size: 18px;
+  font-weight: 800;
 
-      font-weight: 800;
+  margin-bottom: 10px;
 
-      margin-bottom: 10px;
+}
 
-    }
 
+.input {
 
-    /* =============================================
-       ADMIN
-       ============================================= */
+  width: 100%;
 
-    .admin-panel {
+  padding: 14px;
 
-      display: none;
+  border: 1px solid #ddd;
 
-      background: white;
+  border-radius: 10px;
 
-      border-radius: 16px;
+  font-size: 16px;
 
-      padding: 16px;
+  margin-top: 8px;
 
-      margin-bottom: 14px;
+  outline: none;
 
-    }
+}
 
 
-    .admin-input {
+.message {
 
-      width: 100%;
+  text-align: center;
 
-      padding: 14px;
+  color: #666;
 
-      border: 1px solid #ddd;
+  font-size: 14px;
 
-      border-radius: 10px;
+  margin-top: 10px;
 
-      font-size: 16px;
+  min-height: 20px;
 
-      margin-top: 8px;
+}
 
-      outline: none;
 
-    }
+/* =============================================
+   QR RESULT
+   ============================================= */
 
+.qr-panel {
 
-    .message {
+  display: none;
 
-      text-align: center;
+  background: white;
 
-      color: #666;
+  border-radius: 16px;
 
-      font-size: 14px;
+  padding: 20px;
 
-      margin-top: 10px;
+  margin-bottom: 14px;
 
-      min-height: 20px;
+  text-align: center;
 
-    }
+}
 
 
-    /* =============================================
-       RESULTS
-       ============================================= */
+.qr-title {
 
-    .loading {
+  font-size: 20px;
 
-      background: white;
+  font-weight: 800;
 
-      border-radius: 14px;
+}
 
-      padding: 28px;
 
-      text-align: center;
+.qr-code-text {
 
-      color: #777;
+  margin-top: 6px;
 
-    }
+  color: #666;
 
+  font-size: 14px;
 
-    .error {
+}
 
-      background: #fff0f0;
 
-      color: #a00000;
+#qrcode {
 
-      border-radius: 12px;
+  display: flex;
 
-      padding: 14px;
+  justify-content: center;
 
-      text-align: center;
+  margin: 18px auto;
 
-      margin-bottom: 14px;
+}
 
-    }
 
+#qrcode img,
 
-    /* =============================================
-       MOBILE
-       ============================================= */
+#qrcode canvas {
 
-    @media (max-width: 600px) {
+  display: block;
 
-      .app {
+}
 
-        padding: 12px;
 
-      }
+.qr-actions {
 
+  display: grid;
 
-      .brand {
+  grid-template-columns: 1fr 1fr;
 
-        font-size: 23px;
+  gap: 8px;
 
-      }
+}
 
-    }
 
-  </style>
+/* =============================================
+   LOADING / ERROR
+   ============================================= */
+
+.loading {
+
+  background: white;
+
+  border-radius: 14px;
+
+  padding: 28px;
+
+  text-align: center;
+
+  color: #777;
+
+}
+
+
+.error {
+
+  background: #fff0f0;
+
+  color: #a00000;
+
+  border-radius: 12px;
+
+  padding: 14px;
+
+  text-align: center;
+
+  margin-bottom: 14px;
+
+}
+
+
+/* =============================================
+   MOBILE
+   ============================================= */
+
+@media (max-width: 600px) {
+
+  .app {
+
+    padding: 12px;
+
+  }
+
+
+  .brand {
+
+    font-size: 23px;
+
+  }
+
+}
+
+</style>
 
 </head>
 
@@ -508,371 +561,511 @@
 <div class="app">
 
 
-  <!-- ============================================
-       HEADER
-       ============================================ -->
+<!-- =================================================
+     HEADER
+     ================================================= -->
 
-  <div class="header">
+<div class="header">
 
-    <div class="brand">
-      SHREE GANESH
-    </div>
+  <div class="brand">
+    SHREE GANESH
+  </div>
 
-    <div class="subtitle">
-      MARBLES AND GRANITES · INVENTORY
-    </div>
+  <div class="subtitle">
+    MARBLES AND GRANITES · INVENTORY
+  </div>
 
-    <div
-      id="modeText"
-      class="mode">
+  <div
+    id="modeText"
+    class="mode">
 
-      Staff Mode
-
-    </div>
+    Staff Mode
 
   </div>
 
-
-  <!-- ============================================
-       MAIN ACTIONS
-       ============================================ -->
-
-  <div class="actions">
-
-    <button
-      onclick="openScanner()">
-
-      📷<br>
-      SCAN QR
-
-    </button>
+</div>
 
 
-    <button
-      class="secondary"
-      onclick="focusSearch()">
+<!-- =================================================
+     MAIN ACTIONS
+     ================================================= -->
 
-      🔎<br>
-      SEARCH
-
-    </button>
-
-  </div>
-
-
-  <!-- ============================================
-       ADMIN LOGIN BUTTON
-       ============================================ -->
+<div class="actions">
 
   <button
-    id="adminLoginButton"
-    class="secondary"
-    onclick="showAdminLogin()"
-    style="margin-bottom:14px;">
+    onclick="openScanner()">
 
-    🔐 ADMIN LOGIN
+    📷<br>
+    SCAN QR
 
   </button>
 
 
-  <!-- ============================================
-       LOGIN PANEL
-       ============================================ -->
+  <button
+    class="secondary"
+    onclick="focusSearch()">
+
+    🔎<br>
+    SEARCH
+
+  </button>
+
+</div>
+
+
+<!-- =================================================
+     ADMIN LOGIN BUTTON
+     ================================================= -->
+
+<button
+  id="adminLoginButton"
+  class="secondary"
+  onclick="showAdminLogin()"
+  style="margin-bottom:14px;">
+
+  🔐 ADMIN LOGIN
+
+</button>
+
+
+<!-- =================================================
+     ADMIN LOGIN
+     ================================================= -->
+
+<div
+  id="loginPanel"
+  class="panel">
+
+  <div class="panel-title">
+    🔐 ADMIN LOGIN
+  </div>
+
+
+  <input
+    id="adminPin"
+    class="input"
+    type="password"
+    inputmode="numeric"
+    maxlength="8"
+    placeholder="Enter Admin PIN"
+    autocomplete="off"
+  >
+
+
+  <button
+    style="margin-top:10px;"
+    onclick="adminLogin()">
+
+    UNLOCK ADMIN
+
+  </button>
+
+
+  <button
+    class="secondary"
+    onclick="closeAdminLogin()">
+
+    CANCEL
+
+  </button>
+
 
   <div
-    id="loginPanel"
-    class="login-panel">
-
-    <div class="panel-title">
-
-      🔐 ADMIN LOGIN
-
-    </div>
-
-
-    <input
-      id="adminPin"
-      class="admin-input"
-      type="password"
-      inputmode="numeric"
-      maxlength="8"
-      placeholder="Enter Admin PIN"
-      autocomplete="off"
-    >
-
-
-    <button
-      style="margin-top:10px;"
-      onclick="adminLogin()">
-
-      UNLOCK ADMIN
-
-    </button>
-
-
-    <button
-      class="secondary"
-      onclick="closeAdminLogin()">
-
-      CANCEL
-
-    </button>
-
-
-    <div
-      id="loginMessage"
-      class="message">
-    </div>
-
+    id="loginMessage"
+    class="message">
   </div>
 
-
-  <!-- ============================================
-       SEARCH
-       ============================================ -->
-
-  <div class="search-box">
-
-    <input
-      id="searchInput"
-      class="search-input"
-      type="text"
-      placeholder="Search product or barcode..."
-      autocomplete="off"
-      oninput="searchProducts()"
-    >
-
-  </div>
+</div>
 
 
-  <!-- ============================================
-       SCANNER
-       ============================================ -->
+<!-- =================================================
+     SEARCH
+     ================================================= -->
+
+<div class="search-box">
+
+  <input
+    id="searchInput"
+    class="search-input"
+    type="text"
+    placeholder="Search product or barcode..."
+    autocomplete="off"
+    oninput="searchProducts()"
+  >
+
+</div>
+
+
+<!-- =================================================
+     SCANNER
+     ================================================= -->
+
+<div
+  id="scannerPanel"
+  class="scanner-panel">
+
+  <div id="reader"></div>
+
 
   <div
-    id="scannerPanel"
-    class="scanner-panel">
+    id="scannerStatus"
+    class="scanner-status">
 
-    <div id="reader"></div>
-
-
-    <div
-      id="scannerStatus"
-      class="scanner-status">
-
-      Point the camera at the product QR.
-
-    </div>
-
-
-    <button
-      class="secondary"
-      style="margin-top:10px;"
-      onclick="closeScanner()">
-
-      CLOSE SCANNER
-
-    </button>
+    Point the camera at the product QR.
 
   </div>
 
 
-  <!-- ============================================
-       ADMIN PANEL
-       ============================================ -->
+  <button
+    class="secondary"
+    style="margin-top:10px;"
+    onclick="closeScanner()">
+
+    CLOSE SCANNER
+
+  </button>
+
+</div>
+
+
+<!-- =================================================
+     ADMIN STOCK
+     ================================================= -->
+
+<div
+  id="adminPanel"
+  class="panel">
+
+  <div class="panel-title">
+    👑 ADMIN — STOCK UPDATE
+  </div>
+
+
+  <input
+    id="adminBarcode"
+    class="input"
+    placeholder="Product barcode"
+    autocomplete="off"
+  >
+
+
+  <input
+    id="adminQuantity"
+    class="input"
+    type="number"
+    min="1"
+    step="1"
+    placeholder="Quantity"
+  >
+
+
+  <button
+    style="margin-top:10px;"
+    onclick="stockIn()">
+
+    ➕ STOCK IN
+
+  </button>
+
+
+  <button
+    onclick="stockOut()">
+
+    ➖ STOCK OUT
+
+  </button>
+
+
+  <button
+    class="secondary"
+    onclick="showAddMaterial()">
+
+    ➕ ADD NEW MATERIAL
+
+  </button>
+
+
+  <button
+    class="secondary"
+    onclick="showAdjustment()">
+
+    📏 PHYSICAL STOCK ADJUSTMENT
+
+  </button>
+
+
+  <button
+    class="secondary"
+    onclick="adminLogout()">
+
+    LOG OUT ADMIN
+
+  </button>
+
 
   <div
-    id="adminPanel"
-    class="admin-panel">
+    id="adminMessage"
+    class="message">
+  </div>
 
-    <div class="panel-title">
-
-      👑 ADMIN
-
-    </div>
+</div>
 
 
-    <input
-      id="adminBarcode"
-      class="admin-input"
-      placeholder="Product barcode"
-      autocomplete="off"
-    >
+<!-- =================================================
+     ADD NEW MATERIAL
+     ================================================= -->
 
+<div
+  id="newMaterialPanel"
+  class="panel">
 
-    <input
-      id="adminQuantity"
-      class="admin-input"
-      type="number"
-      min="1"
-      step="1"
-      placeholder="Quantity"
-    >
+  <div class="panel-title">
 
-
-    <button
-      style="margin-top:10px;"
-      onclick="stockIn()">
-
-      ➕ STOCK IN
-
-    </button>
-
-
-    <button
-      onclick="stockOut()">
-
-      ➖ STOCK OUT
-
-    </button>
-
-
-    <button
-      class="secondary"
-      onclick="showAddMaterial()">
-
-      ➕ ADD NEW MATERIAL
-
-    </button>
-
-
-    <button
-      class="secondary"
-      onclick="adminLogout()">
-
-      LOG OUT ADMIN
-
-    </button>
-
-
-    <div
-      id="adminMessage"
-      class="message">
-    </div>
+    ➕ ADD NEW MATERIAL
 
   </div>
 
 
-  <!-- ============================================
-       ADD NEW MATERIAL
-       ============================================ -->
+  <input
+    id="newBarcode"
+    class="input"
+    placeholder="Barcode *"
+    autocomplete="off"
+  >
+
+
+  <button
+    class="secondary"
+    style="margin-top:8px;"
+    onclick="generateInternalBarcode()">
+
+    ⚡ GENERATE INTERNAL CODE
+
+  </button>
+
+
+  <input
+    id="newProduct"
+    class="input"
+    placeholder="Product Name *"
+    autocomplete="off"
+  >
+
+
+  <input
+    id="newBrand"
+    class="input"
+    placeholder="Brand"
+    autocomplete="off"
+  >
+
+
+  <input
+    id="newSize"
+    class="input"
+    placeholder="Size (e.g. 600×1200)"
+    autocomplete="off"
+  >
+
+
+  <input
+    id="newFinish"
+    class="input"
+    placeholder="Finish"
+    autocomplete="off"
+  >
+
+
+  <input
+    id="newOpeningStock"
+    class="input"
+    type="number"
+    min="0"
+    step="1"
+    placeholder="Opening Stock"
+  >
+
+
+  <input
+    id="newMinimumStock"
+    class="input"
+    type="number"
+    min="0"
+    step="1"
+    placeholder="Minimum Stock"
+  >
+
+
+  <input
+    id="newVariant"
+    class="input"
+    placeholder="Variant (optional)"
+    autocomplete="off"
+  >
+
+
+  <button
+    style="margin-top:10px;"
+    onclick="createNewMaterial()">
+
+    SAVE NEW MATERIAL
+
+  </button>
+
+
+  <button
+    class="secondary"
+    onclick="closeNewMaterial()">
+
+    CANCEL
+
+  </button>
+
 
   <div
-    id="newMaterialPanel"
-    class="admin-panel">
+    id="newMaterialMessage"
+    class="message">
+  </div>
 
-    <div class="panel-title">
-
-      ➕ ADD NEW MATERIAL
-
-    </div>
+</div>
 
 
-    <input
-      id="newBarcode"
-      class="admin-input"
-      placeholder="Barcode *"
-      autocomplete="off"
-    >
+<!-- =================================================
+     PHYSICAL STOCK ADJUSTMENT
+     ================================================= -->
+
+<div
+  id="adjustmentPanel"
+  class="panel">
+
+  <div class="panel-title">
+
+    📏 PHYSICAL STOCK ADJUSTMENT
+
+  </div>
 
 
-    <input
-      id="newProduct"
-      class="admin-input"
-      placeholder="Product Name *"
-      autocomplete="off"
-    >
+  <input
+    id="adjustBarcode"
+    class="input"
+    placeholder="Product barcode"
+    autocomplete="off"
+  >
 
 
-    <input
-      id="newBrand"
-      class="admin-input"
-      placeholder="Brand"
-      autocomplete="off"
-    >
+  <input
+    id="physicalStock"
+    class="input"
+    type="number"
+    min="0"
+    step="1"
+    placeholder="Actual physical stock"
+  >
 
 
-    <input
-      id="newSize"
-      class="admin-input"
-      placeholder="Size (e.g. 600×1200)"
-      autocomplete="off"
-    >
+  <input
+    id="adjustReason"
+    class="input"
+    placeholder="Reason (e.g. physical audit)"
+    autocomplete="off"
+  >
 
 
-    <input
-      id="newFinish"
-      class="admin-input"
-      placeholder="Finish"
-      autocomplete="off"
-    >
+  <button
+    style="margin-top:10px;"
+    onclick="adjustPhysicalStock()">
+
+    SAVE PHYSICAL STOCK
+
+  </button>
 
 
-    <input
-      id="newOpeningStock"
-      class="admin-input"
-      type="number"
-      min="0"
-      step="1"
-      placeholder="Opening Stock"
-    >
+  <button
+    class="secondary"
+    onclick="closeAdjustment()">
+
+    CANCEL
+
+  </button>
 
 
-    <input
-      id="newMinimumStock"
-      class="admin-input"
-      type="number"
-      min="0"
-      step="1"
-      placeholder="Minimum Stock"
-    >
+  <div
+    id="adjustmentMessage"
+    class="message">
+  </div>
+
+</div>
 
 
-    <input
-      id="newVariant"
-      class="admin-input"
-      placeholder="Variant (optional)"
-      autocomplete="off"
-    >
+<!-- =================================================
+     QR RESULT
+     ================================================= -->
 
+<div
+  id="qrPanel"
+  class="qr-panel">
+
+  <div
+    id="qrTitle"
+    class="qr-title">
+  </div>
+
+
+  <div
+    id="qrBarcode"
+    class="qr-code-text">
+  </div>
+
+
+  <div
+    id="qrcode">
+  </div>
+
+
+  <div class="qr-actions">
 
     <button
-      style="margin-top:10px;"
-      onclick="createNewMaterial()">
+      onclick="printQRLabel()">
 
-      SAVE NEW MATERIAL
+      🖨️ PRINT
 
     </button>
 
 
     <button
       class="secondary"
-      onclick="closeNewMaterial()">
+      onclick="downloadQR()">
 
-      CANCEL
+      ⬇️ SAVE QR
 
     </button>
 
-
-    <div
-      id="newMaterialMessage"
-      class="message">
-    </div>
-
   </div>
 
 
-  <!-- ============================================
-       RESULTS
-       ============================================ -->
+  <button
+    class="secondary"
+    style="margin-top:8px;"
+    onclick="closeQR()">
 
-  <div id="results">
+    CLOSE QR
 
-    <div class="loading">
-      Loading inventory...
-    </div>
+  </button>
 
+</div>
+
+
+<!-- =================================================
+     RESULTS
+     ================================================= -->
+
+<div id="results">
+
+  <div class="loading">
+    Loading inventory...
   </div>
+
+</div>
 
 
 </div>
@@ -882,7 +1075,7 @@
 
 
 // =====================================================
-// CONFIGURATION
+// CONFIG
 // =====================================================
 
 const API_URL =
@@ -902,9 +1095,13 @@ let adminToken =
     "sg_admin_token"
   ) || "";
 
+let currentQRProduct = "";
+
+let currentQRBarcode = "";
+
 
 // =====================================================
-// JSONP API CLIENT
+// JSONP CLIENT
 // =====================================================
 
 function callApi(
@@ -934,10 +1131,6 @@ function callApi(
     );
 
 
-  script.id =
-    callbackName;
-
-
   function cleanup() {
 
     try {
@@ -963,7 +1156,9 @@ function callApi(
   }
 
 
-  function fail(message) {
+  function fail(
+    message
+  ) {
 
     if (finished) {
       return;
@@ -981,9 +1176,11 @@ function callApi(
     ) {
 
       failure({
+
         message:
           message ||
           "API request failed."
+
       });
 
     }
@@ -1080,25 +1277,27 @@ function callApi(
   Object.keys(
     params
   )
-    .forEach(function(key) {
+    .forEach(
+      function(key) {
 
-      const value =
-        params[key];
+        const value =
+          params[key];
 
 
-      if (
-        value !== undefined &&
-        value !== null
-      ) {
+        if (
+          value !== undefined &&
+          value !== null
+        ) {
 
-        query.set(
-          key,
-          String(value)
-        );
+          query.set(
+            key,
+            String(value)
+          );
+
+        }
 
       }
-
-    });
+    );
 
 
   script.src =
@@ -1132,7 +1331,7 @@ function callApi(
 
 
 // =====================================================
-// LOAD APP
+// APP START
 // =====================================================
 
 function loadApp() {
@@ -1145,7 +1344,7 @@ function loadApp() {
 
 
 // =====================================================
-// LOAD INVENTORY
+// INVENTORY
 // =====================================================
 
 function loadInventory() {
@@ -1180,11 +1379,6 @@ function loadInventory() {
 
     function(error) {
 
-      console.error(
-        error
-      );
-
-
       showError(
         error.message ||
         "Could not load inventory."
@@ -1198,7 +1392,7 @@ function loadInventory() {
 
 
 // =====================================================
-// INVENTORY CARD
+// STATUS
 // =====================================================
 
 function getStatus(
@@ -1211,43 +1405,55 @@ function getStatus(
     ) || 0;
 
 
-  if (stock <= 0) {
+  const minimum =
+    Number(
+      product.minimumStock
+    ) || 0;
+
+
+  if (
+    stock <= 0
+  ) {
 
     return {
+
       text:
         "OUT OF STOCK",
+
       cls:
         "red"
+
     };
 
   }
 
 
   if (
-    Number(
-      product.minimumStock
-    ) > 0 &&
-    stock <=
-    Number(
-      product.minimumStock
-    )
+    minimum > 0 &&
+    stock <= minimum
   ) {
 
     return {
+
       text:
         "LOW STOCK",
+
       cls:
         "orange"
+
     };
 
   }
 
 
   return {
+
     text:
       "IN STOCK",
+
     cls:
       "green"
+
   };
 
 }
@@ -1278,59 +1484,46 @@ function productCard(
     <div class="product-card">
 
       <div class="product-name">
-
         ${escapeHTML(
           product.product
         )}
-
       </div>
 
 
       <div class="info">
-
         <strong>Barcode:</strong>
         ${escapeHTML(
           product.barcode
         )}
-
       </div>
 
 
       <div class="info">
-
         <strong>Brand:</strong>
         ${escapeHTML(
           product.brand || "-"
         )}
-
       </div>
 
 
       <div class="info">
-
         <strong>Size:</strong>
         ${escapeHTML(
           product.size || "-"
         )}
-
       </div>
 
 
       <div class="info">
-
         <strong>Finish:</strong>
         ${escapeHTML(
           product.finish || "-"
         )}
-
       </div>
 
 
       <div class="stock">
-
-        Stock:
-        ${stock}
-
+        Stock: ${stock}
       </div>
 
 
@@ -1377,7 +1570,10 @@ function renderInventory(
 
   results.innerHTML =
     items
-      .slice(0, 100)
+      .slice(
+        0,
+        100
+      )
       .map(
         productCard
       )
@@ -1425,7 +1621,9 @@ function searchProducts() {
             product.barcode || ""
           )
             .toLowerCase()
-            .includes(query)
+            .includes(
+              query
+            )
 
           ||
 
@@ -1433,7 +1631,9 @@ function searchProducts() {
             product.product || ""
           )
             .toLowerCase()
-            .includes(query)
+            .includes(
+              query
+            )
 
           ||
 
@@ -1441,7 +1641,9 @@ function searchProducts() {
             product.brand || ""
           )
             .toLowerCase()
-            .includes(query)
+            .includes(
+              query
+            )
 
           ||
 
@@ -1449,7 +1651,9 @@ function searchProducts() {
             product.size || ""
           )
             .toLowerCase()
-            .includes(query)
+            .includes(
+              query
+            )
 
           ||
 
@@ -1457,7 +1661,9 @@ function searchProducts() {
             product.finish || ""
           )
             .toLowerCase()
-            .includes(query)
+            .includes(
+              query
+            )
 
           ||
 
@@ -1465,7 +1671,9 @@ function searchProducts() {
             product.variant || ""
           )
             .toLowerCase()
-            .includes(query)
+            .includes(
+              query
+            )
 
         );
 
@@ -1496,7 +1704,7 @@ function focusSearch() {
 
 
 // =====================================================
-// SCANNER
+// OPEN SCANNER
 // =====================================================
 
 function openScanner() {
@@ -1540,7 +1748,9 @@ async function startScanner() {
   if (scanner) {
 
     try {
+
       await scanner.clear();
+
     } catch (e) {}
 
   }
@@ -1587,15 +1797,22 @@ async function startScanner() {
 
       const label =
         String(
-          cameras[i].label || ""
+          cameras[i].label ||
+          ""
         )
           .toLowerCase();
 
 
       if (
-        label.includes("back") ||
-        label.includes("rear") ||
-        label.includes("environment")
+        label.includes(
+          "back"
+        ) ||
+        label.includes(
+          "rear"
+        ) ||
+        label.includes(
+          "environment"
+        )
       ) {
 
         cameraId =
@@ -1614,17 +1831,23 @@ async function startScanner() {
 
       {
 
-        fps: 10,
+        fps:
+          10,
 
         qrbox: {
-          width: 250,
-          height: 250
+
+          width:
+            250,
+
+          height:
+            250
+
         },
 
-        aspectRatio: 1.0
+        aspectRatio:
+          1
 
       },
-
 
       function(decodedText) {
 
@@ -1634,10 +1857,9 @@ async function startScanner() {
 
       },
 
+      function() {
 
-      function(errorMessage) {
-
-        // Normal scanner errors ignored.
+        // Ignore scanning errors.
 
       }
 
@@ -1685,8 +1907,12 @@ async function handleQR(
   decodedText
 ) {
 
-  if (!scannerRunning) {
+  if (
+    !scannerRunning
+  ) {
+
     return;
+
   }
 
 
@@ -1697,7 +1923,9 @@ async function handleQR(
 
 
   if (!barcode) {
+
     return;
+
   }
 
 
@@ -1712,7 +1940,9 @@ async function handleQR(
   if (scanner) {
 
     try {
+
       await scanner.stop();
+
     } catch (e) {}
 
   }
@@ -1722,10 +1952,7 @@ async function handleQR(
     false;
 
 
-  /*
-   * Automatically fill Admin barcode.
-   */
-
+  // Auto-fill admin field
   document
     .getElementById(
       "adminBarcode"
@@ -1734,16 +1961,23 @@ async function handleQR(
       barcode;
 
 
-  /*
-   * Local search first.
-   */
+  document
+    .getElementById(
+      "adjustBarcode"
+    )
+    .value =
+      barcode;
+
+
+  // Find locally first
 
   const local =
     inventory.find(
       function(product) {
 
         return String(
-          product.barcode || ""
+          product.barcode ||
+          ""
         )
           .trim()
           .toLowerCase() ===
@@ -1766,17 +2000,17 @@ async function handleQR(
   }
 
 
-  /*
-   * Backend lookup.
-   */
+  // Backend lookup
 
   callApi(
 
     "findProduct",
 
     {
+
       barcode:
         barcode
+
     },
 
     function(product) {
@@ -1839,13 +2073,13 @@ function showProduct(
     )
     .innerHTML =
 
-    productCard(
-      product
-    )
+      productCard(
+        product
+      )
 
-    +
+      +
 
-    `
+      `
 
       <button
         class="scan-next"
@@ -1855,7 +2089,7 @@ function showProduct(
 
       </button>
 
-    `;
+      `;
 
 }
 
@@ -1890,9 +2124,13 @@ async function closeScanner() {
   }
 
 
-  scanner = null;
+  scanner =
+    null;
 
-  scannerRunning = false;
+
+  scannerRunning =
+    false;
+
 
   closeScannerPanel();
 
@@ -1961,9 +2199,12 @@ async function scanNextProduct() {
   }
 
 
-  scanner = null;
+  scanner =
+    null;
 
-  scannerRunning = false;
+
+  scannerRunning =
+    false;
 
 
   startScanner();
@@ -1972,7 +2213,7 @@ async function scanNextProduct() {
 
 
 // =====================================================
-// ADMIN LOGIN UI
+// ADMIN LOGIN
 // =====================================================
 
 function showAdminLogin() {
@@ -2047,8 +2288,10 @@ function adminLogin() {
     "adminLogin",
 
     {
+
       pin:
         pin
+
     },
 
     function(result) {
@@ -2064,6 +2307,14 @@ function adminLogin() {
 
 
       setAdminMode();
+
+
+      document
+        .getElementById(
+          "adminPin"
+        )
+        .value =
+        "";
 
 
       message.textContent =
@@ -2104,8 +2355,10 @@ function validateStoredAdmin() {
     "validateAdmin",
 
     {
+
       token:
         adminToken
+
     },
 
     function(result) {
@@ -2137,7 +2390,7 @@ function validateStoredAdmin() {
 
 
 // =====================================================
-// SET ADMIN MODE
+// ADMIN MODE
 // =====================================================
 
 function setAdminMode() {
@@ -2147,7 +2400,7 @@ function setAdminMode() {
       "modeText"
     )
     .textContent =
-      "Admin Mode";
+    "Admin Mode";
 
 
   document
@@ -2155,7 +2408,7 @@ function setAdminMode() {
       "adminLoginButton"
     )
     .style.display =
-      "none";
+    "none";
 
 
   document
@@ -2163,7 +2416,7 @@ function setAdminMode() {
       "loginPanel"
     )
     .style.display =
-      "none";
+    "none";
 
 
   document
@@ -2171,7 +2424,7 @@ function setAdminMode() {
       "adminPanel"
     )
     .style.display =
-      "block";
+    "block";
 
 }
 
@@ -2182,7 +2435,9 @@ function setAdminMode() {
 
 function lockAdminUI() {
 
-  adminToken = "";
+  adminToken =
+    "";
+
 
   sessionStorage.removeItem(
     "sg_admin_token"
@@ -2194,7 +2449,7 @@ function lockAdminUI() {
       "modeText"
     )
     .textContent =
-      "Staff Mode";
+    "Staff Mode";
 
 
   document
@@ -2202,7 +2457,7 @@ function lockAdminUI() {
       "adminLoginButton"
     )
     .style.display =
-      "block";
+    "block";
 
 
   document
@@ -2210,7 +2465,7 @@ function lockAdminUI() {
       "loginPanel"
     )
     .style.display =
-      "none";
+    "none";
 
 
   document
@@ -2218,7 +2473,7 @@ function lockAdminUI() {
       "adminPanel"
     )
     .style.display =
-      "none";
+    "none";
 
 
   document
@@ -2226,7 +2481,15 @@ function lockAdminUI() {
       "newMaterialPanel"
     )
     .style.display =
-      "none";
+    "none";
+
+
+  document
+    .getElementById(
+      "adjustmentPanel"
+    )
+    .style.display =
+    "none";
 
 }
 
@@ -2251,8 +2514,10 @@ function adminLogout() {
     "adminLogout",
 
     {
+
       token:
         adminToken
+
     },
 
     function() {
@@ -2268,6 +2533,47 @@ function adminLogout() {
     }
 
   );
+
+}
+
+
+// =====================================================
+// HANDLE ADMIN ERROR
+// =====================================================
+
+function handleAdminError(
+  error
+) {
+
+  const text =
+    String(
+      error &&
+      error.message
+        ? error.message
+        : ""
+    )
+      .toLowerCase();
+
+
+  if (
+
+    text.includes(
+      "session expired"
+    ) ||
+
+    text.includes(
+      "admin login required"
+    ) ||
+
+    text.includes(
+      "invalid admin session"
+    )
+
+  ) {
+
+    lockAdminUI();
+
+  }
 
 }
 
@@ -2525,44 +2831,7 @@ function stockOut() {
 
 
 // =====================================================
-// ADMIN ERROR HANDLER
-// =====================================================
-
-function handleAdminError(
-  error
-) {
-
-  const text =
-    String(
-      error &&
-      error.message
-        ? error.message
-        : ""
-    )
-      .toLowerCase();
-
-
-  if (
-    text.includes(
-      "session expired"
-    ) ||
-    text.includes(
-      "admin login required"
-    ) ||
-    text.includes(
-      "invalid admin session"
-    )
-  ) {
-
-    lockAdminUI();
-
-  }
-
-}
-
-
-// =====================================================
-// ADD NEW MATERIAL UI
+// ADD NEW MATERIAL
 // =====================================================
 
 function showAddMaterial() {
@@ -2578,27 +2847,15 @@ function showAddMaterial() {
   }
 
 
+  closeAdjustment();
+
+
   document
     .getElementById(
       "newMaterialPanel"
     )
     .style.display =
-      "block";
-
-
-  window.scrollTo({
-
-    top:
-      document
-        .getElementById(
-          "newMaterialPanel"
-        )
-        .offsetTop,
-
-    behavior:
-      "smooth"
-
-  });
+    "block";
 
 
   document
@@ -2607,30 +2864,79 @@ function showAddMaterial() {
     )
     .focus();
 
-}
-
-
-// =====================================================
-// CLOSE ADD MATERIAL
-// =====================================================
-
-function closeNewMaterial() {
 
   document
     .getElementById(
       "newMaterialPanel"
     )
-    .style.display =
-      "none";
-
-
-  clearNewMaterialForm();
+    .scrollIntoView({
+      behavior:
+        "smooth",
+      block:
+        "center"
+    });
 
 }
 
 
 // =====================================================
-// CREATE NEW MATERIAL
+// GENERATE INTERNAL BARCODE
+// =====================================================
+
+function generateInternalBarcode() {
+
+  if (!adminToken) {
+
+    alert(
+      "Please login as Admin first."
+    );
+
+    return;
+
+  }
+
+
+  callApi(
+
+    "generateInternalBarcode",
+
+    {
+
+      token:
+        adminToken
+
+    },
+
+    function(result) {
+
+      document
+        .getElementById(
+          "newBarcode"
+        )
+        .value =
+        result.barcode;
+
+    },
+
+    function(error) {
+
+      document
+        .getElementById(
+          "newMaterialMessage"
+        )
+        .textContent =
+        error.message ||
+        "Could not generate code.";
+
+    }
+
+  );
+
+}
+
+
+// =====================================================
+// CREATE MATERIAL
 // =====================================================
 
 function createNewMaterial() {
@@ -2822,25 +3128,20 @@ function createNewMaterial() {
         "Material added successfully.";
 
 
+      /*
+       * Automatic QR generation
+       */
+
+      generateProductQR(
+        result.product,
+        result.barcode
+      );
+
+
       clearNewMaterialForm();
 
 
       loadInventory();
-
-
-      setTimeout(
-        function() {
-
-          document
-            .getElementById(
-              "newMaterialPanel"
-            )
-            .style.display =
-              "none";
-
-        },
-        800
-      );
 
     },
 
@@ -2863,7 +3164,7 @@ function createNewMaterial() {
 
 
 // =====================================================
-// CLEAR NEW MATERIAL FORM
+// CLEAR MATERIAL FORM
 // =====================================================
 
 function clearNewMaterialForm() {
@@ -2872,63 +3173,766 @@ function clearNewMaterialForm() {
     .getElementById(
       "newBarcode"
     )
-    .value = "";
+    .value =
+    "";
 
 
   document
     .getElementById(
       "newProduct"
     )
-    .value = "";
+    .value =
+    "";
 
 
   document
     .getElementById(
       "newBrand"
     )
-    .value = "";
+    .value =
+    "";
 
 
   document
     .getElementById(
       "newSize"
     )
-    .value = "";
+    .value =
+    "";
 
 
   document
     .getElementById(
       "newFinish"
     )
-    .value = "";
+    .value =
+    "";
 
 
   document
     .getElementById(
       "newOpeningStock"
     )
-    .value = "";
+    .value =
+    "";
 
 
   document
     .getElementById(
       "newMinimumStock"
     )
-    .value = "";
+    .value =
+    "";
 
 
   document
     .getElementById(
       "newVariant"
     )
-    .value = "";
+    .value =
+    "";
+
+
+}
+
+
+// =====================================================
+// CLOSE MATERIAL
+// =====================================================
+
+function closeNewMaterial() {
+
+  document
+    .getElementById(
+      "newMaterialPanel"
+    )
+    .style.display =
+    "none";
+
+}
+
+
+// =====================================================
+// PHYSICAL STOCK ADJUSTMENT
+// =====================================================
+
+function showAdjustment() {
+
+  if (!adminToken) {
+
+    alert(
+      "Please login as Admin first."
+    );
+
+    return;
+
+  }
+
+
+  closeNewMaterial();
 
 
   document
     .getElementById(
-      "newMaterialMessage"
+      "adjustmentPanel"
     )
-    .textContent = "";
+    .style.display =
+    "block";
+
+
+  document
+    .getElementById(
+      "adjustmentPanel"
+    )
+    .scrollIntoView({
+      behavior:
+        "smooth",
+      block:
+        "center"
+    });
+
+
+  document
+    .getElementById(
+      "adjustBarcode"
+    )
+    .focus();
+
+}
+
+
+// =====================================================
+// CLOSE ADJUSTMENT
+// =====================================================
+
+function closeAdjustment() {
+
+  document
+    .getElementById(
+      "adjustmentPanel"
+    )
+    .style.display =
+    "none";
+
+}
+
+
+// =====================================================
+// ADJUST PHYSICAL STOCK
+// =====================================================
+
+function adjustPhysicalStock() {
+
+  if (!adminToken) {
+
+    alert(
+      "Please login as Admin first."
+    );
+
+    return;
+
+  }
+
+
+  const barcode =
+    document
+      .getElementById(
+        "adjustBarcode"
+      )
+      .value
+      .trim();
+
+
+  const physicalStock =
+    Number(
+      document
+        .getElementById(
+          "physicalStock"
+        )
+        .value
+    );
+
+
+  const reason =
+    document
+      .getElementById(
+        "adjustReason"
+      )
+      .value
+      .trim();
+
+
+  const message =
+    document
+      .getElementById(
+        "adjustmentMessage"
+      );
+
+
+  if (!barcode) {
+
+    message.textContent =
+      "Enter or scan a barcode.";
+
+    return;
+
+  }
+
+
+  if (
+    !Number.isFinite(
+      physicalStock
+    ) ||
+    physicalStock < 0
+  ) {
+
+    message.textContent =
+      "Enter a valid physical stock.";
+
+    return;
+
+  }
+
+
+  message.textContent =
+    "Saving physical stock...";
+
+
+  callApi(
+
+    "adjustStock",
+
+    {
+
+      barcode:
+        barcode,
+
+      physicalStock:
+        physicalStock,
+
+      reason:
+        reason,
+
+      token:
+        adminToken
+
+    },
+
+    function(result) {
+
+      message.textContent =
+
+        "Adjustment saved. " +
+
+        "Previous: " +
+        result.previousStock +
+
+        " → New: " +
+        result.newStock;
+
+
+      document
+        .getElementById(
+          "physicalStock"
+        )
+        .value =
+        "";
+
+
+      document
+        .getElementById(
+          "adjustReason"
+        )
+        .value =
+        "";
+
+
+      loadInventory();
+
+    },
+
+    function(error) {
+
+      message.textContent =
+        error.message ||
+        "Could not adjust stock.";
+
+
+      handleAdminError(
+        error
+      );
+
+    }
+
+  );
+
+}
+
+
+// =====================================================
+// AUTOMATIC QR GENERATION
+// =====================================================
+
+function generateProductQR(
+  productName,
+  barcode
+) {
+
+  currentQRProduct =
+    productName ||
+    "Product";
+
+
+  currentQRBarcode =
+    barcode ||
+    "";
+
+
+  document
+    .getElementById(
+      "qrTitle"
+    )
+    .textContent =
+    currentQRProduct;
+
+
+  document
+    .getElementById(
+      "qrBarcode"
+    )
+    .textContent =
+    "Barcode: " +
+    currentQRBarcode;
+
+
+  const qrBox =
+    document.getElementById(
+      "qrcode"
+    );
+
+
+  qrBox.innerHTML =
+    "";
+
+
+  if (
+    typeof QRCode ===
+    "undefined"
+  ) {
+
+    document
+      .getElementById(
+        "qrPanel"
+      )
+      .style.display =
+      "block";
+
+
+    document
+      .getElementById(
+        "qrBarcode"
+      )
+      .textContent =
+      "QR library could not load.";
+
+    return;
+
+  }
+
+
+  new QRCode(
+
+    qrBox,
+
+    {
+
+      text:
+        String(
+          currentQRBarcode
+        ),
+
+      width:
+        220,
+
+      height:
+        220,
+
+      correctLevel:
+        QRCode.CorrectLevel.H
+
+    }
+
+  );
+
+
+  document
+    .getElementById(
+      "qrPanel"
+    )
+    .style.display =
+    "block";
+
+
+  document
+    .getElementById(
+      "qrPanel"
+    )
+    .scrollIntoView({
+
+      behavior:
+        "smooth",
+
+      block:
+        "center"
+
+    });
+
+}
+
+
+// =====================================================
+// CLOSE QR
+// =====================================================
+
+function closeQR() {
+
+  document
+    .getElementById(
+      "qrPanel"
+    )
+    .style.display =
+    "none";
+
+}
+
+
+// =====================================================
+// GET QR IMAGE
+// =====================================================
+
+function getQRDataURL_() {
+
+  const canvas =
+    document.querySelector(
+      "#qrcode canvas"
+    );
+
+
+  if (canvas) {
+
+    return canvas.toDataURL(
+      "image/png"
+    );
+
+  }
+
+
+  const img =
+    document.querySelector(
+      "#qrcode img"
+    );
+
+
+  if (img) {
+
+    return img.src;
+
+  }
+
+
+  return "";
+
+}
+
+
+// =====================================================
+// DOWNLOAD QR
+// =====================================================
+
+function downloadQR() {
+
+  const dataURL =
+    getQRDataURL_();
+
+
+  if (!dataURL) {
+
+    alert(
+      "QR code is not ready."
+    );
+
+    return;
+
+  }
+
+
+  const link =
+    document.createElement(
+      "a"
+    );
+
+
+  link.href =
+    dataURL;
+
+
+  link.download =
+    (
+      currentQRBarcode ||
+      "product"
+    ) +
+    "-QR.png";
+
+
+  document.body
+    .appendChild(
+      link
+    );
+
+
+  link.click();
+
+
+  link.remove();
+
+}
+
+
+// =====================================================
+// PRINT QR LABEL
+// =====================================================
+
+function printQRLabel() {
+
+  const dataURL =
+    getQRDataURL_();
+
+
+  if (!dataURL) {
+
+    alert(
+      "QR code is not ready."
+    );
+
+    return;
+
+  }
+
+
+  const product =
+    currentQRProduct;
+
+
+  const barcode =
+    currentQRBarcode;
+
+
+  const printWindow =
+    window.open(
+      "",
+      "_blank",
+      "width=500,height=700"
+    );
+
+
+  if (!printWindow) {
+
+    alert(
+      "Please allow pop-ups for this app."
+    );
+
+    return;
+
+  }
+
+
+  printWindow.document.write(`
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+${escapeHTML(product)}
+</title>
+
+<style>
+
+@page {
+
+  size:
+    80mm 80mm;
+
+  margin:
+    0;
+
+}
+
+
+html,
+body {
+
+  margin:
+    0;
+
+  padding:
+    0;
+
+  width:
+    80mm;
+
+  min-height:
+    80mm;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+}
+
+
+.label {
+
+  width:
+    80mm;
+
+  min-height:
+    80mm;
+
+  box-sizing:
+    border-box;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  text-align:
+    center;
+
+  padding:
+    6mm;
+
+}
+
+
+.brand {
+
+  font-size:
+    15px;
+
+  font-weight:
+    800;
+
+  margin-bottom:
+    3mm;
+
+}
+
+
+.product {
+
+  font-size:
+    18px;
+
+  font-weight:
+    800;
+
+  margin-bottom:
+    3mm;
+
+}
+
+
+.qr {
+
+  width:
+    48mm;
+
+  height:
+    48mm;
+
+}
+
+
+.barcode {
+
+  margin-top:
+    3mm;
+
+  font-size:
+    13px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    1px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="label">
+
+  <div class="brand">
+    SHREE GANESH
+  </div>
+
+  <div class="product">
+    ${escapeHTML(product)}
+  </div>
+
+  <img
+    class="qr"
+    src="${dataURL}"
+  >
+
+  <div class="barcode">
+    ${escapeHTML(barcode)}
+  </div>
+
+</div>
+
+<script>
+
+window.onload =
+  function() {
+
+    setTimeout(
+      function() {
+
+        window.print();
+
+      },
+      300
+    );
+
+  };
+
+<\/script>
+
+</body>
+
+</html>
+
+`);
+
+
+  printWindow.document.close();
 
 }
 
@@ -2947,7 +3951,7 @@ function showError(
     )
     .innerHTML =
 
-    `
+      `
 
       <div class="error">
 
@@ -2957,13 +3961,13 @@ function showError(
 
       </div>
 
-    `;
+      `;
 
 }
 
 
 // =====================================================
-// HTML ESCAPE
+// ESCAPE HTML
 // =====================================================
 
 function escapeHTML(
@@ -3005,7 +4009,7 @@ function escapeHTML(
 
 
 // =====================================================
-// START APP
+// START
 // =====================================================
 
 window.addEventListener(
