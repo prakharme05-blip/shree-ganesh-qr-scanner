@@ -56,9 +56,9 @@
     }
 
 
-    /* =================================================
+    /* =============================================
        HEADER
-       ================================================= */
+       ============================================= */
 
     .header {
 
@@ -106,9 +106,9 @@
     }
 
 
-    /* =================================================
-       MAIN BUTTONS
-       ================================================= */
+    /* =============================================
+       MAIN ACTIONS
+       ============================================= */
 
     .actions {
 
@@ -126,9 +126,11 @@
 
     button {
 
+      width: 100%;
+
       border: none;
 
-      border-radius: 12px;
+      border-radius: 11px;
 
       padding: 15px;
 
@@ -163,17 +165,24 @@
     }
 
 
-    /* =================================================
+    button:active {
+
+      transform: scale(.98);
+
+    }
+
+
+    /* =============================================
        SEARCH
-       ================================================= */
+       ============================================= */
 
     .search-box {
 
       background: white;
 
-      padding: 14px;
-
       border-radius: 14px;
+
+      padding: 14px;
 
       margin-bottom: 14px;
 
@@ -197,9 +206,9 @@
     }
 
 
-    /* =================================================
+    /* =============================================
        SCANNER
-       ================================================= */
+       ============================================= */
 
     .scanner-panel {
 
@@ -229,6 +238,13 @@
     }
 
 
+    #reader video {
+
+      border-radius: 12px;
+
+    }
+
+
     .scanner-status {
 
       text-align: center;
@@ -244,9 +260,9 @@
     }
 
 
-    /* =================================================
+    /* =============================================
        PRODUCT
-       ================================================= */
+       ============================================= */
 
     .product-card {
 
@@ -336,16 +352,44 @@
 
     .scan-next {
 
-      width: 100%;
-
-      margin-top: 15px;
+      margin-top: 14px;
 
     }
 
 
-    /* =================================================
+    /* =============================================
+       LOGIN
+       ============================================= */
+
+    .login-panel {
+
+      display: none;
+
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 16px;
+
+      margin-bottom: 14px;
+
+    }
+
+
+    .panel-title {
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+      margin-bottom: 10px;
+
+    }
+
+
+    /* =============================================
        ADMIN
-       ================================================= */
+       ============================================= */
 
     .admin-panel {
 
@@ -353,22 +397,11 @@
 
       background: white;
 
-      padding: 16px;
-
       border-radius: 16px;
 
+      padding: 16px;
+
       margin-bottom: 14px;
-
-    }
-
-
-    .admin-title {
-
-      font-size: 19px;
-
-      font-weight: 800;
-
-      margin-bottom: 12px;
 
     }
 
@@ -387,10 +420,12 @@
 
       margin-top: 8px;
 
+      outline: none;
+
     }
 
 
-    .admin-message {
+    .message {
 
       text-align: center;
 
@@ -405,39 +440,9 @@
     }
 
 
-    /* =================================================
-       LOGIN
-       ================================================= */
-
-    .login-panel {
-
-      display: none;
-
-      background: white;
-
-      padding: 16px;
-
-      border-radius: 16px;
-
-      margin-bottom: 14px;
-
-    }
-
-
-    .login-title {
-
-      font-size: 18px;
-
-      font-weight: 800;
-
-      margin-bottom: 10px;
-
-    }
-
-
-    /* =================================================
-       LOADING / ERROR
-       ================================================= */
+    /* =============================================
+       RESULTS
+       ============================================= */
 
     .loading {
 
@@ -445,7 +450,7 @@
 
       border-radius: 14px;
 
-      padding: 25px;
+      padding: 28px;
 
       text-align: center;
 
@@ -471,6 +476,10 @@
     }
 
 
+    /* =============================================
+       MOBILE
+       ============================================= */
+
     @media (max-width: 600px) {
 
       .app {
@@ -479,10 +488,10 @@
 
       }
 
-      .actions {
 
-        grid-template-columns:
-          1fr 1fr;
+      .brand {
+
+        font-size: 23px;
 
       }
 
@@ -499,9 +508,9 @@
 <div class="app">
 
 
-  <!-- =================================================
+  <!-- ============================================
        HEADER
-       ================================================= -->
+       ============================================ -->
 
   <div class="header">
 
@@ -514,8 +523,8 @@
     </div>
 
     <div
-      class="mode"
-      id="modeText">
+      id="modeText"
+      class="mode">
 
       Staff Mode
 
@@ -524,9 +533,9 @@
   </div>
 
 
-  <!-- =================================================
+  <!-- ============================================
        MAIN ACTIONS
-       ================================================= -->
+       ============================================ -->
 
   <div class="actions">
 
@@ -551,16 +560,33 @@
   </div>
 
 
-  <!-- =================================================
-       LOGIN
-       ================================================= -->
+  <!-- ============================================
+       ADMIN LOGIN BUTTON
+       ============================================ -->
+
+  <button
+    id="adminLoginButton"
+    class="secondary"
+    onclick="showAdminLogin()"
+    style="margin-bottom:14px;">
+
+    🔐 ADMIN LOGIN
+
+  </button>
+
+
+  <!-- ============================================
+       LOGIN PANEL
+       ============================================ -->
 
   <div
     id="loginPanel"
     class="login-panel">
 
-    <div class="login-title">
+    <div class="panel-title">
+
       🔐 ADMIN LOGIN
+
     </div>
 
 
@@ -571,6 +597,7 @@
       inputmode="numeric"
       maxlength="8"
       placeholder="Enter Admin PIN"
+      autocomplete="off"
     >
 
 
@@ -583,32 +610,26 @@
     </button>
 
 
+    <button
+      class="secondary"
+      onclick="closeAdminLogin()">
+
+      CANCEL
+
+    </button>
+
+
     <div
       id="loginMessage"
-      class="admin-message">
+      class="message">
     </div>
 
   </div>
 
 
-  <!-- =================================================
-       ADMIN BUTTON
-       ================================================= -->
-
-  <button
-    id="adminLoginButton"
-    class="secondary"
-    onclick="showAdminLogin()"
-    style="width:100%; margin-bottom:14px;">
-
-    🔐 ADMIN LOGIN
-
-  </button>
-
-
-  <!-- =================================================
+  <!-- ============================================
        SEARCH
-       ================================================= -->
+       ============================================ -->
 
   <div class="search-box">
 
@@ -624,9 +645,9 @@
   </div>
 
 
-  <!-- =================================================
+  <!-- ============================================
        SCANNER
-       ================================================= -->
+       ============================================ -->
 
   <div
     id="scannerPanel"
@@ -646,7 +667,7 @@
 
     <button
       class="secondary"
-      style="width:100%; margin-top:10px;"
+      style="margin-top:10px;"
       onclick="closeScanner()">
 
       CLOSE SCANNER
@@ -656,16 +677,18 @@
   </div>
 
 
-  <!-- =================================================
+  <!-- ============================================
        ADMIN PANEL
-       ================================================= -->
+       ============================================ -->
 
   <div
     id="adminPanel"
     class="admin-panel">
 
-    <div class="admin-title">
-      👑 ADMIN — STOCK UPDATE
+    <div class="panel-title">
+
+      👑 ADMIN
+
     </div>
 
 
@@ -706,6 +729,15 @@
 
     <button
       class="secondary"
+      onclick="showAddMaterial()">
+
+      ➕ ADD NEW MATERIAL
+
+    </button>
+
+
+    <button
+      class="secondary"
       onclick="adminLogout()">
 
       LOG OUT ADMIN
@@ -715,15 +747,124 @@
 
     <div
       id="adminMessage"
-      class="admin-message">
+      class="message">
     </div>
 
   </div>
 
 
-  <!-- =================================================
+  <!-- ============================================
+       ADD NEW MATERIAL
+       ============================================ -->
+
+  <div
+    id="newMaterialPanel"
+    class="admin-panel">
+
+    <div class="panel-title">
+
+      ➕ ADD NEW MATERIAL
+
+    </div>
+
+
+    <input
+      id="newBarcode"
+      class="admin-input"
+      placeholder="Barcode *"
+      autocomplete="off"
+    >
+
+
+    <input
+      id="newProduct"
+      class="admin-input"
+      placeholder="Product Name *"
+      autocomplete="off"
+    >
+
+
+    <input
+      id="newBrand"
+      class="admin-input"
+      placeholder="Brand"
+      autocomplete="off"
+    >
+
+
+    <input
+      id="newSize"
+      class="admin-input"
+      placeholder="Size (e.g. 600×1200)"
+      autocomplete="off"
+    >
+
+
+    <input
+      id="newFinish"
+      class="admin-input"
+      placeholder="Finish"
+      autocomplete="off"
+    >
+
+
+    <input
+      id="newOpeningStock"
+      class="admin-input"
+      type="number"
+      min="0"
+      step="1"
+      placeholder="Opening Stock"
+    >
+
+
+    <input
+      id="newMinimumStock"
+      class="admin-input"
+      type="number"
+      min="0"
+      step="1"
+      placeholder="Minimum Stock"
+    >
+
+
+    <input
+      id="newVariant"
+      class="admin-input"
+      placeholder="Variant (optional)"
+      autocomplete="off"
+    >
+
+
+    <button
+      style="margin-top:10px;"
+      onclick="createNewMaterial()">
+
+      SAVE NEW MATERIAL
+
+    </button>
+
+
+    <button
+      class="secondary"
+      onclick="closeNewMaterial()">
+
+      CANCEL
+
+    </button>
+
+
+    <div
+      id="newMaterialMessage"
+      class="message">
+    </div>
+
+  </div>
+
+
+  <!-- ============================================
        RESULTS
-       ================================================= -->
+       ============================================ -->
 
   <div id="results">
 
@@ -741,7 +882,7 @@
 
 
 // =====================================================
-// CONFIG
+// CONFIGURATION
 // =====================================================
 
 const API_URL =
@@ -825,9 +966,7 @@ function callApi(
   function fail(message) {
 
     if (finished) {
-
       return;
-
     }
 
 
@@ -856,9 +995,7 @@ function callApi(
     function(response) {
 
       if (finished) {
-
         return;
-
       }
 
 
@@ -1002,6 +1139,8 @@ function loadApp() {
 
   loadInventory();
 
+  validateStoredAdmin();
+
 }
 
 
@@ -1059,42 +1198,57 @@ function loadInventory() {
 
 
 // =====================================================
-// RENDER INVENTORY
+// INVENTORY CARD
 // =====================================================
 
-function renderInventory(
-  items
+function getStatus(
+  product
 ) {
 
-  const results =
-    document.getElementById(
-      "results"
-    );
+  const stock =
+    Number(
+      product.stock
+    ) || 0;
 
 
-  if (
-    !items ||
-    items.length === 0
-  ) {
+  if (stock <= 0) {
 
-    results.innerHTML =
-      '<div class="product-card">No products found.</div>';
-
-    return;
+    return {
+      text:
+        "OUT OF STOCK",
+      cls:
+        "red"
+    };
 
   }
 
 
-  results.innerHTML =
-    items
-      .slice(
-        0,
-        100
-      )
-      .map(
-        productCard
-      )
-      .join("");
+  if (
+    Number(
+      product.minimumStock
+    ) > 0 &&
+    stock <=
+    Number(
+      product.minimumStock
+    )
+  ) {
+
+    return {
+      text:
+        "LOW STOCK",
+      cls:
+        "orange"
+    };
+
+  }
+
+
+  return {
+    text:
+      "IN STOCK",
+    cls:
+      "green"
+  };
 
 }
 
@@ -1107,52 +1261,16 @@ function productCard(
   product
 ) {
 
+  const status =
+    getStatus(
+      product
+    );
+
+
   const stock =
     Number(
       product.stock
     ) || 0;
-
-
-  let status =
-    "IN STOCK";
-
-
-  let color =
-    "green";
-
-
-  if (
-    stock <= 0
-  ) {
-
-    status =
-      "OUT OF STOCK";
-
-    color =
-      "red";
-
-  }
-
-  else if (
-
-    Number(
-      product.minimumStock
-    ) > 0 &&
-
-    stock <=
-    Number(
-      product.minimumStock
-    )
-
-  ) {
-
-    status =
-      "LOW STOCK";
-
-    color =
-      "orange";
-
-  }
 
 
   return `
@@ -1210,21 +1328,60 @@ function productCard(
 
       <div class="stock">
 
-        Stock: ${stock}
+        Stock:
+        ${stock}
 
       </div>
 
 
       <div
-        class="status ${color}">
+        class="status ${status.cls}">
 
-        ${status}
+        ${status.text}
 
       </div>
 
     </div>
 
   `;
+
+}
+
+
+// =====================================================
+// RENDER INVENTORY
+// =====================================================
+
+function renderInventory(
+  items
+) {
+
+  const results =
+    document.getElementById(
+      "results"
+    );
+
+
+  if (
+    !items ||
+    items.length === 0
+  ) {
+
+    results.innerHTML =
+      '<div class="product-card">No products found.</div>';
+
+    return;
+
+  }
+
+
+  results.innerHTML =
+    items
+      .slice(0, 100)
+      .map(
+        productCard
+      )
+      .join("");
 
 }
 
@@ -1302,6 +1459,14 @@ function searchProducts() {
             .toLowerCase()
             .includes(query)
 
+          ||
+
+          String(
+            product.variant || ""
+          )
+            .toLowerCase()
+            .includes(query)
+
         );
 
       }
@@ -1375,12 +1540,8 @@ async function startScanner() {
   if (scanner) {
 
     try {
-
       await scanner.clear();
-
-    }
-
-    catch (e) {}
+    } catch (e) {}
 
   }
 
@@ -1456,16 +1617,14 @@ async function startScanner() {
         fps: 10,
 
         qrbox: {
-
           width: 250,
-
           height: 250
-
         },
 
         aspectRatio: 1.0
 
       },
+
 
       function(decodedText) {
 
@@ -1475,9 +1634,10 @@ async function startScanner() {
 
       },
 
+
       function(errorMessage) {
 
-        // Ignore scanning errors.
+        // Normal scanner errors ignored.
 
       }
 
@@ -1525,12 +1685,8 @@ async function handleQR(
   decodedText
 ) {
 
-  if (
-    !scannerRunning
-  ) {
-
+  if (!scannerRunning) {
     return;
-
   }
 
 
@@ -1541,9 +1697,7 @@ async function handleQR(
 
 
   if (!barcode) {
-
     return;
-
   }
 
 
@@ -1552,18 +1706,14 @@ async function handleQR(
       "scannerStatus"
     )
     .textContent =
-      "Finding product...";
+    "Finding product...";
 
 
   if (scanner) {
 
     try {
-
       await scanner.stop();
-
-    }
-
-    catch (e) {}
+    } catch (e) {}
 
   }
 
@@ -1572,7 +1722,10 @@ async function handleQR(
     false;
 
 
-  // Automatically fill Admin barcode
+  /*
+   * Automatically fill Admin barcode.
+   */
+
   document
     .getElementById(
       "adminBarcode"
@@ -1582,7 +1735,7 @@ async function handleQR(
 
 
   /*
-   * Look in local inventory first.
+   * Local search first.
    */
 
   const local =
@@ -1594,8 +1747,7 @@ async function handleQR(
         )
           .trim()
           .toLowerCase() ===
-          barcode
-            .toLowerCase();
+          barcode.toLowerCase();
 
       }
     );
@@ -1615,7 +1767,7 @@ async function handleQR(
 
 
   /*
-   * Ask backend.
+   * Backend lookup.
    */
 
   callApi(
@@ -1681,61 +1833,11 @@ function showProduct(
   product
 ) {
 
-  const results =
-    document.getElementById(
+  document
+    .getElementById(
       "results"
-    );
-
-
-  const stock =
-    Number(
-      product.stock
-    ) || 0;
-
-
-  let status =
-    "IN STOCK";
-
-
-  let color =
-    "green";
-
-
-  if (
-    stock <= 0
-  ) {
-
-    status =
-      "OUT OF STOCK";
-
-    color =
-      "red";
-
-  }
-
-  else if (
-
-    Number(
-      product.minimumStock
-    ) > 0 &&
-
-    stock <=
-    Number(
-      product.minimumStock
     )
-
-  ) {
-
-    status =
-      "LOW STOCK";
-
-    color =
-      "orange";
-
-  }
-
-
-  results.innerHTML =
+    .innerHTML =
 
     productCard(
       product
@@ -1764,9 +1866,7 @@ function showProduct(
 
 async function closeScanner() {
 
-  if (
-    scanner
-  ) {
+  if (scanner) {
 
     try {
 
@@ -1778,29 +1878,21 @@ async function closeScanner() {
 
       }
 
-    }
-
-    catch (e) {}
+    } catch (e) {}
 
 
     try {
 
       await scanner.clear();
 
-    }
-
-    catch (e) {}
+    } catch (e) {}
 
   }
 
 
-  scanner =
-    null;
+  scanner = null;
 
-
-  scannerRunning =
-    false;
-
+  scannerRunning = false;
 
   closeScannerPanel();
 
@@ -1833,7 +1925,8 @@ async function scanNextProduct() {
     .getElementById(
       "results"
     )
-    .innerHTML = "";
+    .innerHTML =
+      "";
 
 
   document
@@ -1856,28 +1949,21 @@ async function scanNextProduct() {
 
       }
 
-    }
-
-    catch (e) {}
+    } catch (e) {}
 
 
     try {
 
       await scanner.clear();
 
-    }
-
-    catch (e) {}
+    } catch (e) {}
 
   }
 
 
-  scanner =
-    null;
+  scanner = null;
 
-
-  scannerRunning =
-    false;
+  scannerRunning = false;
 
 
   startScanner();
@@ -1886,7 +1972,7 @@ async function scanNextProduct() {
 
 
 // =====================================================
-// ADMIN LOGIN PANEL
+// ADMIN LOGIN UI
 // =====================================================
 
 function showAdminLogin() {
@@ -1904,6 +1990,18 @@ function showAdminLogin() {
       "adminPin"
     )
     .focus();
+
+}
+
+
+function closeAdminLogin() {
+
+  document
+    .getElementById(
+      "loginPanel"
+    )
+    .style.display =
+      "none";
 
 }
 
@@ -1965,47 +2063,11 @@ function adminLogin() {
       );
 
 
+      setAdminMode();
+
+
       message.textContent =
         "Admin unlocked.";
-
-
-      document
-        .getElementById(
-          "adminPin"
-        )
-        .value = "";
-
-
-      document
-        .getElementById(
-          "loginPanel"
-        )
-        .style.display =
-        "none";
-
-
-      document
-        .getElementById(
-          "adminPanel"
-        )
-        .style.display =
-        "block";
-
-
-      document
-        .getElementById(
-          "adminLoginButton"
-        )
-        .style.display =
-        "none";
-
-
-      document
-        .getElementById(
-          "modeText"
-        )
-        .textContent =
-        "Admin Mode";
 
     },
 
@@ -2018,6 +2080,153 @@ function adminLogin() {
     }
 
   );
+
+}
+
+
+// =====================================================
+// VALIDATE STORED ADMIN
+// =====================================================
+
+function validateStoredAdmin() {
+
+  if (!adminToken) {
+
+    lockAdminUI();
+
+    return;
+
+  }
+
+
+  callApi(
+
+    "validateAdmin",
+
+    {
+      token:
+        adminToken
+    },
+
+    function(result) {
+
+      if (
+        result &&
+        result.valid
+      ) {
+
+        setAdminMode();
+
+      } else {
+
+        lockAdminUI();
+
+      }
+
+    },
+
+    function() {
+
+      lockAdminUI();
+
+    }
+
+  );
+
+}
+
+
+// =====================================================
+// SET ADMIN MODE
+// =====================================================
+
+function setAdminMode() {
+
+  document
+    .getElementById(
+      "modeText"
+    )
+    .textContent =
+      "Admin Mode";
+
+
+  document
+    .getElementById(
+      "adminLoginButton"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById(
+      "loginPanel"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById(
+      "adminPanel"
+    )
+    .style.display =
+      "block";
+
+}
+
+
+// =====================================================
+// LOCK ADMIN
+// =====================================================
+
+function lockAdminUI() {
+
+  adminToken = "";
+
+  sessionStorage.removeItem(
+    "sg_admin_token"
+  );
+
+
+  document
+    .getElementById(
+      "modeText"
+    )
+    .textContent =
+      "Staff Mode";
+
+
+  document
+    .getElementById(
+      "adminLoginButton"
+    )
+    .style.display =
+      "block";
+
+
+  document
+    .getElementById(
+      "loginPanel"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById(
+      "adminPanel"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById(
+      "newMaterialPanel"
+    )
+    .style.display =
+      "none";
 
 }
 
@@ -2059,53 +2268,6 @@ function adminLogout() {
     }
 
   );
-
-}
-
-
-// =====================================================
-// LOCK ADMIN UI
-// =====================================================
-
-function lockAdminUI() {
-
-  adminToken = "";
-
-  sessionStorage.removeItem(
-    "sg_admin_token"
-  );
-
-
-  document
-    .getElementById(
-      "adminPanel"
-    )
-    .style.display =
-    "none";
-
-
-  document
-    .getElementById(
-      "adminLoginButton"
-    )
-    .style.display =
-    "block";
-
-
-  document
-    .getElementById(
-      "modeText"
-    )
-    .textContent =
-    "Staff Mode";
-
-
-  document
-    .getElementById(
-      "loginPanel"
-    )
-    .style.display =
-    "none";
 
 }
 
@@ -2225,24 +2387,9 @@ function stockIn() {
         "Could not update stock.";
 
 
-      /*
-       * If the session expired,
-       * return to Staff mode.
-       */
-
-      if (
-        String(
-          error.message || ""
-        )
-          .toLowerCase()
-          .includes(
-            "session expired"
-          )
-      ) {
-
-        lockAdminUI();
-
-      }
+      handleAdminError(
+        error
+      );
 
     }
 
@@ -2366,23 +2513,422 @@ function stockOut() {
         "Could not update stock.";
 
 
-      if (
-        String(
-          error.message || ""
-        )
-          .toLowerCase()
-          .includes(
-            "session expired"
-          )
-      ) {
-
-        lockAdminUI();
-
-      }
+      handleAdminError(
+        error
+      );
 
     }
 
   );
+
+}
+
+
+// =====================================================
+// ADMIN ERROR HANDLER
+// =====================================================
+
+function handleAdminError(
+  error
+) {
+
+  const text =
+    String(
+      error &&
+      error.message
+        ? error.message
+        : ""
+    )
+      .toLowerCase();
+
+
+  if (
+    text.includes(
+      "session expired"
+    ) ||
+    text.includes(
+      "admin login required"
+    ) ||
+    text.includes(
+      "invalid admin session"
+    )
+  ) {
+
+    lockAdminUI();
+
+  }
+
+}
+
+
+// =====================================================
+// ADD NEW MATERIAL UI
+// =====================================================
+
+function showAddMaterial() {
+
+  if (!adminToken) {
+
+    alert(
+      "Please login as Admin first."
+    );
+
+    return;
+
+  }
+
+
+  document
+    .getElementById(
+      "newMaterialPanel"
+    )
+    .style.display =
+      "block";
+
+
+  window.scrollTo({
+
+    top:
+      document
+        .getElementById(
+          "newMaterialPanel"
+        )
+        .offsetTop,
+
+    behavior:
+      "smooth"
+
+  });
+
+
+  document
+    .getElementById(
+      "newBarcode"
+    )
+    .focus();
+
+}
+
+
+// =====================================================
+// CLOSE ADD MATERIAL
+// =====================================================
+
+function closeNewMaterial() {
+
+  document
+    .getElementById(
+      "newMaterialPanel"
+    )
+    .style.display =
+      "none";
+
+
+  clearNewMaterialForm();
+
+}
+
+
+// =====================================================
+// CREATE NEW MATERIAL
+// =====================================================
+
+function createNewMaterial() {
+
+  if (!adminToken) {
+
+    alert(
+      "Please login as Admin first."
+    );
+
+    return;
+
+  }
+
+
+  const barcode =
+    document
+      .getElementById(
+        "newBarcode"
+      )
+      .value
+      .trim();
+
+
+  const product =
+    document
+      .getElementById(
+        "newProduct"
+      )
+      .value
+      .trim();
+
+
+  const brand =
+    document
+      .getElementById(
+        "newBrand"
+      )
+      .value
+      .trim();
+
+
+  const size =
+    document
+      .getElementById(
+        "newSize"
+      )
+      .value
+      .trim();
+
+
+  const finish =
+    document
+      .getElementById(
+        "newFinish"
+      )
+      .value
+      .trim();
+
+
+  const openingStock =
+    Number(
+      document
+        .getElementById(
+          "newOpeningStock"
+        )
+        .value
+    );
+
+
+  const minimumStock =
+    Number(
+      document
+        .getElementById(
+          "newMinimumStock"
+        )
+        .value
+    );
+
+
+  const variant =
+    document
+      .getElementById(
+        "newVariant"
+      )
+      .value
+      .trim();
+
+
+  const message =
+    document
+      .getElementById(
+        "newMaterialMessage"
+      );
+
+
+  if (!barcode) {
+
+    message.textContent =
+      "Barcode is required.";
+
+    return;
+
+  }
+
+
+  if (!product) {
+
+    message.textContent =
+      "Product name is required.";
+
+    return;
+
+  }
+
+
+  if (
+    !Number.isFinite(
+      openingStock
+    ) ||
+    openingStock < 0
+  ) {
+
+    message.textContent =
+      "Enter a valid opening stock.";
+
+    return;
+
+  }
+
+
+  if (
+    !Number.isFinite(
+      minimumStock
+    ) ||
+    minimumStock < 0
+  ) {
+
+    message.textContent =
+      "Enter a valid minimum stock.";
+
+    return;
+
+  }
+
+
+  message.textContent =
+    "Saving material...";
+
+
+  callApi(
+
+    "createProduct",
+
+    {
+
+      barcode:
+        barcode,
+
+      product:
+        product,
+
+      brand:
+        brand,
+
+      size:
+        size,
+
+      finish:
+        finish,
+
+      openingStock:
+        openingStock,
+
+      minimumStock:
+        minimumStock,
+
+      variant:
+        variant,
+
+      token:
+        adminToken
+
+    },
+
+    function(result) {
+
+      message.textContent =
+        "Material added successfully.";
+
+
+      clearNewMaterialForm();
+
+
+      loadInventory();
+
+
+      setTimeout(
+        function() {
+
+          document
+            .getElementById(
+              "newMaterialPanel"
+            )
+            .style.display =
+              "none";
+
+        },
+        800
+      );
+
+    },
+
+    function(error) {
+
+      message.textContent =
+        error.message ||
+        "Could not add material.";
+
+
+      handleAdminError(
+        error
+      );
+
+    }
+
+  );
+
+}
+
+
+// =====================================================
+// CLEAR NEW MATERIAL FORM
+// =====================================================
+
+function clearNewMaterialForm() {
+
+  document
+    .getElementById(
+      "newBarcode"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "newProduct"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "newBrand"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "newSize"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "newFinish"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "newOpeningStock"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "newMinimumStock"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "newVariant"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "newMaterialMessage"
+    )
+    .textContent = "";
 
 }
 
@@ -2417,7 +2963,7 @@ function showError(
 
 
 // =====================================================
-// ESCAPE HTML
+// HTML ESCAPE
 // =====================================================
 
 function escapeHTML(
@@ -2459,116 +3005,12 @@ function escapeHTML(
 
 
 // =====================================================
-// RESTORE ADMIN SESSION
-// =====================================================
-
-function restoreAdminSession() {
-
-  if (!adminToken) {
-
-    return;
-
-  }
-
-
-  /*
-   * We don't trust the browser alone.
-   *
-   * Make a harmless authenticated request.
-   */
-
-  callApi(
-
-    "stockIn",
-
-    {
-
-      barcode:
-        "__SESSION_CHECK__",
-
-      quantity:
-        0,
-
-      token:
-        adminToken
-
-    },
-
-    function() {
-
-      /*
-       * This should never succeed because
-       * quantity is 0, but the session was
-       * valid enough to reach validation.
-       */
-
-    },
-
-    function(error) {
-
-      const msg =
-        String(
-          error.message || ""
-        )
-          .toLowerCase();
-
-
-      if (
-        msg.includes(
-          "admin login required"
-        ) ||
-        msg.includes(
-          "session expired"
-        )
-      ) {
-
-        lockAdminUI();
-
-      }
-    }
-
-  );
-
-}
-
-
-// =====================================================
 // START APP
 // =====================================================
 
 window.addEventListener(
   "load",
   function() {
-
-    if (
-      adminToken
-    ) {
-
-      document
-        .getElementById(
-          "adminLoginButton"
-        )
-        .style.display =
-        "none";
-
-
-      document
-        .getElementById(
-          "adminPanel"
-        )
-        .style.display =
-        "block";
-
-
-      document
-        .getElementById(
-          "modeText"
-        )
-        .textContent =
-        "Admin Mode";
-
-    }
-
 
     loadApp();
 
