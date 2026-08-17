@@ -10,6 +10,11 @@
   content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
 >
 
+<meta
+  name="theme-color"
+  content="#111111"
+>
+
 <title>SHREE GANESH Inventory</title>
 
 
@@ -49,8 +54,8 @@ body {
   min-height: 100vh;
 
   transition:
-    background .25s,
-    color .25s;
+    background .2s,
+    color .2s;
 
 }
 
@@ -61,18 +66,9 @@ body {
 
   max-width: 900px;
 
-  margin: 0 auto;
+  margin: auto;
 
-  padding: 14px;
-
-}
-
-
-button,
-input,
-select {
-
-  font-family: inherit;
+  padding: 12px;
 
 }
 
@@ -89,16 +85,16 @@ select {
 
   border-radius: 16px;
 
-  padding: 20px;
+  padding: 18px;
 
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 
 }
 
 
 .brand {
 
-  font-size: 25px;
+  font-size: 24px;
 
   font-weight: 800;
 
@@ -107,57 +103,58 @@ select {
 
 .subtitle {
 
-  margin-top: 5px;
-
   color: #aaa;
 
-  font-size: 13px;
+  font-size: 12px;
+
+  margin-top: 4px;
 
 }
 
 
 .mode {
 
-  margin-top: 12px;
-
-  font-size: 14px;
-
   color: #ddd;
+
+  font-size: 13px;
+
+  margin-top: 9px;
 
 }
 
 
 /* =================================================
-   THEME SWITCH
+   SMALL THEME CONTROL
    ================================================= */
 
-.theme-bar {
+.theme-control {
 
-  background: white;
+  display: flex;
 
-  padding: 8px;
+  justify-content: flex-end;
 
-  border-radius: 12px;
+  gap: 5px;
 
-  display: grid;
-
-  grid-template-columns:
-    1fr 1fr 1fr;
-
-  gap: 6px;
-
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 
 }
 
 
 .theme-btn {
 
-  padding: 10px 6px;
+  width: auto;
+
+  padding: 7px 9px;
+
+  background: white;
+
+  color: #555;
+
+  border: 1px solid #ddd;
+
+  border-radius: 8px;
 
   font-size: 12px;
-
-  border-radius: 9px;
 
 }
 
@@ -182,32 +179,37 @@ select {
   grid-template-columns:
     1fr 1fr;
 
-  gap: 10px;
+  gap: 9px;
 
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 
 }
 
 
 button {
 
-  width: 100%;
-
   border: none;
 
   border-radius: 11px;
 
-  padding: 15px;
+  padding: 14px;
 
   background: #111;
 
   color: white;
 
-  font-size: 15px;
+  font-size: 14px;
 
   font-weight: 800;
 
   cursor: pointer;
+
+}
+
+
+button:active {
+
+  transform: scale(.98);
 
 }
 
@@ -223,20 +225,6 @@ button.secondary {
 }
 
 
-button.danger {
-
-  background: #b3261e;
-
-}
-
-
-button:active {
-
-  transform: scale(.98);
-
-}
-
-
 /* =================================================
    SEARCH
    ================================================= */
@@ -245,11 +233,11 @@ button:active {
 
   background: white;
 
-  border-radius: 14px;
+  padding: 11px;
 
-  padding: 14px;
+  border-radius: 13px;
 
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 
 }
 
@@ -258,15 +246,105 @@ button:active {
 
   width: 100%;
 
-  padding: 14px;
+  padding: 13px;
 
   border: 1px solid #ddd;
 
-  border-radius: 10px;
+  border-radius: 9px;
 
   font-size: 16px;
 
   outline: none;
+
+}
+
+
+/* =================================================
+   ADMIN LOGIN
+   ================================================= */
+
+.admin-entry {
+
+  text-align: center;
+
+  margin: 6px 0 12px;
+
+}
+
+
+.admin-entry button {
+
+  width: auto;
+
+  background: transparent;
+
+  color: #777;
+
+  padding: 6px 10px;
+
+  font-size: 12px;
+
+}
+
+
+.panel {
+
+  display: none;
+
+  background: white;
+
+  border-radius: 15px;
+
+  padding: 15px;
+
+  margin-bottom: 10px;
+
+}
+
+
+.panel-title {
+
+  font-size: 18px;
+
+  font-weight: 800;
+
+  margin-bottom: 9px;
+
+}
+
+
+.input {
+
+  width: 100%;
+
+  padding: 13px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 9px;
+
+  margin-top: 7px;
+
+  font-size: 15px;
+
+  background: white;
+
+  color: #111;
+
+}
+
+
+.message {
+
+  min-height: 18px;
+
+  margin-top: 8px;
+
+  text-align: center;
+
+  color: #666;
+
+  font-size: 13px;
 
 }
 
@@ -281,11 +359,11 @@ button:active {
 
   background: white;
 
-  padding: 14px;
+  border-radius: 15px;
 
-  border-radius: 16px;
+  padding: 11px;
 
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 
 }
 
@@ -296,9 +374,7 @@ button:active {
 
   overflow: hidden;
 
-  border-radius: 12px;
-
-  background: #111;
+  border-radius: 10px;
 
 }
 
@@ -309,42 +385,38 @@ button:active {
 
   color: #666;
 
-  font-size: 14px;
+  font-size: 13px;
 
-  margin-top: 10px;
-
-  min-height: 20px;
+  margin: 8px 0;
 
 }
 
 
 /* =================================================
-   PRODUCT CARD
+   PRODUCT
    ================================================= */
 
 .product-card {
 
   background: white;
 
-  border-radius: 16px;
+  border-radius: 15px;
 
-  padding: 18px;
+  padding: 17px;
 
-  margin-bottom: 12px;
+  margin-bottom: 9px;
 
   box-shadow:
-    0 2px 8px rgba(0,0,0,.06);
+    0 2px 8px rgba(0,0,0,.05);
 
 }
 
 
 .product-name {
 
-  font-size: 22px;
+  font-size: 21px;
 
   font-weight: 800;
-
-  margin-bottom: 10px;
 
 }
 
@@ -353,28 +425,28 @@ button:active {
 
   display: inline-block;
 
-  padding: 7px 10px;
+  background: #eee;
 
-  border-radius: 9px;
+  border-radius: 8px;
+
+  padding: 6px 9px;
 
   font-size: 12px;
 
   font-weight: 800;
 
-  background: #eee;
-
-  margin-bottom: 8px;
+  margin-top: 7px;
 
 }
 
 
 .info {
 
-  color: #555;
+  color: #666;
 
-  font-size: 14px;
+  font-size: 13px;
 
-  margin: 6px 0;
+  margin-top: 7px;
 
 }
 
@@ -392,16 +464,18 @@ button:active {
 
   font-weight: 800;
 
-  margin-top: 16px;
+  margin-top: 15px;
 
 }
 
 
 .status {
 
+  margin-top: 3px;
+
   font-weight: 800;
 
-  margin-top: 4px;
+  font-size: 13px;
 
 }
 
@@ -429,88 +503,13 @@ button:active {
 
 .scan-next {
 
-  margin-top: 14px;
-
-}
-
-
-/* =================================================
-   PANELS
-   ================================================= */
-
-.panel {
-
-  display: none;
-
-  background: white;
-
-  border-radius: 16px;
-
-  padding: 16px;
-
-  margin-bottom: 14px;
-
-}
-
-
-.panel-title {
-
-  font-size: 19px;
-
-  font-weight: 800;
-
   margin-bottom: 10px;
 
 }
 
 
-.input {
-
-  width: 100%;
-
-  padding: 14px;
-
-  border: 1px solid #ddd;
-
-  border-radius: 10px;
-
-  font-size: 16px;
-
-  margin-top: 8px;
-
-  outline: none;
-
-  background: white;
-
-  color: #111;
-
-}
-
-
-select.input {
-
-  appearance: auto;
-
-}
-
-
-.message {
-
-  text-align: center;
-
-  color: #666;
-
-  font-size: 14px;
-
-  margin-top: 10px;
-
-  min-height: 20px;
-
-}
-
-
 /* =================================================
-   QR PANEL
+   QR
    ================================================= */
 
 .qr-panel {
@@ -519,11 +518,11 @@ select.input {
 
   background: white;
 
-  border-radius: 16px;
+  border-radius: 15px;
 
-  padding: 20px;
+  padding: 18px;
 
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 
   text-align: center;
 
@@ -532,20 +531,20 @@ select.input {
 
 .qr-title {
 
-  font-size: 20px;
+  font-size: 19px;
 
   font-weight: 800;
 
 }
 
 
-.qr-code-text {
-
-  margin-top: 6px;
+.qr-info {
 
   color: #666;
 
-  font-size: 14px;
+  font-size: 13px;
+
+  margin-top: 4px;
 
 }
 
@@ -556,15 +555,7 @@ select.input {
 
   justify-content: center;
 
-  margin: 18px auto;
-
-}
-
-
-#qrcode img,
-#qrcode canvas {
-
-  display: block;
+  margin: 16px 0;
 
 }
 
@@ -576,13 +567,13 @@ select.input {
   grid-template-columns:
     1fr 1fr;
 
-  gap: 8px;
+  gap: 7px;
 
 }
 
 
 /* =================================================
-   LOADING / ERROR
+   ERROR / LOADING
    ================================================= */
 
 .loading {
@@ -591,11 +582,11 @@ select.input {
 
   border-radius: 14px;
 
-  padding: 28px;
-
-  text-align: center;
+  padding: 25px;
 
   color: #777;
+
+  text-align: center;
 
 }
 
@@ -606,22 +597,20 @@ select.input {
 
   color: #a00000;
 
-  border-radius: 12px;
+  padding: 13px;
 
-  padding: 14px;
+  border-radius: 11px;
 
   text-align: center;
-
-  margin-bottom: 14px;
 
 }
 
 
 /* =================================================
-   DARK MODE
+   DARK
    ================================================= */
 
-body.theme-dark {
+body.dark {
 
   background: #151515;
 
@@ -630,20 +619,15 @@ body.theme-dark {
 }
 
 
-body.theme-dark
-.product-card,
+body.dark .search-box,
 
-body.theme-dark
-.panel,
+body.dark .panel,
 
-body.theme-dark
-.search-box,
+body.dark .product-card,
 
-body.theme-dark
-.qr-panel,
+body.dark .scanner-panel,
 
-body.theme-dark
-.theme-bar {
+body.dark .qr-panel {
 
   background: #222;
 
@@ -652,8 +636,22 @@ body.theme-dark
 }
 
 
-body.theme-dark
-.secondary {
+body.dark .search-input,
+
+body.dark .input {
+
+  background: #171717;
+
+  color: #eee;
+
+  border-color: #444;
+
+}
+
+
+body.dark button.secondary,
+
+body.dark .theme-btn {
 
   background: #222;
 
@@ -664,39 +662,21 @@ body.theme-dark
 }
 
 
-body.theme-dark
-.search-input,
-
-body.theme-dark
-.input {
-
-  background: #181818;
-
-  color: #eee;
-
-  border-color: #444;
-
-}
-
-
-body.theme-dark
-.info {
+body.dark .info {
 
   color: #bbb;
 
 }
 
 
-body.theme-dark
-.info strong {
+body.dark .info strong {
 
   color: #eee;
 
 }
 
 
-body.theme-dark
-.variant-badge {
+body.dark .variant-badge {
 
   background: #333;
 
@@ -704,48 +684,24 @@ body.theme-dark
 
 
 /* =================================================
-   HIGHLIGHT MODE
+   HIGHLIGHT
    ================================================= */
 
-body.theme-highlight
-.product-card {
+body.highlight .product-card {
 
   border-left:
-    7px solid #f2b300;
-
-  box-shadow:
-    0 3px 15px
-    rgba(242,179,0,.25);
+    6px solid #e1a900;
 
 }
 
 
-body.theme-highlight
-.panel {
-
-  border-left:
-    7px solid #f2b300;
-
-}
-
-
-body.theme-highlight
-.product-name {
-
-  letter-spacing:
-    .2px;
-
-}
-
-
-body.theme-highlight
-.stock {
+body.highlight .stock {
 
   text-decoration:
     underline;
 
   text-decoration-thickness:
-    3px;
+    2px;
 
 }
 
@@ -758,14 +714,7 @@ body.theme-highlight
 
   .app {
 
-    padding: 12px;
-
-  }
-
-
-  .brand {
-
-    font-size: 23px;
+    padding: 10px;
 
   }
 
@@ -808,37 +757,37 @@ body.theme-highlight
 
 
 <!-- =================================================
-     LIGHT / DARK / HIGHLIGHT
+     THEME
      ================================================= -->
 
-<div class="theme-bar">
+<div class="theme-control">
 
   <button
-    id="lightTheme"
+    id="lightButton"
     class="theme-btn active"
     onclick="setTheme('light')">
 
-    ☀️ Light
+    ☀️
 
   </button>
 
 
   <button
-    id="darkTheme"
+    id="darkButton"
     class="theme-btn"
     onclick="setTheme('dark')">
 
-    🌙 Dark
+    🌙
 
   </button>
 
 
   <button
-    id="highlightTheme"
+    id="highlightButton"
     class="theme-btn"
     onclick="setTheme('highlight')">
 
-    🖍️ Highlight
+    🖍️
 
   </button>
 
@@ -851,8 +800,7 @@ body.theme-highlight
 
 <div class="actions">
 
-  <button
-    onclick="openScanner()">
+  <button onclick="openScanner()">
 
     📷<br>
     SCAN QR
@@ -873,26 +821,50 @@ body.theme-highlight
 
 
 <!-- =================================================
-     ADMIN LOGIN
+     SEARCH
      ================================================= -->
 
-<button
-  id="adminLoginButton"
-  class="secondary"
-  onclick="showAdminLogin()"
-  style="margin-bottom:14px;">
+<div class="search-box">
 
-  🔐 ADMIN LOGIN
+  <input
+    id="searchInput"
+    class="search-input"
+    placeholder="Search product or barcode..."
+    autocomplete="off"
+    oninput="searchProducts()"
+  >
 
-</button>
+</div>
 
+
+<!-- =================================================
+     STAFF / ADMIN ENTRY
+     ================================================= -->
+
+<div
+  id="adminEntry"
+  class="admin-entry">
+
+  <button
+    onclick="showAdminLogin()">
+
+    🔐 Admin
+
+  </button>
+
+</div>
+
+
+<!-- =================================================
+     ADMIN LOGIN
+     ================================================= -->
 
 <div
   id="loginPanel"
   class="panel">
 
   <div class="panel-title">
-    🔐 ADMIN LOGIN
+    Admin Login
   </div>
 
 
@@ -902,13 +874,13 @@ body.theme-highlight
     type="password"
     inputmode="numeric"
     maxlength="8"
-    placeholder="Enter Admin PIN"
+    placeholder="Admin PIN"
     autocomplete="off"
   >
 
 
   <button
-    style="margin-top:10px;"
+    style="margin-top:8px;"
     onclick="adminLogin()">
 
     UNLOCK ADMIN
@@ -918,6 +890,7 @@ body.theme-highlight
 
   <button
     class="secondary"
+    style="margin-top:7px;"
     onclick="closeAdminLogin()">
 
     CANCEL
@@ -929,24 +902,6 @@ body.theme-highlight
     id="loginMessage"
     class="message">
   </div>
-
-</div>
-
-
-<!-- =================================================
-     SEARCH
-     ================================================= -->
-
-<div class="search-box">
-
-  <input
-    id="searchInput"
-    class="search-input"
-    type="text"
-    placeholder="Search product or barcode..."
-    autocomplete="off"
-    oninput="searchProducts()"
-  >
 
 </div>
 
@@ -966,17 +921,16 @@ body.theme-highlight
     id="scannerStatus"
     class="scanner-status">
 
-    Point the camera at the product QR.
+    Point camera at QR code.
 
   </div>
 
 
   <button
     class="secondary"
-    style="margin-top:10px;"
     onclick="closeScanner()">
 
-    CLOSE SCANNER
+    CLOSE
 
   </button>
 
@@ -984,7 +938,7 @@ body.theme-highlight
 
 
 <!-- =================================================
-     ADMIN PANEL
+     ADMIN
      ================================================= -->
 
 <div
@@ -992,14 +946,14 @@ body.theme-highlight
   class="panel">
 
   <div class="panel-title">
-    👑 ADMIN — STOCK UPDATE
+    👑 Admin
   </div>
 
 
   <input
     id="adminBarcode"
     class="input"
-    placeholder="Product barcode"
+    placeholder="Barcode"
     autocomplete="off"
   >
 
@@ -1015,7 +969,7 @@ body.theme-highlight
 
 
   <button
-    style="margin-top:10px;"
+    style="margin-top:8px;"
     onclick="stockIn()">
 
     ➕ STOCK IN
@@ -1044,7 +998,7 @@ body.theme-highlight
     class="secondary"
     onclick="showAdjustment()">
 
-    📏 PHYSICAL STOCK ADJUSTMENT
+    📏 PHYSICAL ADJUSTMENT
 
   </button>
 
@@ -1053,7 +1007,7 @@ body.theme-highlight
     class="secondary"
     onclick="adminLogout()">
 
-    LOG OUT ADMIN
+    LOG OUT
 
   </button>
 
@@ -1067,7 +1021,7 @@ body.theme-highlight
 
 
 <!-- =================================================
-     ADD NEW MATERIAL
+     ADD MATERIAL
      ================================================= -->
 
 <div
@@ -1075,9 +1029,7 @@ body.theme-highlight
   class="panel">
 
   <div class="panel-title">
-
-    ➕ ADD NEW MATERIAL
-
+    Add New Material
   </div>
 
 
@@ -1085,13 +1037,12 @@ body.theme-highlight
     id="newBarcode"
     class="input"
     placeholder="Barcode"
-    autocomplete="off"
   >
 
 
   <button
     class="secondary"
-    style="margin-top:8px;"
+    style="margin-top:7px;"
     onclick="generateInternalBarcode()">
 
     ⚡ GENERATE INTERNAL CODE
@@ -1102,8 +1053,7 @@ body.theme-highlight
   <input
     id="newProduct"
     class="input"
-    placeholder="Product Name *"
-    autocomplete="off"
+    placeholder="Product name *"
   >
 
 
@@ -1111,15 +1061,13 @@ body.theme-highlight
     id="newBrand"
     class="input"
     placeholder="Brand"
-    autocomplete="off"
   >
 
 
   <input
     id="newSize"
     class="input"
-    placeholder="Size (e.g. 600×1200)"
-    autocomplete="off"
+    placeholder="Size"
   >
 
 
@@ -1127,18 +1075,15 @@ body.theme-highlight
     id="newFinish"
     class="input"
     placeholder="Finish"
-    autocomplete="off"
   >
 
-
-  <!-- VARIANT SELECTOR -->
 
   <select
     id="newVariant"
     class="input">
 
     <option value="">
-      Select Variant
+      Variant
     </option>
 
     <option value="Light">
@@ -1161,8 +1106,7 @@ body.theme-highlight
     class="input"
     type="number"
     min="0"
-    step="1"
-    placeholder="Opening Stock"
+    placeholder="Opening stock"
   >
 
 
@@ -1171,13 +1115,12 @@ body.theme-highlight
     class="input"
     type="number"
     min="0"
-    step="1"
-    placeholder="Minimum Stock"
+    placeholder="Minimum stock"
   >
 
 
   <button
-    style="margin-top:10px;"
+    style="margin-top:8px;"
     onclick="createNewMaterial()">
 
     SAVE NEW MATERIAL
@@ -1187,6 +1130,7 @@ body.theme-highlight
 
   <button
     class="secondary"
+    style="margin-top:7px;"
     onclick="closeNewMaterial()">
 
     CANCEL
@@ -1203,7 +1147,7 @@ body.theme-highlight
 
 
 <!-- =================================================
-     PHYSICAL STOCK ADJUSTMENT
+     PHYSICAL ADJUSTMENT
      ================================================= -->
 
 <div
@@ -1211,17 +1155,14 @@ body.theme-highlight
   class="panel">
 
   <div class="panel-title">
-
-    📏 PHYSICAL STOCK ADJUSTMENT
-
+    Physical Stock Adjustment
   </div>
 
 
   <input
     id="adjustBarcode"
     class="input"
-    placeholder="Product barcode"
-    autocomplete="off"
+    placeholder="Barcode"
   >
 
 
@@ -1230,7 +1171,6 @@ body.theme-highlight
     class="input"
     type="number"
     min="0"
-    step="1"
     placeholder="Actual physical stock"
   >
 
@@ -1238,22 +1178,22 @@ body.theme-highlight
   <input
     id="adjustReason"
     class="input"
-    placeholder="Reason (e.g. physical audit)"
-    autocomplete="off"
+    placeholder="Reason"
   >
 
 
   <button
-    style="margin-top:10px;"
+    style="margin-top:8px;"
     onclick="adjustPhysicalStock()">
 
-    SAVE PHYSICAL STOCK
+    SAVE ADJUSTMENT
 
   </button>
 
 
   <button
     class="secondary"
+    style="margin-top:7px;"
     onclick="closeAdjustment()">
 
     CANCEL
@@ -1270,7 +1210,7 @@ body.theme-highlight
 
 
 <!-- =================================================
-     QR RESULT
+     QR
      ================================================= -->
 
 <div
@@ -1285,19 +1225,17 @@ body.theme-highlight
 
   <div
     id="qrVariant"
-    class="qr-code-text">
+    class="qr-info">
   </div>
 
 
   <div
     id="qrBarcode"
-    class="qr-code-text">
+    class="qr-info">
   </div>
 
 
-  <div
-    id="qrcode">
-  </div>
+  <div id="qrcode"></div>
 
 
   <div class="qr-actions">
@@ -1314,7 +1252,7 @@ body.theme-highlight
       class="secondary"
       onclick="downloadQR()">
 
-      ⬇️ SAVE QR
+      ⬇️ SAVE
 
     </button>
 
@@ -1323,10 +1261,10 @@ body.theme-highlight
 
   <button
     class="secondary"
-    style="margin-top:8px;"
+    style="margin-top:7px;"
     onclick="closeQR()">
 
-    CLOSE QR
+    CLOSE
 
   </button>
 
@@ -1387,32 +1325,28 @@ let currentQRVariant = "";
 function setTheme(theme) {
 
   document.body.classList.remove(
-    "theme-dark",
-    "theme-highlight"
+    "dark",
+    "highlight"
   );
 
 
   if (
-    theme ===
-    "dark"
+    theme === "dark"
   ) {
 
     document.body.classList.add(
-      "theme-dark"
+      "dark"
     );
-
   }
 
 
   if (
-    theme ===
-    "highlight"
+    theme === "highlight"
   ) {
 
     document.body.classList.add(
-      "theme-highlight"
+      "highlight"
     );
-
   }
 
 
@@ -1424,7 +1358,7 @@ function setTheme(theme) {
 
   document
     .getElementById(
-      "lightTheme"
+      "lightButton"
     )
     .classList.toggle(
       "active",
@@ -1434,7 +1368,7 @@ function setTheme(theme) {
 
   document
     .getElementById(
-      "darkTheme"
+      "darkButton"
     )
     .classList.toggle(
       "active",
@@ -1444,13 +1378,12 @@ function setTheme(theme) {
 
   document
     .getElementById(
-      "highlightTheme"
+      "highlightButton"
     )
     .classList.toggle(
       "active",
       theme === "highlight"
     );
-
 }
 
 
@@ -1459,19 +1392,17 @@ function loadTheme() {
   const theme =
     localStorage.getItem(
       "sg_theme"
-    ) ||
-    "light";
+    ) || "light";
 
 
   setTheme(
     theme
   );
-
 }
 
 
 // =====================================================
-// JSONP CLIENT
+// API CLIENT
 // =====================================================
 
 function callApi(
@@ -1504,9 +1435,11 @@ function callApi(
   function cleanup() {
 
     try {
+
       delete window[
         callbackName
       ];
+
     } catch (e) {}
 
 
@@ -1518,7 +1451,6 @@ function callApi(
         .removeChild(
           script
         );
-
     }
 
   }
@@ -1584,11 +1516,10 @@ function callApi(
                 : "API request failed."
 
           });
-
         }
 
-        return;
 
+        return;
       }
 
 
@@ -1600,7 +1531,6 @@ function callApi(
         success(
           response.data
         );
-
       }
 
     };
@@ -1640,8 +1570,7 @@ function callApi(
 
   Object.keys(
     params
-  )
-  .forEach(
+  ).forEach(
     function(key) {
 
       const value =
@@ -1657,7 +1586,6 @@ function callApi(
           key,
           String(value)
         );
-
       }
 
     }
@@ -1684,7 +1612,6 @@ function callApi(
         fail(
           "Inventory server timed out."
         );
-
       }
 
     },
@@ -1710,7 +1637,7 @@ function loadApp() {
 
 
 // =====================================================
-// LOAD INVENTORY
+// INVENTORY
 // =====================================================
 
 function loadInventory() {
@@ -1740,8 +1667,8 @@ function loadInventory() {
       renderInventory(
         inventory
       );
-
     },
+
 
     function(error) {
 
@@ -1753,7 +1680,6 @@ function loadInventory() {
     }
 
   );
-
 }
 
 
@@ -1785,7 +1711,6 @@ function getStatus(
       cls:
         "red"
     };
-
   }
 
 
@@ -1800,7 +1725,6 @@ function getStatus(
       cls:
         "orange"
     };
-
   }
 
 
@@ -1827,8 +1751,7 @@ function variantHTML(
   }
 
 
-  let icon =
-    "";
+  let icon = "";
 
 
   if (
@@ -1838,7 +1761,6 @@ function variantHTML(
 
     icon =
       "☀️";
-
   }
 
   else if (
@@ -1848,7 +1770,6 @@ function variantHTML(
 
     icon =
       "🌙";
-
   }
 
   else if (
@@ -1858,7 +1779,6 @@ function variantHTML(
 
     icon =
       "🖍️";
-
   }
 
 
@@ -1958,8 +1878,7 @@ function productCard(
 
       <div class="stock">
 
-        Stock:
-        ${stock}
+        Stock: ${stock}
 
       </div>
 
@@ -1974,12 +1893,11 @@ function productCard(
     </div>
 
   `;
-
 }
 
 
 // =====================================================
-// RENDER INVENTORY
+// RENDER
 // =====================================================
 
 function renderInventory(
@@ -2001,7 +1919,6 @@ function renderInventory(
       '<div class="product-card">No products found.</div>';
 
     return;
-
   }
 
 
@@ -2044,7 +1961,6 @@ function searchProducts() {
     );
 
     return;
-
   }
 
 
@@ -2058,9 +1974,7 @@ function searchProducts() {
             product.barcode || ""
           )
             .toLowerCase()
-            .includes(
-              query
-            )
+            .includes(query)
 
           ||
 
@@ -2068,9 +1982,7 @@ function searchProducts() {
             product.product || ""
           )
             .toLowerCase()
-            .includes(
-              query
-            )
+            .includes(query)
 
           ||
 
@@ -2078,9 +1990,7 @@ function searchProducts() {
             product.brand || ""
           )
             .toLowerCase()
-            .includes(
-              query
-            )
+            .includes(query)
 
           ||
 
@@ -2088,9 +1998,7 @@ function searchProducts() {
             product.size || ""
           )
             .toLowerCase()
-            .includes(
-              query
-            )
+            .includes(query)
 
           ||
 
@@ -2098,9 +2006,7 @@ function searchProducts() {
             product.finish || ""
           )
             .toLowerCase()
-            .includes(
-              query
-            )
+            .includes(query)
 
           ||
 
@@ -2108,9 +2014,7 @@ function searchProducts() {
             product.variant || ""
           )
             .toLowerCase()
-            .includes(
-              query
-            )
+            .includes(query)
 
         );
 
@@ -2121,7 +2025,6 @@ function searchProducts() {
   renderInventory(
     filtered
   );
-
 }
 
 
@@ -2183,7 +2086,9 @@ async function startScanner() {
   if (scanner) {
 
     try {
+
       await scanner.clear();
+
     } catch (e) {}
 
   }
@@ -2214,7 +2119,6 @@ async function startScanner() {
       throw new Error(
         "No camera found."
       );
-
     }
 
 
@@ -2230,7 +2134,8 @@ async function startScanner() {
 
       const label =
         String(
-          cameras[i].label || ""
+          cameras[i].label ||
+          ""
         )
           .toLowerCase();
 
@@ -2245,7 +2150,6 @@ async function startScanner() {
           cameras[i].id;
 
         break;
-
       }
 
     }
@@ -2256,14 +2160,22 @@ async function startScanner() {
       cameraId,
 
       {
-        fps: 10,
+
+        fps:
+          10,
 
         qrbox: {
-          width: 250,
-          height: 250
+
+          width:
+            250,
+
+          height:
+            250
+
         },
 
-        aspectRatio: 1
+        aspectRatio:
+          1
 
       },
 
@@ -2272,11 +2184,10 @@ async function startScanner() {
         handleQR(
           decodedText
         );
-
       },
 
       function() {
-        // Ignore normal scanner errors.
+        // Normal scan errors ignored.
       }
 
     );
@@ -2287,10 +2198,9 @@ async function startScanner() {
         "scannerStatus"
       )
       .textContent =
-      "Point the camera at the product QR.";
+      "Point camera at QR code.";
 
   }
-
 
   catch (error) {
 
@@ -2323,7 +2233,9 @@ async function handleQR(
   decodedText
 ) {
 
-  if (!scannerRunning) {
+  if (
+    !scannerRunning
+  ) {
     return;
   }
 
@@ -2350,7 +2262,9 @@ async function handleQR(
   if (scanner) {
 
     try {
+
       await scanner.stop();
+
     } catch (e) {}
 
   }
@@ -2400,7 +2314,6 @@ async function handleQR(
     closeScannerPanel();
 
     return;
-
   }
 
 
@@ -2425,7 +2338,6 @@ async function handleQR(
         );
 
         return;
-
       }
 
 
@@ -2455,7 +2367,6 @@ async function handleQR(
     }
 
   );
-
 }
 
 
@@ -2550,7 +2461,7 @@ function closeScannerPanel() {
 
 
 // =====================================================
-// SCAN NEXT
+// SCAN NEXT PRODUCT
 // =====================================================
 
 async function scanNextProduct() {
@@ -2559,7 +2470,8 @@ async function scanNextProduct() {
     .getElementById(
       "results"
     )
-    .innerHTML = "";
+    .innerHTML =
+      "";
 
 
   document
@@ -2586,7 +2498,9 @@ async function scanNextProduct() {
 
 
     try {
+
       await scanner.clear();
+
     } catch (e) {}
 
   }
@@ -2596,13 +2510,14 @@ async function scanNextProduct() {
 
   scannerRunning = false;
 
+
   startScanner();
 
 }
 
 
 // =====================================================
-// ADMIN LOGIN
+// ADMIN LOGIN UI
 // =====================================================
 
 function showAdminLogin() {
@@ -2664,7 +2579,6 @@ function adminLogin() {
       "Enter Admin PIN.";
 
     return;
-
   }
 
 
@@ -2718,12 +2632,11 @@ function adminLogin() {
     }
 
   );
-
 }
 
 
 // =====================================================
-// VALIDATE SAVED ADMIN
+// VALIDATE ADMIN
 // =====================================================
 
 function validateStoredAdmin() {
@@ -2733,7 +2646,6 @@ function validateStoredAdmin() {
     lockAdminUI();
 
     return;
-
   }
 
 
@@ -2770,12 +2682,11 @@ function validateStoredAdmin() {
     }
 
   );
-
 }
 
 
 // =====================================================
-// SET ADMIN MODE
+// ADMIN MODE
 // =====================================================
 
 function setAdminMode() {
@@ -2790,7 +2701,7 @@ function setAdminMode() {
 
   document
     .getElementById(
-      "adminLoginButton"
+      "adminEntry"
     )
     .style.display =
       "none";
@@ -2820,7 +2731,9 @@ function setAdminMode() {
 
 function lockAdminUI() {
 
-  adminToken = "";
+  adminToken =
+    "";
+
 
   sessionStorage.removeItem(
     "sg_admin_token"
@@ -2837,7 +2750,7 @@ function lockAdminUI() {
 
   document
     .getElementById(
-      "adminLoginButton"
+      "adminEntry"
     )
     .style.display =
       "block";
@@ -2878,7 +2791,7 @@ function lockAdminUI() {
 
 
 // =====================================================
-// ADMIN LOGOUT
+// LOGOUT
 // =====================================================
 
 function adminLogout() {
@@ -2888,7 +2801,6 @@ function adminLogout() {
     lockAdminUI();
 
     return;
-
   }
 
 
@@ -2910,12 +2822,11 @@ function adminLogout() {
     }
 
   );
-
 }
 
 
 // =====================================================
-// HANDLE ADMIN ERROR
+// ADMIN ERROR
 // =====================================================
 
 function handleAdminError(
@@ -2928,7 +2839,8 @@ function handleAdminError(
       error.message
         ? error.message
         : ""
-    ).toLowerCase();
+    )
+      .toLowerCase();
 
 
   if (
@@ -2948,7 +2860,6 @@ function handleAdminError(
   ) {
 
     lockAdminUI();
-
   }
 
 }
@@ -2967,7 +2878,6 @@ function stockIn() {
     );
 
     return;
-
   }
 
 
@@ -3003,14 +2913,11 @@ function stockIn() {
       "Scan a product or enter a barcode.";
 
     return;
-
   }
 
 
   if (
-    !Number.isFinite(
-      quantity
-    ) ||
+    !Number.isFinite(quantity) ||
     quantity <= 0
   ) {
 
@@ -3018,7 +2925,6 @@ function stockIn() {
       "Enter a valid quantity.";
 
     return;
-
   }
 
 
@@ -3076,7 +2982,6 @@ function stockIn() {
     }
 
   );
-
 }
 
 
@@ -3093,7 +2998,6 @@ function stockOut() {
     );
 
     return;
-
   }
 
 
@@ -3129,14 +3033,11 @@ function stockOut() {
       "Scan a product or enter a barcode.";
 
     return;
-
   }
 
 
   if (
-    !Number.isFinite(
-      quantity
-    ) ||
+    !Number.isFinite(quantity) ||
     quantity <= 0
   ) {
 
@@ -3144,7 +3045,6 @@ function stockOut() {
       "Enter a valid quantity.";
 
     return;
-
   }
 
 
@@ -3202,7 +3102,6 @@ function stockOut() {
     }
 
   );
-
 }
 
 
@@ -3219,7 +3118,6 @@ function showAddMaterial() {
     );
 
     return;
-
   }
 
 
@@ -3239,13 +3137,10 @@ function showAddMaterial() {
       "newMaterialPanel"
     )
     .scrollIntoView({
-
       behavior:
         "smooth",
-
       block:
         "center"
-
     });
 
 }
@@ -3264,7 +3159,6 @@ function generateInternalBarcode() {
     );
 
     return;
-
   }
 
 
@@ -3284,8 +3178,10 @@ function generateInternalBarcode() {
     "generateInternalBarcode",
 
     {
+
       token:
         adminToken
+
     },
 
     function(result) {
@@ -3312,7 +3208,6 @@ function generateInternalBarcode() {
     }
 
   );
-
 }
 
 
@@ -3329,7 +3224,6 @@ function createNewMaterial() {
     );
 
     return;
-
   }
 
 
@@ -3419,7 +3313,6 @@ function createNewMaterial() {
       "Generate or enter a barcode.";
 
     return;
-
   }
 
 
@@ -3429,14 +3322,11 @@ function createNewMaterial() {
       "Product name is required.";
 
     return;
-
   }
 
 
   if (
-    !Number.isFinite(
-      openingStock
-    ) ||
+    !Number.isFinite(openingStock) ||
     openingStock < 0
   ) {
 
@@ -3444,14 +3334,11 @@ function createNewMaterial() {
       "Enter a valid opening stock.";
 
     return;
-
   }
 
 
   if (
-    !Number.isFinite(
-      minimumStock
-    ) ||
+    !Number.isFinite(minimumStock) ||
     minimumStock < 0
   ) {
 
@@ -3459,7 +3346,6 @@ function createNewMaterial() {
       "Enter a valid minimum stock.";
 
     return;
-
   }
 
 
@@ -3508,10 +3394,6 @@ function createNewMaterial() {
         "Material added successfully.";
 
 
-      /*
-       * Automatic QR
-       */
-
       generateProductQR(
 
         result.product,
@@ -3544,12 +3426,11 @@ function createNewMaterial() {
     }
 
   );
-
 }
 
 
 // =====================================================
-// CLEAR NEW MATERIAL FORM
+// CLEAR MATERIAL FORM
 // =====================================================
 
 function clearNewMaterialForm() {
@@ -3559,69 +3440,62 @@ function clearNewMaterialForm() {
       "newBarcode"
     )
     .value =
-    "";
-
+      "";
 
   document
     .getElementById(
       "newProduct"
     )
     .value =
-    "";
-
+      "";
 
   document
     .getElementById(
       "newBrand"
     )
     .value =
-    "";
-
+      "";
 
   document
     .getElementById(
       "newSize"
     )
     .value =
-    "";
-
+      "";
 
   document
     .getElementById(
       "newFinish"
     )
     .value =
-    "";
-
+      "";
 
   document
     .getElementById(
       "newVariant"
     )
     .value =
-    "";
-
+      "";
 
   document
     .getElementById(
       "newOpeningStock"
     )
     .value =
-    "";
-
+      "";
 
   document
     .getElementById(
       "newMinimumStock"
     )
     .value =
-    "";
+      "";
 
 }
 
 
 // =====================================================
-// CLOSE NEW MATERIAL
+// CLOSE MATERIAL
 // =====================================================
 
 function closeNewMaterial() {
@@ -3649,7 +3523,6 @@ function showAdjustment() {
     );
 
     return;
-
   }
 
 
@@ -3669,13 +3542,10 @@ function showAdjustment() {
       "adjustmentPanel"
     )
     .scrollIntoView({
-
       behavior:
         "smooth",
-
       block:
         "center"
-
     });
 
 }
@@ -3694,7 +3564,7 @@ function closeAdjustment() {
 
 
 // =====================================================
-// SAVE PHYSICAL ADJUSTMENT
+// SAVE PHYSICAL STOCK
 // =====================================================
 
 function adjustPhysicalStock() {
@@ -3706,7 +3576,6 @@ function adjustPhysicalStock() {
     );
 
     return;
-
   }
 
 
@@ -3751,14 +3620,11 @@ function adjustPhysicalStock() {
       "Enter or scan a barcode.";
 
     return;
-
   }
 
 
   if (
-    !Number.isFinite(
-      physicalStock
-    ) ||
+    !Number.isFinite(physicalStock) ||
     physicalStock < 0
   ) {
 
@@ -3766,7 +3632,6 @@ function adjustPhysicalStock() {
       "Enter a valid physical stock.";
 
     return;
-
   }
 
 
@@ -3837,12 +3702,11 @@ function adjustPhysicalStock() {
     }
 
   );
-
 }
 
 
 // =====================================================
-// AUTOMATIC QR GENERATION
+// QR GENERATION
 // =====================================================
 
 function generateProductQR(
@@ -3921,10 +3785,9 @@ function generateProductQR(
         "qrBarcode"
       )
       .textContent =
-      "QR library could not load.";
+      "QR generator could not load.";
 
     return;
-
   }
 
 
@@ -3966,13 +3829,10 @@ function generateProductQR(
       "qrPanel"
     )
     .scrollIntoView({
-
       behavior:
         "smooth",
-
       block:
         "center"
-
     });
 
 }
@@ -3995,7 +3855,7 @@ function closeQR() {
 
 
 // =====================================================
-// GET QR DATA
+// GET QR IMAGE
 // =====================================================
 
 function getQRDataURL_() {
@@ -4011,7 +3871,6 @@ function getQRDataURL_() {
     return canvas.toDataURL(
       "image/png"
     );
-
   }
 
 
@@ -4024,17 +3883,15 @@ function getQRDataURL_() {
   if (img) {
 
     return img.src;
-
   }
 
 
   return "";
-
 }
 
 
 // =====================================================
-// DOWNLOAD QR
+// SAVE QR
 // =====================================================
 
 function downloadQR() {
@@ -4050,7 +3907,6 @@ function downloadQR() {
     );
 
     return;
-
   }
 
 
@@ -4080,7 +3936,6 @@ function downloadQR() {
 
   link.click();
 
-
   link.remove();
 
 }
@@ -4103,15 +3958,16 @@ function printQRLabel() {
     );
 
     return;
-
   }
 
 
   const product =
     currentQRProduct;
 
+
   const barcode =
     currentQRBarcode;
+
 
   const variant =
     currentQRVariant;
@@ -4128,11 +3984,10 @@ function printQRLabel() {
   if (!printWindow) {
 
     alert(
-      "Please allow pop-ups for this app."
+      "Please allow pop-ups."
     );
 
     return;
-
   }
 
 
@@ -4302,9 +4157,11 @@ body {
 
   ${
     variant
-      ? `<div class="variant">
-           ${escapeHTML(variant)}
-         </div>`
+      ? `
+        <div class="variant">
+          ${escapeHTML(variant)}
+        </div>
+        `
       : ""
   }
 
@@ -4321,19 +4178,18 @@ body {
 
 <script>
 
-window.onload =
-  function() {
+window.onload = function() {
 
-    setTimeout(
-      function() {
+  setTimeout(
+    function() {
 
-        window.print();
+      window.print();
 
-      },
-      300
-    );
+    },
+    300
+  );
 
-  };
+};
 
 <\/script>
 
@@ -4363,7 +4219,7 @@ function showError(
     )
     .innerHTML =
 
-    `
+      `
 
       <div class="error">
 
@@ -4373,8 +4229,7 @@ function showError(
 
       </div>
 
-    `;
-
+      `;
 }
 
 
