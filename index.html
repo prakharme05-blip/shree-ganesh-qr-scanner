@@ -13,14 +13,14 @@
 <title>SHREE GANESH Inventory</title>
 
 
-<!-- Camera / QR scanner -->
+<!-- QR SCANNER -->
 <script
   src="https://unpkg.com/html5-qrcode"
   type="text/javascript">
 </script>
 
 
-<!-- QR generator -->
+<!-- QR GENERATOR -->
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
 </script>
@@ -48,6 +48,10 @@ body {
 
   min-height: 100vh;
 
+  transition:
+    background .25s,
+    color .25s;
+
 }
 
 
@@ -64,9 +68,18 @@ body {
 }
 
 
-/* =============================================
+button,
+input,
+select {
+
+  font-family: inherit;
+
+}
+
+
+/* =================================================
    HEADER
-   ============================================= */
+   ================================================= */
 
 .header {
 
@@ -114,15 +127,60 @@ body {
 }
 
 
-/* =============================================
-   ACTION BUTTONS
-   ============================================= */
+/* =================================================
+   THEME SWITCH
+   ================================================= */
+
+.theme-bar {
+
+  background: white;
+
+  padding: 8px;
+
+  border-radius: 12px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr 1fr;
+
+  gap: 6px;
+
+  margin-bottom: 14px;
+
+}
+
+
+.theme-btn {
+
+  padding: 10px 6px;
+
+  font-size: 12px;
+
+  border-radius: 9px;
+
+}
+
+
+.theme-btn.active {
+
+  background: #111;
+
+  color: white;
+
+}
+
+
+/* =================================================
+   MAIN ACTIONS
+   ================================================= */
 
 .actions {
 
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns:
+    1fr 1fr;
 
   gap: 10px;
 
@@ -179,9 +237,9 @@ button:active {
 }
 
 
-/* =============================================
+/* =================================================
    SEARCH
-   ============================================= */
+   ================================================= */
 
 .search-box {
 
@@ -213,9 +271,9 @@ button:active {
 }
 
 
-/* =============================================
+/* =================================================
    SCANNER
-   ============================================= */
+   ================================================= */
 
 .scanner-panel {
 
@@ -260,9 +318,9 @@ button:active {
 }
 
 
-/* =============================================
+/* =================================================
    PRODUCT CARD
-   ============================================= */
+   ================================================= */
 
 .product-card {
 
@@ -286,7 +344,26 @@ button:active {
 
   font-weight: 800;
 
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+
+}
+
+
+.variant-badge {
+
+  display: inline-block;
+
+  padding: 7px 10px;
+
+  border-radius: 9px;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  background: #eee;
+
+  margin-bottom: 8px;
 
 }
 
@@ -357,9 +434,9 @@ button:active {
 }
 
 
-/* =============================================
-   GENERIC PANELS
-   ============================================= */
+/* =================================================
+   PANELS
+   ================================================= */
 
 .panel {
 
@@ -403,6 +480,17 @@ button:active {
 
   outline: none;
 
+  background: white;
+
+  color: #111;
+
+}
+
+
+select.input {
+
+  appearance: auto;
+
 }
 
 
@@ -421,9 +509,9 @@ button:active {
 }
 
 
-/* =============================================
-   QR RESULT
-   ============================================= */
+/* =================================================
+   QR PANEL
+   ================================================= */
 
 .qr-panel {
 
@@ -474,7 +562,6 @@ button:active {
 
 
 #qrcode img,
-
 #qrcode canvas {
 
   display: block;
@@ -486,16 +573,17 @@ button:active {
 
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns:
+    1fr 1fr;
 
   gap: 8px;
 
 }
 
 
-/* =============================================
+/* =================================================
    LOADING / ERROR
-   ============================================= */
+   ================================================= */
 
 .loading {
 
@@ -529,9 +617,142 @@ button:active {
 }
 
 
-/* =============================================
+/* =================================================
+   DARK MODE
+   ================================================= */
+
+body.theme-dark {
+
+  background: #151515;
+
+  color: #eee;
+
+}
+
+
+body.theme-dark
+.product-card,
+
+body.theme-dark
+.panel,
+
+body.theme-dark
+.search-box,
+
+body.theme-dark
+.qr-panel,
+
+body.theme-dark
+.theme-bar {
+
+  background: #222;
+
+  color: #eee;
+
+}
+
+
+body.theme-dark
+.secondary {
+
+  background: #222;
+
+  color: #eee;
+
+  border-color: #444;
+
+}
+
+
+body.theme-dark
+.search-input,
+
+body.theme-dark
+.input {
+
+  background: #181818;
+
+  color: #eee;
+
+  border-color: #444;
+
+}
+
+
+body.theme-dark
+.info {
+
+  color: #bbb;
+
+}
+
+
+body.theme-dark
+.info strong {
+
+  color: #eee;
+
+}
+
+
+body.theme-dark
+.variant-badge {
+
+  background: #333;
+
+}
+
+
+/* =================================================
+   HIGHLIGHT MODE
+   ================================================= */
+
+body.theme-highlight
+.product-card {
+
+  border-left:
+    7px solid #f2b300;
+
+  box-shadow:
+    0 3px 15px
+    rgba(242,179,0,.25);
+
+}
+
+
+body.theme-highlight
+.panel {
+
+  border-left:
+    7px solid #f2b300;
+
+}
+
+
+body.theme-highlight
+.product-name {
+
+  letter-spacing:
+    .2px;
+
+}
+
+
+body.theme-highlight
+.stock {
+
+  text-decoration:
+    underline;
+
+  text-decoration-thickness:
+    3px;
+
+}
+
+
+/* =================================================
    MOBILE
-   ============================================= */
+   ================================================= */
 
 @media (max-width: 600px) {
 
@@ -587,6 +808,44 @@ button:active {
 
 
 <!-- =================================================
+     LIGHT / DARK / HIGHLIGHT
+     ================================================= -->
+
+<div class="theme-bar">
+
+  <button
+    id="lightTheme"
+    class="theme-btn active"
+    onclick="setTheme('light')">
+
+    ☀️ Light
+
+  </button>
+
+
+  <button
+    id="darkTheme"
+    class="theme-btn"
+    onclick="setTheme('dark')">
+
+    🌙 Dark
+
+  </button>
+
+
+  <button
+    id="highlightTheme"
+    class="theme-btn"
+    onclick="setTheme('highlight')">
+
+    🖍️ Highlight
+
+  </button>
+
+</div>
+
+
+<!-- =================================================
      MAIN ACTIONS
      ================================================= -->
 
@@ -614,7 +873,7 @@ button:active {
 
 
 <!-- =================================================
-     ADMIN LOGIN BUTTON
+     ADMIN LOGIN
      ================================================= -->
 
 <button
@@ -627,10 +886,6 @@ button:active {
 
 </button>
 
-
-<!-- =================================================
-     ADMIN LOGIN
-     ================================================= -->
 
 <div
   id="loginPanel"
@@ -729,7 +984,7 @@ button:active {
 
 
 <!-- =================================================
-     ADMIN STOCK
+     ADMIN PANEL
      ================================================= -->
 
 <div
@@ -829,7 +1084,7 @@ button:active {
   <input
     id="newBarcode"
     class="input"
-    placeholder="Barcode *"
+    placeholder="Barcode"
     autocomplete="off"
   >
 
@@ -876,6 +1131,31 @@ button:active {
   >
 
 
+  <!-- VARIANT SELECTOR -->
+
+  <select
+    id="newVariant"
+    class="input">
+
+    <option value="">
+      Select Variant
+    </option>
+
+    <option value="Light">
+      ☀️ Light
+    </option>
+
+    <option value="Dark">
+      🌙 Dark
+    </option>
+
+    <option value="Highlight">
+      🖍️ Highlight
+    </option>
+
+  </select>
+
+
   <input
     id="newOpeningStock"
     class="input"
@@ -893,14 +1173,6 @@ button:active {
     min="0"
     step="1"
     placeholder="Minimum Stock"
-  >
-
-
-  <input
-    id="newVariant"
-    class="input"
-    placeholder="Variant (optional)"
-    autocomplete="off"
   >
 
 
@@ -1012,6 +1284,12 @@ button:active {
 
 
   <div
+    id="qrVariant"
+    class="qr-code-text">
+  </div>
+
+
+  <div
     id="qrBarcode"
     class="qr-code-text">
   </div>
@@ -1099,6 +1377,98 @@ let currentQRProduct = "";
 
 let currentQRBarcode = "";
 
+let currentQRVariant = "";
+
+
+// =====================================================
+// THEME
+// =====================================================
+
+function setTheme(theme) {
+
+  document.body.classList.remove(
+    "theme-dark",
+    "theme-highlight"
+  );
+
+
+  if (
+    theme ===
+    "dark"
+  ) {
+
+    document.body.classList.add(
+      "theme-dark"
+    );
+
+  }
+
+
+  if (
+    theme ===
+    "highlight"
+  ) {
+
+    document.body.classList.add(
+      "theme-highlight"
+    );
+
+  }
+
+
+  localStorage.setItem(
+    "sg_theme",
+    theme
+  );
+
+
+  document
+    .getElementById(
+      "lightTheme"
+    )
+    .classList.toggle(
+      "active",
+      theme === "light"
+    );
+
+
+  document
+    .getElementById(
+      "darkTheme"
+    )
+    .classList.toggle(
+      "active",
+      theme === "dark"
+    );
+
+
+  document
+    .getElementById(
+      "highlightTheme"
+    )
+    .classList.toggle(
+      "active",
+      theme === "highlight"
+    );
+
+}
+
+
+function loadTheme() {
+
+  const theme =
+    localStorage.getItem(
+      "sg_theme"
+    ) ||
+    "light";
+
+
+  setTheme(
+    theme
+  );
+
+}
+
 
 // =====================================================
 // JSONP CLIENT
@@ -1134,11 +1504,9 @@ function callApi(
   function cleanup() {
 
     try {
-
       delete window[
         callbackName
       ];
-
     } catch (e) {}
 
 
@@ -1156,9 +1524,7 @@ function callApi(
   }
 
 
-  function fail(
-    message
-  ) {
+  function fail(message) {
 
     if (finished) {
       return;
@@ -1176,11 +1542,9 @@ function callApi(
     ) {
 
       failure({
-
         message:
           message ||
           "API request failed."
-
       });
 
     }
@@ -1277,27 +1641,27 @@ function callApi(
   Object.keys(
     params
   )
-    .forEach(
-      function(key) {
+  .forEach(
+    function(key) {
 
-        const value =
-          params[key];
+      const value =
+        params[key];
 
 
-        if (
-          value !== undefined &&
-          value !== null
-        ) {
+      if (
+        value !== undefined &&
+        value !== null
+      ) {
 
-          query.set(
-            key,
-            String(value)
-          );
-
-        }
+        query.set(
+          key,
+          String(value)
+        );
 
       }
-    );
+
+    }
+  );
 
 
   script.src =
@@ -1336,6 +1700,8 @@ function callApi(
 
 function loadApp() {
 
+  loadTheme();
+
   loadInventory();
 
   validateStoredAdmin();
@@ -1344,7 +1710,7 @@ function loadApp() {
 
 
 // =====================================================
-// INVENTORY
+// LOAD INVENTORY
 // =====================================================
 
 function loadInventory() {
@@ -1411,18 +1777,13 @@ function getStatus(
     ) || 0;
 
 
-  if (
-    stock <= 0
-  ) {
+  if (stock <= 0) {
 
     return {
-
       text:
         "OUT OF STOCK",
-
       cls:
         "red"
-
     };
 
   }
@@ -1434,27 +1795,85 @@ function getStatus(
   ) {
 
     return {
-
       text:
         "LOW STOCK",
-
       cls:
         "orange"
-
     };
 
   }
 
 
   return {
-
     text:
       "IN STOCK",
-
     cls:
       "green"
-
   };
+
+}
+
+
+// =====================================================
+// VARIANT
+// =====================================================
+
+function variantHTML(
+  variant
+) {
+
+  if (!variant) {
+    return "";
+  }
+
+
+  let icon =
+    "";
+
+
+  if (
+    variant ===
+    "Light"
+  ) {
+
+    icon =
+      "☀️";
+
+  }
+
+  else if (
+    variant ===
+    "Dark"
+  ) {
+
+    icon =
+      "🌙";
+
+  }
+
+  else if (
+    variant ===
+    "Highlight"
+  ) {
+
+    icon =
+      "🖍️";
+
+  }
+
+
+  return `
+
+    <div class="variant-badge">
+
+      ${icon}
+      ${escapeHTML(
+        variant
+      )}
+
+    </div>
+
+  `;
 
 }
 
@@ -1484,46 +1903,64 @@ function productCard(
     <div class="product-card">
 
       <div class="product-name">
+
         ${escapeHTML(
           product.product
         )}
+
       </div>
 
 
+      ${variantHTML(
+        product.variant || ""
+      )}
+
+
       <div class="info">
+
         <strong>Barcode:</strong>
         ${escapeHTML(
           product.barcode
         )}
+
       </div>
 
 
       <div class="info">
+
         <strong>Brand:</strong>
         ${escapeHTML(
           product.brand || "-"
         )}
+
       </div>
 
 
       <div class="info">
+
         <strong>Size:</strong>
         ${escapeHTML(
           product.size || "-"
         )}
+
       </div>
 
 
       <div class="info">
+
         <strong>Finish:</strong>
         ${escapeHTML(
           product.finish || "-"
         )}
+
       </div>
 
 
       <div class="stock">
-        Stock: ${stock}
+
+        Stock:
+        ${stock}
+
       </div>
 
 
@@ -1704,7 +2141,7 @@ function focusSearch() {
 
 
 // =====================================================
-// OPEN SCANNER
+// SCANNER
 // =====================================================
 
 function openScanner() {
@@ -1739,18 +2176,14 @@ async function startScanner() {
   if (
     scannerRunning
   ) {
-
     return;
-
   }
 
 
   if (scanner) {
 
     try {
-
       await scanner.clear();
-
     } catch (e) {}
 
   }
@@ -1797,22 +2230,15 @@ async function startScanner() {
 
       const label =
         String(
-          cameras[i].label ||
-          ""
+          cameras[i].label || ""
         )
           .toLowerCase();
 
 
       if (
-        label.includes(
-          "back"
-        ) ||
-        label.includes(
-          "rear"
-        ) ||
-        label.includes(
-          "environment"
-        )
+        label.includes("back") ||
+        label.includes("rear") ||
+        label.includes("environment")
       ) {
 
         cameraId =
@@ -1830,22 +2256,14 @@ async function startScanner() {
       cameraId,
 
       {
-
-        fps:
-          10,
+        fps: 10,
 
         qrbox: {
-
-          width:
-            250,
-
-          height:
-            250
-
+          width: 250,
+          height: 250
         },
 
-        aspectRatio:
-          1
+        aspectRatio: 1
 
       },
 
@@ -1858,9 +2276,7 @@ async function startScanner() {
       },
 
       function() {
-
-        // Ignore scanning errors.
-
+        // Ignore normal scanner errors.
       }
 
     );
@@ -1907,12 +2323,8 @@ async function handleQR(
   decodedText
 ) {
 
-  if (
-    !scannerRunning
-  ) {
-
+  if (!scannerRunning) {
     return;
-
   }
 
 
@@ -1923,9 +2335,7 @@ async function handleQR(
 
 
   if (!barcode) {
-
     return;
-
   }
 
 
@@ -1934,15 +2344,13 @@ async function handleQR(
       "scannerStatus"
     )
     .textContent =
-    "Finding product...";
+      "Finding product...";
 
 
   if (scanner) {
 
     try {
-
       await scanner.stop();
-
     } catch (e) {}
 
   }
@@ -1952,7 +2360,6 @@ async function handleQR(
     false;
 
 
-  // Auto-fill admin field
   document
     .getElementById(
       "adminBarcode"
@@ -1969,15 +2376,12 @@ async function handleQR(
       barcode;
 
 
-  // Find locally first
-
   const local =
     inventory.find(
       function(product) {
 
         return String(
-          product.barcode ||
-          ""
+          product.barcode || ""
         )
           .trim()
           .toLowerCase() ===
@@ -2000,17 +2404,13 @@ async function handleQR(
   }
 
 
-  // Backend lookup
-
   callApi(
 
     "findProduct",
 
     {
-
       barcode:
         barcode
-
     },
 
     function(product) {
@@ -2073,13 +2473,13 @@ function showProduct(
     )
     .innerHTML =
 
-      productCard(
-        product
-      )
+    productCard(
+      product
+    )
 
-      +
+    +
 
-      `
+    `
 
       <button
         class="scan-next"
@@ -2089,7 +2489,7 @@ function showProduct(
 
       </button>
 
-      `;
+    `;
 
 }
 
@@ -2124,13 +2524,9 @@ async function closeScanner() {
   }
 
 
-  scanner =
-    null;
+  scanner = null;
 
-
-  scannerRunning =
-    false;
-
+  scannerRunning = false;
 
   closeScannerPanel();
 
@@ -2154,7 +2550,7 @@ function closeScannerPanel() {
 
 
 // =====================================================
-// SCAN NEXT PRODUCT
+// SCAN NEXT
 // =====================================================
 
 async function scanNextProduct() {
@@ -2163,8 +2559,7 @@ async function scanNextProduct() {
     .getElementById(
       "results"
     )
-    .innerHTML =
-      "";
+    .innerHTML = "";
 
 
   document
@@ -2191,21 +2586,15 @@ async function scanNextProduct() {
 
 
     try {
-
       await scanner.clear();
-
     } catch (e) {}
 
   }
 
 
-  scanner =
-    null;
+  scanner = null;
 
-
-  scannerRunning =
-    false;
-
+  scannerRunning = false;
 
   startScanner();
 
@@ -2288,10 +2677,8 @@ function adminLogin() {
     "adminLogin",
 
     {
-
       pin:
         pin
-
     },
 
     function(result) {
@@ -2336,7 +2723,7 @@ function adminLogin() {
 
 
 // =====================================================
-// VALIDATE STORED ADMIN
+// VALIDATE SAVED ADMIN
 // =====================================================
 
 function validateStoredAdmin() {
@@ -2355,10 +2742,8 @@ function validateStoredAdmin() {
     "validateAdmin",
 
     {
-
       token:
         adminToken
-
     },
 
     function(result) {
@@ -2390,7 +2775,7 @@ function validateStoredAdmin() {
 
 
 // =====================================================
-// ADMIN MODE
+// SET ADMIN MODE
 // =====================================================
 
 function setAdminMode() {
@@ -2400,7 +2785,7 @@ function setAdminMode() {
       "modeText"
     )
     .textContent =
-    "Admin Mode";
+      "Admin Mode";
 
 
   document
@@ -2408,7 +2793,7 @@ function setAdminMode() {
       "adminLoginButton"
     )
     .style.display =
-    "none";
+      "none";
 
 
   document
@@ -2416,7 +2801,7 @@ function setAdminMode() {
       "loginPanel"
     )
     .style.display =
-    "none";
+      "none";
 
 
   document
@@ -2424,7 +2809,7 @@ function setAdminMode() {
       "adminPanel"
     )
     .style.display =
-    "block";
+      "block";
 
 }
 
@@ -2435,9 +2820,7 @@ function setAdminMode() {
 
 function lockAdminUI() {
 
-  adminToken =
-    "";
-
+  adminToken = "";
 
   sessionStorage.removeItem(
     "sg_admin_token"
@@ -2449,7 +2832,7 @@ function lockAdminUI() {
       "modeText"
     )
     .textContent =
-    "Staff Mode";
+      "Staff Mode";
 
 
   document
@@ -2457,7 +2840,7 @@ function lockAdminUI() {
       "adminLoginButton"
     )
     .style.display =
-    "block";
+      "block";
 
 
   document
@@ -2465,7 +2848,7 @@ function lockAdminUI() {
       "loginPanel"
     )
     .style.display =
-    "none";
+      "none";
 
 
   document
@@ -2473,7 +2856,7 @@ function lockAdminUI() {
       "adminPanel"
     )
     .style.display =
-    "none";
+      "none";
 
 
   document
@@ -2481,7 +2864,7 @@ function lockAdminUI() {
       "newMaterialPanel"
     )
     .style.display =
-    "none";
+      "none";
 
 
   document
@@ -2489,7 +2872,7 @@ function lockAdminUI() {
       "adjustmentPanel"
     )
     .style.display =
-    "none";
+      "none";
 
 }
 
@@ -2514,22 +2897,16 @@ function adminLogout() {
     "adminLogout",
 
     {
-
       token:
         adminToken
-
     },
 
     function() {
-
       lockAdminUI();
-
     },
 
     function() {
-
       lockAdminUI();
-
     }
 
   );
@@ -2551,8 +2928,7 @@ function handleAdminError(
       error.message
         ? error.message
         : ""
-    )
-      .toLowerCase();
+    ).toLowerCase();
 
 
   if (
@@ -2855,14 +3231,7 @@ function showAddMaterial() {
       "newMaterialPanel"
     )
     .style.display =
-    "block";
-
-
-  document
-    .getElementById(
-      "newBarcode"
-    )
-    .focus();
+      "block";
 
 
   document
@@ -2870,17 +3239,20 @@ function showAddMaterial() {
       "newMaterialPanel"
     )
     .scrollIntoView({
+
       behavior:
         "smooth",
+
       block:
         "center"
+
     });
 
 }
 
 
 // =====================================================
-// GENERATE INTERNAL BARCODE
+// GENERATE INTERNAL CODE
 // =====================================================
 
 function generateInternalBarcode() {
@@ -2896,15 +3268,24 @@ function generateInternalBarcode() {
   }
 
 
+  const message =
+    document
+      .getElementById(
+        "newMaterialMessage"
+      );
+
+
+  message.textContent =
+    "Generating code...";
+
+
   callApi(
 
     "generateInternalBarcode",
 
     {
-
       token:
         adminToken
-
     },
 
     function(result) {
@@ -2916,15 +3297,15 @@ function generateInternalBarcode() {
         .value =
         result.barcode;
 
+
+      message.textContent =
+        "Internal code generated.";
+
     },
 
     function(error) {
 
-      document
-        .getElementById(
-          "newMaterialMessage"
-        )
-        .textContent =
+      message.textContent =
         error.message ||
         "Could not generate code.";
 
@@ -2997,6 +3378,14 @@ function createNewMaterial() {
       .trim();
 
 
+  const variant =
+    document
+      .getElementById(
+        "newVariant"
+      )
+      .value;
+
+
   const openingStock =
     Number(
       document
@@ -3017,15 +3406,6 @@ function createNewMaterial() {
     );
 
 
-  const variant =
-    document
-      .getElementById(
-        "newVariant"
-      )
-      .value
-      .trim();
-
-
   const message =
     document
       .getElementById(
@@ -3036,7 +3416,7 @@ function createNewMaterial() {
   if (!barcode) {
 
     message.textContent =
-      "Barcode is required.";
+      "Generate or enter a barcode.";
 
     return;
 
@@ -3129,12 +3509,17 @@ function createNewMaterial() {
 
 
       /*
-       * Automatic QR generation
+       * Automatic QR
        */
 
       generateProductQR(
+
         result.product,
-        result.barcode
+
+        result.barcode,
+
+        result.variant
+
       );
 
 
@@ -3164,7 +3549,7 @@ function createNewMaterial() {
 
 
 // =====================================================
-// CLEAR MATERIAL FORM
+// CLEAR NEW MATERIAL FORM
 // =====================================================
 
 function clearNewMaterialForm() {
@@ -3211,6 +3596,14 @@ function clearNewMaterialForm() {
 
   document
     .getElementById(
+      "newVariant"
+    )
+    .value =
+    "";
+
+
+  document
+    .getElementById(
       "newOpeningStock"
     )
     .value =
@@ -3224,20 +3617,11 @@ function clearNewMaterialForm() {
     .value =
     "";
 
-
-  document
-    .getElementById(
-      "newVariant"
-    )
-    .value =
-    "";
-
-
 }
 
 
 // =====================================================
-// CLOSE MATERIAL
+// CLOSE NEW MATERIAL
 // =====================================================
 
 function closeNewMaterial() {
@@ -3247,13 +3631,13 @@ function closeNewMaterial() {
       "newMaterialPanel"
     )
     .style.display =
-    "none";
+      "none";
 
 }
 
 
 // =====================================================
-// PHYSICAL STOCK ADJUSTMENT
+// PHYSICAL ADJUSTMENT
 // =====================================================
 
 function showAdjustment() {
@@ -3277,7 +3661,7 @@ function showAdjustment() {
       "adjustmentPanel"
     )
     .style.display =
-    "block";
+      "block";
 
 
   document
@@ -3285,25 +3669,17 @@ function showAdjustment() {
       "adjustmentPanel"
     )
     .scrollIntoView({
+
       behavior:
         "smooth",
+
       block:
         "center"
+
     });
-
-
-  document
-    .getElementById(
-      "adjustBarcode"
-    )
-    .focus();
 
 }
 
-
-// =====================================================
-// CLOSE ADJUSTMENT
-// =====================================================
 
 function closeAdjustment() {
 
@@ -3312,13 +3688,13 @@ function closeAdjustment() {
       "adjustmentPanel"
     )
     .style.display =
-    "none";
+      "none";
 
 }
 
 
 // =====================================================
-// ADJUST PHYSICAL STOCK
+// SAVE PHYSICAL ADJUSTMENT
 // =====================================================
 
 function adjustPhysicalStock() {
@@ -3421,13 +3797,9 @@ function adjustPhysicalStock() {
     function(result) {
 
       message.textContent =
-
         "Adjustment saved. " +
-
-        "Previous: " +
         result.previousStock +
-
-        " → New: " +
+        " → " +
         result.newStock;
 
 
@@ -3475,7 +3847,8 @@ function adjustPhysicalStock() {
 
 function generateProductQR(
   productName,
-  barcode
+  barcode,
+  variant
 ) {
 
   currentQRProduct =
@@ -3488,12 +3861,27 @@ function generateProductQR(
     "";
 
 
+  currentQRVariant =
+    variant ||
+    "";
+
+
   document
     .getElementById(
       "qrTitle"
     )
     .textContent =
-    currentQRProduct;
+      currentQRProduct;
+
+
+  document
+    .getElementById(
+      "qrVariant"
+    )
+    .textContent =
+      variant
+        ? "Variant: " + variant
+        : "";
 
 
   document
@@ -3501,8 +3889,8 @@ function generateProductQR(
       "qrBarcode"
     )
     .textContent =
-    "Barcode: " +
-    currentQRBarcode;
+      "Barcode: " +
+      currentQRBarcode;
 
 
   const qrBox =
@@ -3570,7 +3958,7 @@ function generateProductQR(
       "qrPanel"
     )
     .style.display =
-    "block";
+      "block";
 
 
   document
@@ -3601,13 +3989,13 @@ function closeQR() {
       "qrPanel"
     )
     .style.display =
-    "none";
+      "none";
 
 }
 
 
 // =====================================================
-// GET QR IMAGE
+// GET QR DATA
 // =====================================================
 
 function getQRDataURL_() {
@@ -3722,9 +4110,11 @@ function printQRLabel() {
   const product =
     currentQRProduct;
 
-
   const barcode =
     currentQRBarcode;
+
+  const variant =
+    currentQRVariant;
 
 
   const printWindow =
@@ -3853,6 +4243,20 @@ body {
 }
 
 
+.variant {
+
+  font-size:
+    12px;
+
+  font-weight:
+    700;
+
+  margin-bottom:
+    3mm;
+
+}
+
+
 .qr {
 
   width:
@@ -3895,6 +4299,14 @@ body {
   <div class="product">
     ${escapeHTML(product)}
   </div>
+
+  ${
+    variant
+      ? `<div class="variant">
+           ${escapeHTML(variant)}
+         </div>`
+      : ""
+  }
 
   <img
     class="qr"
@@ -3951,7 +4363,7 @@ function showError(
     )
     .innerHTML =
 
-      `
+    `
 
       <div class="error">
 
@@ -3961,7 +4373,7 @@ function showError(
 
       </div>
 
-      `;
+    `;
 
 }
 
