@@ -17,307 +17,475 @@
     type="text/javascript">
   </script>
 
+
   <style>
 
     * {
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
+
       background: #f5f5f5;
+
       color: #111;
-      font-family: Arial, Helvetica, sans-serif;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
       min-height: 100vh;
+
     }
+
 
     .app {
+
       width: 100%;
+
       max-width: 900px;
+
       margin: 0 auto;
+
       padding: 14px;
+
     }
 
-    /* ==============================
+
+    /* =================================================
        HEADER
-       ============================== */
+       ================================================= */
 
     .header {
+
       background: #111;
+
       color: white;
+
       border-radius: 16px;
+
       padding: 20px;
+
       margin-bottom: 14px;
+
     }
+
 
     .brand {
+
       font-size: 25px;
+
       font-weight: 800;
-      letter-spacing: .3px;
+
     }
+
 
     .subtitle {
+
       margin-top: 5px;
+
       color: #aaa;
+
       font-size: 13px;
-      letter-spacing: .3px;
+
     }
 
-    .user-info {
-      margin-top: 14px;
+
+    .mode {
+
+      margin-top: 12px;
+
+      font-size: 13px;
+
       color: #ddd;
-      font-size: 14px;
+
     }
 
-    /* ==============================
-       ACTION BUTTONS
-       ============================== */
 
-    .main-actions {
+    /* =================================================
+       MAIN BUTTONS
+       ================================================= */
+
+    .actions {
+
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 10px;
+
       margin-bottom: 14px;
+
     }
 
-    .action {
+
+    button {
+
       border: none;
-      border-radius: 13px;
-      padding: 18px 10px;
-      background: white;
-      color: #111;
-      box-shadow: 0 2px 8px rgba(0,0,0,.07);
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-    }
 
-    .action.primary {
+      border-radius: 12px;
+
+      padding: 15px;
+
       background: #111;
+
       color: white;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
     }
 
-    .action:active,
-    .admin-button:active {
-      transform: scale(.98);
+
+    button.secondary {
+
+      background: white;
+
+      color: #111;
+
+      border: 1px solid #ddd;
+
     }
 
-    /* ==============================
+
+    button.danger {
+
+      background: #b3261e;
+
+    }
+
+
+    /* =================================================
        SEARCH
-       ============================== */
+       ================================================= */
 
     .search-box {
+
       background: white;
-      border-radius: 14px;
+
       padding: 14px;
+
+      border-radius: 14px;
+
       margin-bottom: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+
     }
+
 
     .search-input {
+
       width: 100%;
-      padding: 15px;
+
+      padding: 14px;
+
       border: 1px solid #ddd;
+
       border-radius: 10px;
+
       font-size: 16px;
+
       outline: none;
+
     }
 
-    /* ==============================
+
+    /* =================================================
        SCANNER
-       ============================== */
+       ================================================= */
 
     .scanner-panel {
+
       display: none;
+
       background: white;
+
       padding: 14px;
+
       border-radius: 16px;
+
       margin-bottom: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+
     }
+
 
     #reader {
+
       width: 100%;
+
       overflow: hidden;
+
       border-radius: 12px;
+
       background: #111;
+
     }
 
-    #reader video {
-      border-radius: 12px;
-    }
 
-    .scanner-message {
+    .scanner-status {
+
       text-align: center;
+
       color: #666;
+
       font-size: 14px;
-      margin-top: 11px;
-      min-height: 20px;
-    }
 
-    /* ==============================
-       ADMIN
-       ============================== */
-
-    .admin-panel {
-      display: none;
-      background: white;
-      padding: 16px;
-      border-radius: 16px;
-      margin-bottom: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    }
-
-    .admin-title {
-      font-size: 18px;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-
-    .admin-input {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      font-size: 15px;
-      outline: none;
-      margin-top: 8px;
-    }
-
-    .admin-button {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 10px;
-      background: #111;
-      color: white;
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
       margin-top: 10px;
-    }
 
-    .admin-button.secondary {
-      background: #f1f1f1;
-      color: #111;
-    }
-
-    .admin-message {
-      text-align: center;
-      margin-top: 10px;
-      color: #666;
-      font-size: 14px;
       min-height: 20px;
+
     }
 
-    /* ==============================
-       PRODUCTS
-       ============================== */
+
+    /* =================================================
+       PRODUCT
+       ================================================= */
 
     .product-card {
+
       background: white;
+
       border-radius: 16px;
+
       padding: 18px;
+
       margin-bottom: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+
+      box-shadow:
+        0 2px 8px rgba(0,0,0,.06);
+
     }
+
 
     .product-name {
-      font-size: 21px;
+
+      font-size: 22px;
+
       font-weight: 800;
+
       margin-bottom: 12px;
+
     }
 
-    .product-info {
+
+    .info {
+
       color: #555;
+
       font-size: 14px;
+
       margin: 6px 0;
+
     }
 
-    .product-info strong {
+
+    .info strong {
+
       color: #111;
+
     }
 
-    .stock-number {
+
+    .stock {
+
       font-size: 28px;
+
       font-weight: 800;
-      margin-top: 15px;
-    }
 
-    .stock-status {
-      font-weight: 800;
-      margin-top: 5px;
-    }
-
-    .in-stock {
-      color: #218739;
-    }
-
-    .low-stock {
-      color: #a66500;
-    }
-
-    .out-stock {
-      color: #b12626;
-    }
-
-    .result-actions {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
       margin-top: 16px;
+
     }
+
+
+    .status {
+
+      font-weight: 800;
+
+      margin-top: 4px;
+
+    }
+
+
+    .green {
+
+      color: #218739;
+
+    }
+
+
+    .orange {
+
+      color: #a66500;
+
+    }
+
+
+    .red {
+
+      color: #b12626;
+
+    }
+
 
     .scan-next {
+
       width: 100%;
-      border: none;
-      border-radius: 10px;
-      padding: 15px;
-      background: #111;
-      color: white;
-      font-weight: 800;
-      font-size: 15px;
-      cursor: pointer;
+
+      margin-top: 15px;
+
     }
 
-    /* ==============================
+
+    /* =================================================
+       ADMIN
+       ================================================= */
+
+    .admin-panel {
+
+      display: none;
+
+      background: white;
+
+      padding: 16px;
+
+      border-radius: 16px;
+
+      margin-bottom: 14px;
+
+    }
+
+
+    .admin-title {
+
+      font-size: 19px;
+
+      font-weight: 800;
+
+      margin-bottom: 12px;
+
+    }
+
+
+    .admin-input {
+
+      width: 100%;
+
+      padding: 14px;
+
+      border: 1px solid #ddd;
+
+      border-radius: 10px;
+
+      font-size: 16px;
+
+      margin-top: 8px;
+
+    }
+
+
+    .admin-message {
+
+      text-align: center;
+
+      color: #666;
+
+      font-size: 14px;
+
+      margin-top: 10px;
+
+      min-height: 20px;
+
+    }
+
+
+    /* =================================================
+       LOGIN
+       ================================================= */
+
+    .login-panel {
+
+      display: none;
+
+      background: white;
+
+      padding: 16px;
+
+      border-radius: 16px;
+
+      margin-bottom: 14px;
+
+    }
+
+
+    .login-title {
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+      margin-bottom: 10px;
+
+    }
+
+
+    /* =================================================
        LOADING / ERROR
-       ============================== */
+       ================================================= */
 
     .loading {
+
+      background: white;
+
+      border-radius: 14px;
+
+      padding: 25px;
+
       text-align: center;
-      padding: 30px;
+
       color: #777;
+
     }
 
-    .error-card {
+
+    .error {
+
       background: #fff0f0;
+
       color: #a00000;
+
       border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 12px;
+
+      padding: 14px;
+
       text-align: center;
-      font-size: 14px;
+
+      margin-bottom: 14px;
+
     }
+
 
     @media (max-width: 600px) {
 
       .app {
+
         padding: 12px;
+
       }
 
-      .brand {
-        font-size: 23px;
+      .actions {
+
+        grid-template-columns:
+          1fr 1fr;
+
       }
 
-      .main-actions {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .action {
-        font-size: 14px;
-        padding: 17px 8px;
-      }
     }
 
   </style>
@@ -327,12 +495,13 @@
 
 <body>
 
+
 <div class="app">
 
 
-  <!-- ===========================
+  <!-- =================================================
        HEADER
-       =========================== -->
+       ================================================= -->
 
   <div class="header">
 
@@ -345,22 +514,23 @@
     </div>
 
     <div
-      class="user-info"
-      id="userInfo">
-      Loading user...
+      class="mode"
+      id="modeText">
+
+      Staff Mode
+
     </div>
 
   </div>
 
 
-  <!-- ===========================
-       ACTIONS
-       =========================== -->
+  <!-- =================================================
+       MAIN ACTIONS
+       ================================================= -->
 
-  <div class="main-actions">
+  <div class="actions">
 
     <button
-      class="action primary"
       onclick="openScanner()">
 
       📷<br>
@@ -370,7 +540,7 @@
 
 
     <button
-      class="action"
+      class="secondary"
       onclick="focusSearch()">
 
       🔎<br>
@@ -381,9 +551,64 @@
   </div>
 
 
-  <!-- ===========================
+  <!-- =================================================
+       LOGIN
+       ================================================= -->
+
+  <div
+    id="loginPanel"
+    class="login-panel">
+
+    <div class="login-title">
+      🔐 ADMIN LOGIN
+    </div>
+
+
+    <input
+      id="adminPin"
+      class="admin-input"
+      type="password"
+      inputmode="numeric"
+      maxlength="8"
+      placeholder="Enter Admin PIN"
+    >
+
+
+    <button
+      style="margin-top:10px;"
+      onclick="adminLogin()">
+
+      UNLOCK ADMIN
+
+    </button>
+
+
+    <div
+      id="loginMessage"
+      class="admin-message">
+    </div>
+
+  </div>
+
+
+  <!-- =================================================
+       ADMIN BUTTON
+       ================================================= -->
+
+  <button
+    id="adminLoginButton"
+    class="secondary"
+    onclick="showAdminLogin()"
+    style="width:100%; margin-bottom:14px;">
+
+    🔐 ADMIN LOGIN
+
+  </button>
+
+
+  <!-- =================================================
        SEARCH
-       =========================== -->
+       ================================================= -->
 
   <div class="search-box">
 
@@ -399,9 +624,9 @@
   </div>
 
 
-  <!-- ===========================
+  <!-- =================================================
        SCANNER
-       =========================== -->
+       ================================================= -->
 
   <div
     id="scannerPanel"
@@ -409,16 +634,19 @@
 
     <div id="reader"></div>
 
-    <div
-      id="scannerMessage"
-      class="scanner-message">
 
-      Point the camera at the product QR code.
+    <div
+      id="scannerStatus"
+      class="scanner-status">
+
+      Point the camera at the product QR.
 
     </div>
 
+
     <button
-      class="admin-button secondary"
+      class="secondary"
+      style="width:100%; margin-top:10px;"
       onclick="closeScanner()">
 
       CLOSE SCANNER
@@ -428,16 +656,16 @@
   </div>
 
 
-  <!-- ===========================
+  <!-- =================================================
        ADMIN PANEL
-       =========================== -->
+       ================================================= -->
 
   <div
     id="adminPanel"
     class="admin-panel">
 
     <div class="admin-title">
-      ADMIN — STOCK UPDATE
+      👑 ADMIN — STOCK UPDATE
     </div>
 
 
@@ -460,7 +688,7 @@
 
 
     <button
-      class="admin-button"
+      style="margin-top:10px;"
       onclick="stockIn()">
 
       ➕ STOCK IN
@@ -469,10 +697,18 @@
 
 
     <button
-      class="admin-button"
       onclick="stockOut()">
 
       ➖ STOCK OUT
+
+    </button>
+
+
+    <button
+      class="secondary"
+      onclick="adminLogout()">
+
+      LOG OUT ADMIN
 
     </button>
 
@@ -485,9 +721,9 @@
   </div>
 
 
-  <!-- ===========================
+  <!-- =================================================
        RESULTS
-       =========================== -->
+       ================================================= -->
 
   <div id="results">
 
@@ -503,54 +739,58 @@
 
 <script>
 
-/* =====================================================
-   CONFIGURATION
-   ===================================================== */
+
+// =====================================================
+// CONFIG
+// =====================================================
 
 const API_URL =
   "https://script.google.com/macros/s/AKfycbyPhd5eC7F9lZoPfJ2KyejFVcah7VC-1k4PfmiP7tP-rmnUrlKPiCa_G_8EfrNk6sf-/exec";
 
 
-/* =====================================================
-   GLOBAL VARIABLES
-   ===================================================== */
-
 let inventory = [];
-
-let currentUser = null;
 
 let scanner = null;
 
 let scannerRunning = false;
 
-let apiRequestCounter = 0;
+let apiCounter = 0;
+
+let adminToken =
+  sessionStorage.getItem(
+    "sg_admin_token"
+  ) || "";
 
 
-/* =====================================================
-   JSONP API
-   ===================================================== */
+// =====================================================
+// JSONP API CLIENT
+// =====================================================
 
 function callApi(
   action,
   params,
-  onSuccess,
-  onError
+  success,
+  failure
 ) {
 
-  params = params || {};
+  params =
+    params || {};
+
 
   const callbackName =
     "sgApi_" +
     Date.now() +
     "_" +
-    (++apiRequestCounter);
+    (++apiCounter);
 
 
   let finished = false;
 
 
   const script =
-    document.createElement("script");
+    document.createElement(
+      "script"
+    );
 
 
   script.id =
@@ -560,11 +800,23 @@ function callApi(
   function cleanup() {
 
     try {
-      delete window[callbackName];
+
+      delete window[
+        callbackName
+      ];
+
     } catch (e) {}
 
-    if (script.parentNode) {
-      script.parentNode.removeChild(script);
+
+    if (
+      script.parentNode
+    ) {
+
+      script.parentNode
+        .removeChild(
+          script
+        );
+
     }
 
   }
@@ -573,18 +825,28 @@ function callApi(
   function fail(message) {
 
     if (finished) {
+
       return;
+
     }
+
 
     finished = true;
 
     cleanup();
 
-    if (typeof onError === "function") {
-      onError({
+
+    if (
+      typeof failure ===
+      "function"
+    ) {
+
+      failure({
         message:
-          message || "API request failed."
+          message ||
+          "API request failed."
       });
+
     }
 
   }
@@ -594,26 +856,35 @@ function callApi(
     function(response) {
 
       if (finished) {
+
         return;
+
       }
+
 
       finished = true;
 
       cleanup();
+
 
       if (
         !response ||
         response.success !== true
       ) {
 
-        if (typeof onError === "function") {
+        if (
+          typeof failure ===
+          "function"
+        ) {
 
-          onError({
+          failure({
+
             message:
               response &&
               response.error
                 ? response.error
                 : "API request failed."
+
           });
 
         }
@@ -624,10 +895,11 @@ function callApi(
 
 
       if (
-        typeof onSuccess === "function"
+        typeof success ===
+        "function"
       ) {
 
-        onSuccess(
+        success(
           response.data
         );
 
@@ -646,7 +918,8 @@ function callApi(
     };
 
 
-  const query = new URLSearchParams();
+  const query =
+    new URLSearchParams();
 
 
   query.set(
@@ -667,11 +940,14 @@ function callApi(
   );
 
 
-  Object.keys(params)
+  Object.keys(
+    params
+  )
     .forEach(function(key) {
 
       const value =
         params[key];
+
 
       if (
         value !== undefined &&
@@ -694,15 +970,11 @@ function callApi(
     query.toString();
 
 
-  document.body.appendChild(
-    script
-  );
+  document.body
+    .appendChild(
+      script
+    );
 
-
-  /*
-   * Fail gracefully if the API
-   * never responds.
-   */
 
   setTimeout(
     function() {
@@ -722,63 +994,37 @@ function callApi(
 }
 
 
-/* =====================================================
-   LOAD APP
-   ===================================================== */
+// =====================================================
+// LOAD APP
+// =====================================================
 
 function loadApp() {
 
-  document
-    .getElementById("userInfo")
-    .textContent =
-      "Loading user...";
-
-
-  callApi(
-    "getCurrentUser",
-    {},
-    function(user) {
-
-      currentUser =
-        user || null;
-
-      updateUserUI();
-
-      loadInventory();
-
-    },
-    function(error) {
-
-      console.error(error);
-
-      document
-        .getElementById("userInfo")
-        .textContent =
-          "Staff";
-
-      loadInventory();
-
-    }
-  );
+  loadInventory();
 
 }
 
 
-/* =====================================================
-   LOAD INVENTORY
-   ===================================================== */
+// =====================================================
+// LOAD INVENTORY
+// =====================================================
 
 function loadInventory() {
 
   document
-    .getElementById("results")
+    .getElementById(
+      "results"
+    )
     .innerHTML =
       '<div class="loading">Loading inventory...</div>';
 
 
   callApi(
+
     "getInventory",
+
     {},
+
     function(data) {
 
       inventory =
@@ -786,95 +1032,35 @@ function loadInventory() {
           ? data
           : [];
 
+
       renderInventory(
         inventory
       );
 
     },
+
     function(error) {
 
-      console.error(error);
+      console.error(
+        error
+      );
+
 
       showError(
         error.message ||
-        "Could not connect to inventory."
+        "Could not load inventory."
       );
 
     }
+
   );
 
 }
 
 
-/* =====================================================
-   USER UI
-   ===================================================== */
-
-function updateUserUI() {
-
-  const info =
-    document.getElementById(
-      "userInfo"
-    );
-
-
-  if (!currentUser) {
-
-    info.textContent =
-      "Staff";
-
-    return;
-
-  }
-
-
-  const name =
-    currentUser.name ||
-    "User";
-
-
-  const role =
-    currentUser.role ||
-    "Staff";
-
-
-  info.textContent =
-    name +
-    " · " +
-    role;
-
-
-  if (
-    currentUser.active &&
-    String(role)
-      .toLowerCase() ===
-      "admin"
-  ) {
-
-    document
-      .getElementById(
-        "adminPanel"
-      )
-      .style.display =
-        "block";
-
-  } else {
-
-    document
-      .getElementById(
-        "adminPanel"
-      )
-      .style.display =
-        "none";
-
-  }
-
-}
-
-
-/* =====================================================
-   RENDER INVENTORY
-   ===================================================== */
+// =====================================================
+// RENDER INVENTORY
+// =====================================================
 
 function renderInventory(
   items
@@ -899,32 +1085,25 @@ function renderInventory(
   }
 
 
-  const list =
-    items.slice(
-      0,
-      100
-    );
-
-
   results.innerHTML =
-    list
-      .map(function(product) {
-
-        return productHTML(
-          product
-        );
-
-      })
+    items
+      .slice(
+        0,
+        100
+      )
+      .map(
+        productCard
+      )
       .join("");
 
 }
 
 
-/* =====================================================
-   PRODUCT CARD
-   ===================================================== */
+// =====================================================
+// PRODUCT CARD
+// =====================================================
 
-function productHTML(
+function productCard(
   product
 ) {
 
@@ -938,8 +1117,8 @@ function productHTML(
     "IN STOCK";
 
 
-  let statusClass =
-    "in-stock";
+  let color =
+    "green";
 
 
   if (
@@ -949,26 +1128,29 @@ function productHTML(
     status =
       "OUT OF STOCK";
 
-    statusClass =
-      "out-stock";
+    color =
+      "red";
 
   }
 
   else if (
+
     Number(
       product.minimumStock
     ) > 0 &&
+
     stock <=
-      Number(
-        product.minimumStock
-      )
+    Number(
+      product.minimumStock
+    )
+
   ) {
 
     status =
       "LOW STOCK";
 
-    statusClass =
-      "low-stock";
+    color =
+      "orange";
 
   }
 
@@ -978,45 +1160,66 @@ function productHTML(
     <div class="product-card">
 
       <div class="product-name">
+
         ${escapeHTML(
           product.product
         )}
+
       </div>
 
-      <div class="product-info">
+
+      <div class="info">
+
         <strong>Barcode:</strong>
         ${escapeHTML(
           product.barcode
         )}
+
       </div>
 
-      <div class="product-info">
+
+      <div class="info">
+
         <strong>Brand:</strong>
         ${escapeHTML(
           product.brand || "-"
         )}
+
       </div>
 
-      <div class="product-info">
+
+      <div class="info">
+
         <strong>Size:</strong>
         ${escapeHTML(
           product.size || "-"
         )}
+
       </div>
 
-      <div class="product-info">
+
+      <div class="info">
+
         <strong>Finish:</strong>
         ${escapeHTML(
           product.finish || "-"
         )}
+
       </div>
 
-      <div class="stock-number">
+
+      <div class="stock">
+
         Stock: ${stock}
+
       </div>
 
-      <div class="stock-status ${statusClass}">
+
+      <div
+        class="status ${color}">
+
         ${status}
+
       </div>
 
     </div>
@@ -1026,78 +1229,19 @@ function productHTML(
 }
 
 
-/* =====================================================
-   SHOW SINGLE PRODUCT
-   ===================================================== */
-
-function showSingleProduct(
-  product
-) {
-
-  const results =
-    document.getElementById(
-      "results"
-    );
-
-
-  results.innerHTML =
-
-    productHTML(
-      product
-    ) +
-
-    `
-
-      <div class="result-actions">
-
-        <button
-          class="scan-next"
-          onclick="scanNextProduct()">
-
-          📷 SCAN NEXT PRODUCT
-
-        </button>
-
-      </div>
-
-    `;
-
-
-  /*
-   * Auto-fill Admin barcode.
-   */
-
-  const adminBarcode =
-    document.getElementById(
-      "adminBarcode"
-    );
-
-
-  if (adminBarcode) {
-
-    adminBarcode.value =
-      product.barcode || "";
-
-  }
-
-}
-
-
-/* =====================================================
-   SEARCH
-   ===================================================== */
+// =====================================================
+// SEARCH
+// =====================================================
 
 function searchProducts() {
 
-  const input =
-    document.getElementById(
-      "searchInput"
-    );
-
-
   const query =
     String(
-      input.value || ""
+      document
+        .getElementById(
+          "searchInput"
+        )
+        .value || ""
     )
       .trim()
       .toLowerCase();
@@ -1158,14 +1302,6 @@ function searchProducts() {
             .toLowerCase()
             .includes(query)
 
-          ||
-
-          String(
-            product.variant || ""
-          )
-            .toLowerCase()
-            .includes(query)
-
         );
 
       }
@@ -1179,32 +1315,24 @@ function searchProducts() {
 }
 
 
-/* =====================================================
-   SEARCH FOCUS
-   ===================================================== */
+// =====================================================
+// SEARCH FOCUS
+// =====================================================
 
 function focusSearch() {
 
-  const input =
-    document.getElementById(
+  document
+    .getElementById(
       "searchInput"
-    );
-
-
-  input.focus();
-
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+    )
+    .focus();
 
 }
 
 
-/* =====================================================
-   OPEN SCANNER
-   ===================================================== */
+// =====================================================
+// SCANNER
+// =====================================================
 
 function openScanner() {
 
@@ -1218,16 +1346,10 @@ function openScanner() {
 
   document
     .getElementById(
-      "scannerMessage"
+      "scannerStatus"
     )
     .textContent =
       "Starting camera...";
-
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
 
 
   startScanner();
@@ -1235,9 +1357,9 @@ function openScanner() {
 }
 
 
-/* =====================================================
-   START SCANNER
-   ===================================================== */
+// =====================================================
+// START SCANNER
+// =====================================================
 
 async function startScanner() {
 
@@ -1250,17 +1372,15 @@ async function startScanner() {
   }
 
 
-  /*
-   * Clear old scanner.
-   */
-
   if (scanner) {
 
     try {
 
       await scanner.clear();
 
-    } catch (e) {}
+    }
+
+    catch (e) {}
 
   }
 
@@ -1277,12 +1397,9 @@ async function startScanner() {
 
   try {
 
-    /*
-     * Prefer rear camera.
-     */
-
     const cameras =
-      await Html5Qrcode.getCameras();
+      await Html5Qrcode
+        .getCameras();
 
 
     if (
@@ -1335,17 +1452,20 @@ async function startScanner() {
       cameraId,
 
       {
+
         fps: 10,
 
         qrbox: {
+
           width: 250,
+
           height: 250
+
         },
 
         aspectRatio: 1.0
 
       },
-
 
       function(decodedText) {
 
@@ -1355,12 +1475,9 @@ async function startScanner() {
 
       },
 
-
       function(errorMessage) {
 
-        /*
-         * Ignore normal scanner errors.
-         */
+        // Ignore scanning errors.
 
       }
 
@@ -1369,10 +1486,10 @@ async function startScanner() {
 
     document
       .getElementById(
-        "scannerMessage"
+        "scannerStatus"
       )
       .textContent =
-        "Point the camera at the product QR.";
+      "Point the camera at the product QR.";
 
   }
 
@@ -1390,29 +1507,37 @@ async function startScanner() {
 
     document
       .getElementById(
-        "scannerMessage"
+        "scannerStatus"
       )
       .textContent =
-        "Camera could not start. Please allow camera access.";
+      "Camera could not start. Please allow camera access.";
 
   }
 
 }
 
 
-/* =====================================================
-   HANDLE QR
-   ===================================================== */
+// =====================================================
+// HANDLE QR
+// =====================================================
 
 async function handleQR(
   decodedText
 ) {
 
+  if (
+    !scannerRunning
+  ) {
+
+    return;
+
+  }
+
+
   const barcode =
     String(
       decodedText || ""
-    )
-      .trim();
+    ).trim();
 
 
   if (!barcode) {
@@ -1422,28 +1547,13 @@ async function handleQR(
   }
 
 
-  /*
-   * Prevent duplicate scans.
-   */
-
-  if (!scannerRunning) {
-
-    return;
-
-  }
-
-
   document
     .getElementById(
-      "scannerMessage"
+      "scannerStatus"
     )
     .textContent =
       "Finding product...";
 
-
-  /*
-   * Stop camera.
-   */
 
   if (scanner) {
 
@@ -1451,7 +1561,9 @@ async function handleQR(
 
       await scanner.stop();
 
-    } catch (e) {}
+    }
+
+    catch (e) {}
 
   }
 
@@ -1460,29 +1572,20 @@ async function handleQR(
     false;
 
 
-  /*
-   * Put barcode into Admin field.
-   */
-
-  const adminBarcode =
-    document.getElementById(
+  // Automatically fill Admin barcode
+  document
+    .getElementById(
       "adminBarcode"
-    );
-
-
-  if (adminBarcode) {
-
-    adminBarcode.value =
+    )
+    .value =
       barcode;
 
-  }
-
 
   /*
-   * Search currently loaded inventory.
+   * Look in local inventory first.
    */
 
-  const localMatch =
+  const local =
     inventory.find(
       function(product) {
 
@@ -1491,21 +1594,20 @@ async function handleQR(
         )
           .trim()
           .toLowerCase() ===
-          barcode.toLowerCase();
+          barcode
+            .toLowerCase();
 
       }
     );
 
 
-  if (localMatch) {
+  if (local) {
 
-    showSingleProduct(
-      localMatch
+    showProduct(
+      local
     );
 
-
-    closeScannerUI();
-
+    closeScannerPanel();
 
     return;
 
@@ -1513,59 +1615,51 @@ async function handleQR(
 
 
   /*
-   * Ask Apps Script API directly.
+   * Ask backend.
    */
 
   callApi(
+
     "findProduct",
+
     {
       barcode:
         barcode
     },
+
     function(product) {
 
       if (!product) {
 
-        document
-          .getElementById(
-            "scannerMessage"
-          )
-          .textContent =
-            "Product not found.";
+        closeScannerPanel();
 
-        closeScannerUI();
+        showError(
+          "Product not found: " +
+          barcode
+        );
 
         return;
 
       }
 
 
-      /*
-       * Add to local inventory cache.
-       */
-
       inventory.push(
         product
       );
 
 
-      showSingleProduct(
+      showProduct(
         product
       );
 
 
-      closeScannerUI();
+      closeScannerPanel();
 
     },
+
     function(error) {
 
-      console.error(
-        error
-      );
-
-
-      closeScannerUI();
-
+      closeScannerPanel();
 
       showError(
         error.message ||
@@ -1573,16 +1667,151 @@ async function handleQR(
       );
 
     }
+
   );
 
 }
 
 
-/* =====================================================
-   CLOSE SCANNER UI
-   ===================================================== */
+// =====================================================
+// SHOW PRODUCT
+// =====================================================
 
-function closeScannerUI() {
+function showProduct(
+  product
+) {
+
+  const results =
+    document.getElementById(
+      "results"
+    );
+
+
+  const stock =
+    Number(
+      product.stock
+    ) || 0;
+
+
+  let status =
+    "IN STOCK";
+
+
+  let color =
+    "green";
+
+
+  if (
+    stock <= 0
+  ) {
+
+    status =
+      "OUT OF STOCK";
+
+    color =
+      "red";
+
+  }
+
+  else if (
+
+    Number(
+      product.minimumStock
+    ) > 0 &&
+
+    stock <=
+    Number(
+      product.minimumStock
+    )
+
+  ) {
+
+    status =
+      "LOW STOCK";
+
+    color =
+      "orange";
+
+  }
+
+
+  results.innerHTML =
+
+    productCard(
+      product
+    )
+
+    +
+
+    `
+
+      <button
+        class="scan-next"
+        onclick="scanNextProduct()">
+
+        📷 SCAN NEXT PRODUCT
+
+      </button>
+
+    `;
+
+}
+
+
+// =====================================================
+// CLOSE SCANNER
+// =====================================================
+
+async function closeScanner() {
+
+  if (
+    scanner
+  ) {
+
+    try {
+
+      if (
+        scannerRunning
+      ) {
+
+        await scanner.stop();
+
+      }
+
+    }
+
+    catch (e) {}
+
+
+    try {
+
+      await scanner.clear();
+
+    }
+
+    catch (e) {}
+
+  }
+
+
+  scanner =
+    null;
+
+
+  scannerRunning =
+    false;
+
+
+  closeScannerPanel();
+
+}
+
+
+// =====================================================
+// CLOSE SCANNER PANEL
+// =====================================================
+
+function closeScannerPanel() {
 
   document
     .getElementById(
@@ -1594,54 +1823,11 @@ function closeScannerUI() {
 }
 
 
-/* =====================================================
-   CLOSE SCANNER
-   ===================================================== */
-
-async function closeScanner() {
-
-  if (scanner) {
-
-    try {
-
-      if (scannerRunning) {
-        await scanner.stop();
-      }
-
-    } catch (e) {}
-
-
-    try {
-
-      await scanner.clear();
-
-    } catch (e) {}
-
-  }
-
-
-  scanner =
-    null;
-
-
-  scannerRunning =
-    false;
-
-
-  closeScannerUI();
-
-}
-
-
-/* =====================================================
-   SCAN NEXT PRODUCT
-   ===================================================== */
+// =====================================================
+// SCAN NEXT PRODUCT
+// =====================================================
 
 async function scanNextProduct() {
-
-  /*
-   * Clear old result.
-   */
 
   document
     .getElementById(
@@ -1649,10 +1835,6 @@ async function scanNextProduct() {
     )
     .innerHTML = "";
 
-
-  /*
-   * Reset scanner UI.
-   */
 
   document
     .getElementById(
@@ -1662,35 +1844,30 @@ async function scanNextProduct() {
       "block";
 
 
-  document
-    .getElementById(
-      "scannerMessage"
-    )
-    .textContent =
-      "Starting camera...";
-
-
-  /*
-   * Make sure old scanner
-   * is completely stopped.
-   */
-
   if (scanner) {
 
     try {
 
-      if (scannerRunning) {
+      if (
+        scannerRunning
+      ) {
+
         await scanner.stop();
+
       }
 
-    } catch (e) {}
+    }
+
+    catch (e) {}
 
 
     try {
 
       await scanner.clear();
 
-    } catch (e) {}
+    }
+
+    catch (e) {}
 
   }
 
@@ -1703,25 +1880,246 @@ async function scanNextProduct() {
     false;
 
 
-  /*
-   * Immediately reopen camera.
-   */
-
   startScanner();
 
 }
 
 
-/* =====================================================
-   ADMIN — STOCK IN
-   ===================================================== */
+// =====================================================
+// ADMIN LOGIN PANEL
+// =====================================================
+
+function showAdminLogin() {
+
+  document
+    .getElementById(
+      "loginPanel"
+    )
+    .style.display =
+      "block";
+
+
+  document
+    .getElementById(
+      "adminPin"
+    )
+    .focus();
+
+}
+
+
+// =====================================================
+// ADMIN LOGIN
+// =====================================================
+
+function adminLogin() {
+
+  const pin =
+    document
+      .getElementById(
+        "adminPin"
+      )
+      .value
+      .trim();
+
+
+  const message =
+    document
+      .getElementById(
+        "loginMessage"
+      );
+
+
+  if (!pin) {
+
+    message.textContent =
+      "Enter Admin PIN.";
+
+    return;
+
+  }
+
+
+  message.textContent =
+    "Checking PIN...";
+
+
+  callApi(
+
+    "adminLogin",
+
+    {
+      pin:
+        pin
+    },
+
+    function(result) {
+
+      adminToken =
+        result.token;
+
+
+      sessionStorage.setItem(
+        "sg_admin_token",
+        adminToken
+      );
+
+
+      message.textContent =
+        "Admin unlocked.";
+
+
+      document
+        .getElementById(
+          "adminPin"
+        )
+        .value = "";
+
+
+      document
+        .getElementById(
+          "loginPanel"
+        )
+        .style.display =
+        "none";
+
+
+      document
+        .getElementById(
+          "adminPanel"
+        )
+        .style.display =
+        "block";
+
+
+      document
+        .getElementById(
+          "adminLoginButton"
+        )
+        .style.display =
+        "none";
+
+
+      document
+        .getElementById(
+          "modeText"
+        )
+        .textContent =
+        "Admin Mode";
+
+    },
+
+    function(error) {
+
+      message.textContent =
+        error.message ||
+        "Incorrect Admin PIN.";
+
+    }
+
+  );
+
+}
+
+
+// =====================================================
+// ADMIN LOGOUT
+// =====================================================
+
+function adminLogout() {
+
+  if (!adminToken) {
+
+    lockAdminUI();
+
+    return;
+
+  }
+
+
+  callApi(
+
+    "adminLogout",
+
+    {
+      token:
+        adminToken
+    },
+
+    function() {
+
+      lockAdminUI();
+
+    },
+
+    function() {
+
+      lockAdminUI();
+
+    }
+
+  );
+
+}
+
+
+// =====================================================
+// LOCK ADMIN UI
+// =====================================================
+
+function lockAdminUI() {
+
+  adminToken = "";
+
+  sessionStorage.removeItem(
+    "sg_admin_token"
+  );
+
+
+  document
+    .getElementById(
+      "adminPanel"
+    )
+    .style.display =
+    "none";
+
+
+  document
+    .getElementById(
+      "adminLoginButton"
+    )
+    .style.display =
+    "block";
+
+
+  document
+    .getElementById(
+      "modeText"
+    )
+    .textContent =
+    "Staff Mode";
+
+
+  document
+    .getElementById(
+      "loginPanel"
+    )
+    .style.display =
+    "none";
+
+}
+
+
+// =====================================================
+// STOCK IN
+// =====================================================
 
 function stockIn() {
 
-  if (!isAdmin()) {
+  if (!adminToken) {
 
     alert(
-      "Only Admin users can modify stock."
+      "Please login as Admin first."
     );
 
     return;
@@ -1748,11 +2146,17 @@ function stockIn() {
     );
 
 
+  const message =
+    document
+      .getElementById(
+        "adminMessage"
+      );
+
+
   if (!barcode) {
 
-    alert(
-      "Scan a product or enter a barcode."
-    );
+    message.textContent =
+      "Scan a product or enter a barcode.";
 
     return;
 
@@ -1766,19 +2170,12 @@ function stockIn() {
     quantity <= 0
   ) {
 
-    alert(
-      "Enter a valid quantity."
-    );
+    message.textContent =
+      "Enter a valid quantity.";
 
     return;
 
   }
-
-
-  const message =
-    document.getElementById(
-      "adminMessage"
-    );
 
 
   message.textContent =
@@ -1786,286 +2183,213 @@ function stockIn() {
 
 
   callApi(
+
     "stockIn",
+
     {
+
       barcode:
         barcode,
 
       quantity:
-        quantity
+        quantity,
+
+      token:
+        adminToken
+
     },
+
     function(result) {
 
       message.textContent =
-        "Stock In successful: " +
-        result.product +
-        " → " +
+        "Stock In successful. New stock: " +
         result.newStock;
-
-
-      refreshInventory();
 
 
       document
         .getElementById(
           "adminQuantity"
         )
-        .value = "";
+        .value =
+        "";
+
+
+      loadInventory();
 
     },
+
     function(error) {
-
-      console.error(
-        error
-      );
-
 
       message.textContent =
         error.message ||
         "Could not update stock.";
-
-    }
-  );
-
-}
-
-
-/* =====================================================
-   ADMIN — STOCK OUT
-   ===================================================== */
-
-function stockOut() {
-
-  if (!isAdmin()) {
-
-    alert(
-      "Only Admin users can modify stock."
-    );
-
-    return;
-
-  }
-
-
-  const barcode =
-    document
-      .getElementById(
-        "adminBarcode"
-      )
-      .value
-      .trim();
-
-
-  const quantity =
-    Number(
-      document
-        .getElementById(
-          "adminQuantity"
-        )
-        .value
-    );
-
-
-  if (!barcode) {
-
-    alert(
-      "Scan a product or enter a barcode."
-    );
-
-    return;
-
-  }
-
-
-  if (
-    !Number.isFinite(
-      quantity
-    ) ||
-    quantity <= 0
-  ) {
-
-    alert(
-      "Enter a valid quantity."
-    );
-
-    return;
-
-  }
-
-
-  const message =
-    document.getElementById(
-      "adminMessage"
-    );
-
-
-  message.textContent =
-    "Updating stock...";
-
-
-  callApi(
-    "stockOut",
-    {
-      barcode:
-        barcode,
-
-      quantity:
-        quantity
-    },
-    function(result) {
-
-      message.textContent =
-        "Stock Out successful: " +
-        result.product +
-        " → " +
-        result.newStock;
-
-
-      refreshInventory();
-
-
-      document
-        .getElementById(
-          "adminQuantity"
-        )
-        .value = "";
-
-    },
-    function(error) {
-
-      console.error(
-        error
-      );
-
-
-      message.textContent =
-        error.message ||
-        "Could not update stock.";
-
-    }
-  );
-
-}
-
-
-/* =====================================================
-   ADMIN CHECK
-   ===================================================== */
-
-function isAdmin() {
-
-  return (
-
-    currentUser &&
-
-    currentUser.active &&
-
-    String(
-      currentUser.role
-    )
-      .trim()
-      .toLowerCase() ===
-      "admin"
-
-  );
-
-}
-
-
-/* =====================================================
-   REFRESH INVENTORY
-   ===================================================== */
-
-function refreshInventory() {
-
-  callApi(
-    "getInventory",
-    {},
-    function(data) {
-
-      inventory =
-        Array.isArray(data)
-          ? data
-          : [];
 
 
       /*
-       * Keep current barcode
-       * in admin panel.
+       * If the session expired,
+       * return to Staff mode.
        */
 
-      const barcode =
-        document
-          .getElementById(
-            "adminBarcode"
+      if (
+        String(
+          error.message || ""
+        )
+          .toLowerCase()
+          .includes(
+            "session expired"
           )
-          .value
-          .trim();
+      ) {
 
-
-      renderInventory(
-        inventory
-      );
-
-
-      /*
-       * Show updated scanned
-       * product again if possible.
-       */
-
-      if (barcode) {
-
-        const product =
-          inventory.find(
-            function(item) {
-
-              return String(
-                item.barcode || ""
-              )
-                .trim()
-                .toLowerCase() ===
-                barcode
-                  .toLowerCase();
-
-            }
-          );
-
-
-        if (product) {
-
-          showSingleProduct(
-            product
-          );
-
-        }
+        lockAdminUI();
 
       }
 
-    },
-    function(error) {
-
-      console.error(
-        error
-      );
-
-
-      document
-        .getElementById(
-          "adminMessage"
-        )
-        .textContent =
-          error.message ||
-          "Could not refresh inventory.";
-
     }
+
   );
 
 }
 
 
-/* =====================================================
-   ERROR
-   ===================================================== */
+// =====================================================
+// STOCK OUT
+// =====================================================
+
+function stockOut() {
+
+  if (!adminToken) {
+
+    alert(
+      "Please login as Admin first."
+    );
+
+    return;
+
+  }
+
+
+  const barcode =
+    document
+      .getElementById(
+        "adminBarcode"
+      )
+      .value
+      .trim();
+
+
+  const quantity =
+    Number(
+      document
+        .getElementById(
+          "adminQuantity"
+        )
+        .value
+    );
+
+
+  const message =
+    document
+      .getElementById(
+        "adminMessage"
+      );
+
+
+  if (!barcode) {
+
+    message.textContent =
+      "Scan a product or enter a barcode.";
+
+    return;
+
+  }
+
+
+  if (
+    !Number.isFinite(
+      quantity
+    ) ||
+    quantity <= 0
+  ) {
+
+    message.textContent =
+      "Enter a valid quantity.";
+
+    return;
+
+  }
+
+
+  message.textContent =
+    "Updating stock...";
+
+
+  callApi(
+
+    "stockOut",
+
+    {
+
+      barcode:
+        barcode,
+
+      quantity:
+        quantity,
+
+      token:
+        adminToken
+
+    },
+
+    function(result) {
+
+      message.textContent =
+        "Stock Out successful. New stock: " +
+        result.newStock;
+
+
+      document
+        .getElementById(
+          "adminQuantity"
+        )
+        .value =
+        "";
+
+
+      loadInventory();
+
+    },
+
+    function(error) {
+
+      message.textContent =
+        error.message ||
+        "Could not update stock.";
+
+
+      if (
+        String(
+          error.message || ""
+        )
+          .toLowerCase()
+          .includes(
+            "session expired"
+          )
+      ) {
+
+        lockAdminUI();
+
+      }
+
+    }
+
+  );
+
+}
+
+
+// =====================================================
+// ERROR
+// =====================================================
 
 function showError(
   message
@@ -2077,20 +2401,24 @@ function showError(
     )
     .innerHTML =
 
-      `
-        <div class="error-card">
-          ${escapeHTML(
-            message
-          )}
-        </div>
-      `;
+    `
+
+      <div class="error">
+
+        ${escapeHTML(
+          message
+        )}
+
+      </div>
+
+    `;
 
 }
 
 
-/* =====================================================
-   ESCAPE HTML
-   ===================================================== */
+// =====================================================
+// ESCAPE HTML
+// =====================================================
 
 function escapeHTML(
   value
@@ -2130,13 +2458,117 @@ function escapeHTML(
 }
 
 
-/* =====================================================
-   START
-   ===================================================== */
+// =====================================================
+// RESTORE ADMIN SESSION
+// =====================================================
+
+function restoreAdminSession() {
+
+  if (!adminToken) {
+
+    return;
+
+  }
+
+
+  /*
+   * We don't trust the browser alone.
+   *
+   * Make a harmless authenticated request.
+   */
+
+  callApi(
+
+    "stockIn",
+
+    {
+
+      barcode:
+        "__SESSION_CHECK__",
+
+      quantity:
+        0,
+
+      token:
+        adminToken
+
+    },
+
+    function() {
+
+      /*
+       * This should never succeed because
+       * quantity is 0, but the session was
+       * valid enough to reach validation.
+       */
+
+    },
+
+    function(error) {
+
+      const msg =
+        String(
+          error.message || ""
+        )
+          .toLowerCase();
+
+
+      if (
+        msg.includes(
+          "admin login required"
+        ) ||
+        msg.includes(
+          "session expired"
+        )
+      ) {
+
+        lockAdminUI();
+
+      }
+    }
+
+  );
+
+}
+
+
+// =====================================================
+// START APP
+// =====================================================
 
 window.addEventListener(
   "load",
   function() {
+
+    if (
+      adminToken
+    ) {
+
+      document
+        .getElementById(
+          "adminLoginButton"
+        )
+        .style.display =
+        "none";
+
+
+      document
+        .getElementById(
+          "adminPanel"
+        )
+        .style.display =
+        "block";
+
+
+      document
+        .getElementById(
+          "modeText"
+        )
+        .textContent =
+        "Admin Mode";
+
+    }
+
 
     loadApp();
 
