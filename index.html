@@ -15,8 +15,12 @@
   content="#111111"
 >
 
-<title>SHREE GANESH Inventory</title>
+<title>
+  SHREE GANESH Inventory
+</title>
 
+
+<!-- QR SCANNER -->
 
 <script
   src="https://unpkg.com/html5-qrcode"
@@ -24,12 +28,18 @@
 </script>
 
 
+<!-- QR GENERATOR -->
+
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
 </script>
 
 
 <style>
+
+/* =================================================
+   BASE
+   ================================================= */
 
 * {
   box-sizing: border-box;
@@ -40,16 +50,19 @@ body {
 
   margin: 0;
 
-  background: #f5f5f5;
+  background:
+    #f5f5f5;
 
-  color: #111;
+  color:
+    #111;
 
   font-family:
     Arial,
     Helvetica,
     sans-serif;
 
-  min-height: 100vh;
+  min-height:
+    100vh;
 
   transition:
     background .2s,
@@ -60,13 +73,17 @@ body {
 
 .app {
 
-  width: 100%;
+  width:
+    100%;
 
-  max-width: 900px;
+  max-width:
+    900px;
 
-  margin: auto;
+  margin:
+    auto;
 
-  padding: 12px;
+  padding:
+    12px;
 
 }
 
@@ -77,61 +94,77 @@ body {
 
 .header {
 
-  background: #111;
+  background:
+    #111;
 
-  color: white;
+  color:
+    white;
 
-  border-radius: 16px;
+  border-radius:
+    16px;
 
-  padding: 18px;
+  padding:
+    18px;
 
-  margin-bottom: 8px;
+  margin-bottom:
+    8px;
 
 }
 
 
 .brand {
 
-  font-size: 24px;
+  font-size:
+    24px;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
 }
 
 
 .subtitle {
 
-  color: #aaa;
+  color:
+    #aaa;
 
-  font-size: 12px;
+  font-size:
+    12px;
 
-  margin-top: 4px;
+  margin-top:
+    4px;
 
 }
 
 
 .mode {
 
-  color: #ddd;
+  color:
+    #ddd;
 
-  font-size: 13px;
+  font-size:
+    13px;
 
-  margin-top: 9px;
+  margin-top:
+    9px;
 
 }
 
 
 /* =================================================
-   THEME
+   THEME CONTROL
    ================================================= */
 
 .theme-control {
 
-  display: flex;
+  display:
+    flex;
 
-  justify-content: flex-end;
+  justify-content:
+    flex-end;
 
-  gap: 5px;
+  gap:
+    5px;
 
   margin:
     6px 0 10px;
@@ -141,71 +174,73 @@ body {
 
 .theme-btn {
 
-  width: auto;
+  width:
+    auto;
 
   padding:
     7px 9px;
 
-  background: white;
+  background:
+    white;
 
-  color: #555;
+  color:
+    #555;
 
   border:
     1px solid #ddd;
 
-  border-radius: 8px;
+  border-radius:
+    8px;
 
-  font-size: 12px;
+  font-size:
+    12px;
 
 }
 
 
 .theme-btn.active {
 
-  background: #111;
+  background:
+    #111;
 
-  color: white;
+  color:
+    white;
 
 }
 
 
 /* =================================================
-   MAIN ACTIONS
+   GENERAL BUTTON
    ================================================= */
-
-.actions {
-
-  display: grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap: 9px;
-
-  margin-bottom: 10px;
-
-}
-
 
 button {
 
-  width: 100%;
+  width:
+    100%;
 
-  border: none;
+  border:
+    none;
 
-  border-radius: 11px;
+  border-radius:
+    11px;
 
-  padding: 14px;
+  padding:
+    14px;
 
-  background: #111;
+  background:
+    #111;
 
-  color: white;
+  color:
+    white;
 
-  font-size: 14px;
+  font-size:
+    14px;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
-  cursor: pointer;
+  cursor:
+    pointer;
 
 }
 
@@ -220,12 +255,35 @@ button:active {
 
 button.secondary {
 
-  background: white;
+  background:
+    white;
 
-  color: #111;
+  color:
+    #111;
 
   border:
     1px solid #ddd;
+
+}
+
+
+/* =================================================
+   MAIN SCAN
+   ================================================= */
+
+.actions {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr;
+
+  gap:
+    9px;
+
+  margin-bottom:
+    10px;
 
 }
 
@@ -236,31 +294,110 @@ button.secondary {
 
 .search-box {
 
-  background: white;
+  background:
+    white;
 
-  padding: 11px;
+  padding:
+    11px;
 
-  border-radius: 13px;
+  border-radius:
+    13px;
 
-  margin-bottom: 8px;
+  margin-bottom:
+    8px;
 
 }
 
 
 .search-input {
 
-  width: 100%;
+  width:
+    100%;
 
-  padding: 13px;
+  padding:
+    13px;
 
   border:
     1px solid #ddd;
 
-  border-radius: 9px;
+  border-radius:
+    9px;
 
-  font-size: 16px;
+  font-size:
+    16px;
 
-  outline: none;
+  outline:
+    none;
+
+  background:
+    white;
+
+  color:
+    #111;
+
+}
+
+
+/* =================================================
+   STOCK FILTERS
+   ================================================= */
+
+.filter-tabs {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr 1fr 1fr;
+
+  gap:
+    6px;
+
+  margin-bottom:
+    10px;
+
+}
+
+
+.filter-tab {
+
+  width:
+    100%;
+
+  padding:
+    10px 7px;
+
+  background:
+    white;
+
+  color:
+    #666;
+
+  border:
+    1px solid #ddd;
+
+  border-radius:
+    9px;
+
+  font-size:
+    12px;
+
+  font-weight:
+    700;
+
+}
+
+
+.filter-tab.active {
+
+  background:
+    #111;
+
+  color:
+    white;
+
+  border-color:
+    #111;
 
 }
 
@@ -271,7 +408,8 @@ button.secondary {
 
 .admin-entry {
 
-  text-align: center;
+  text-align:
+    center;
 
   margin:
     2px 0 10px;
@@ -281,17 +419,20 @@ button.secondary {
 
 .admin-entry button {
 
-  width: auto;
+  width:
+    auto;
 
   background:
     transparent;
 
-  color: #777;
+  color:
+    #777;
 
   padding:
     6px 10px;
 
-  font-size: 12px;
+  font-size:
+    12px;
 
 }
 
@@ -302,133 +443,215 @@ button.secondary {
 
 .panel {
 
-  display: none;
+  display:
+    none;
 
-  background: white;
+  background:
+    white;
 
-  border-radius: 15px;
+  border-radius:
+    15px;
 
-  padding: 15px;
+  padding:
+    15px;
 
-  margin-bottom: 10px;
+  margin-bottom:
+    10px;
 
 }
 
 
 .panel-title {
 
-  font-size: 18px;
+  font-size:
+    18px;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
-  margin-bottom: 9px;
+  margin-bottom:
+    9px;
 
 }
 
 
 .panel-note {
 
-  color: #777;
+  color:
+    #777;
 
-  font-size: 13px;
+  font-size:
+    13px;
 
-  line-height: 1.4;
+  line-height:
+    1.4;
 
-  margin-bottom: 8px;
+  margin-bottom:
+    8px;
 
 }
 
 
 .input {
 
-  width: 100%;
+  width:
+    100%;
 
-  padding: 13px;
+  padding:
+    13px;
 
   border:
     1px solid #ddd;
 
-  border-radius: 9px;
+  border-radius:
+    9px;
 
-  margin-top: 7px;
+  margin-top:
+    7px;
 
-  font-size: 15px;
+  font-size:
+    15px;
 
-  background: white;
+  background:
+    white;
 
-  color: #111;
+  color:
+    #111;
 
-  outline: none;
+  outline:
+    none;
 
 }
 
 
 select.input {
 
-  appearance: auto;
+  appearance:
+    auto;
 
 }
 
 
 .message {
 
-  min-height: 18px;
+  min-height:
+    18px;
 
-  margin-top: 8px;
+  margin-top:
+    8px;
 
-  text-align: center;
+  text-align:
+    center;
 
-  color: #666;
+  color:
+    #666;
 
-  font-size: 13px;
+  font-size:
+    13px;
 
 }
 
 
 /* =================================================
-   OPENING PRODUCT PICKER
+   ADMIN GRID
    ================================================= */
 
-.opening-product-wrap {
+.admin-grid {
 
-  position: relative;
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    8px;
 
 }
 
 
-.opening-product-help {
+.admin-stock-in {
 
-  color: #777;
+  background:
+    #238636;
 
-  font-size: 12px;
+}
 
-  margin-top: 5px;
+
+.admin-stock-in:hover {
+
+  background:
+    #1c702d;
+
+}
+
+
+.admin-stock-out {
+
+  background:
+    #c62828;
+
+}
+
+
+.admin-stock-out:hover {
+
+  background:
+    #a91f1f;
+
+}
+
+
+.admin-opening {
+
+  background:
+    #111;
+
+}
+
+
+/* =================================================
+   OPENING STOCK PRODUCT PICKER
+   ================================================= */
+
+.opening-product-wrap {
+
+  position:
+    relative;
 
 }
 
 
 .selected-product {
 
-  display: none;
+  display:
+    none;
 
-  background: #f3f3f3;
+  background:
+    #f3f3f3;
 
-  border-radius: 10px;
+  border-radius:
+    10px;
 
-  padding: 10px;
+  padding:
+    10px;
 
-  margin-top: 8px;
+  margin-top:
+    8px;
 
-  font-size: 13px;
+  font-size:
+    13px;
 
 }
 
 
 .selected-product strong {
 
-  display: block;
+  display:
+    block;
 
-  margin-bottom: 3px;
+  margin-bottom:
+    3px;
 
 }
 
@@ -439,155 +662,246 @@ select.input {
 
 .scanner-panel {
 
-  display: none;
+  display:
+    none;
 
-  background: white;
+  background:
+    white;
 
-  border-radius: 15px;
+  border-radius:
+    15px;
 
-  padding: 11px;
+  padding:
+    11px;
 
-  margin-bottom: 10px;
+  margin-bottom:
+    10px;
 
 }
 
 
 #reader {
 
-  width: 100%;
+  width:
+    100%;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  border-radius: 10px;
+  border-radius:
+    10px;
 
 }
 
 
 .scanner-status {
 
-  text-align: center;
+  text-align:
+    center;
 
-  color: #666;
+  color:
+    #666;
 
-  font-size: 13px;
+  font-size:
+    13px;
 
-  margin: 8px 0;
+  margin:
+    8px 0;
 
 }
 
 
 /* =================================================
-   PRODUCT
+   PRODUCT CARD
    ================================================= */
 
 .product-card {
 
-  background: white;
+  background:
+    white;
 
-  border-radius: 15px;
+  border-radius:
+    15px;
 
-  padding: 17px;
+  padding:
+    17px;
 
-  margin-bottom: 9px;
+  margin-bottom:
+    9px;
 
   box-shadow:
-    0 2px 8px rgba(0,0,0,.05);
+    0 2px 8px rgba(
+      0,
+      0,
+      0,
+      .05
+    );
 
 }
 
 
 .product-name {
 
-  font-size: 21px;
+  font-size:
+    21px;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
 }
 
 
 .variant-badge {
 
-  display: inline-block;
+  display:
+    inline-block;
 
-  background: #eee;
+  background:
+    #eee;
 
-  border-radius: 8px;
+  border-radius:
+    8px;
 
-  padding: 6px 9px;
+  padding:
+    6px 9px;
 
-  font-size: 12px;
+  font-size:
+    12px;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
-  margin-top: 7px;
+  margin-top:
+    7px;
 
 }
 
 
 .info {
 
-  color: #666;
+  color:
+    #666;
 
-  font-size: 13px;
+  font-size:
+    13px;
 
-  margin-top: 7px;
+  margin-top:
+    7px;
 
 }
 
 
 .info strong {
 
-  color: #111;
+  color:
+    #111;
 
 }
 
 
 .stock {
 
-  font-size: 28px;
+  font-size:
+    28px;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
-  margin-top: 15px;
+  margin-top:
+    15px;
+
+}
+
+
+.stock-unit {
+
+  font-size:
+    13px;
+
+  font-weight:
+    600;
+
+  color:
+    #777;
 
 }
 
 
 .status {
 
-  margin-top: 3px;
+  margin-top:
+    3px;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
-  font-size: 13px;
+  font-size:
+    13px;
 
 }
 
 
 .green {
 
-  color: #218739;
+  color:
+    #218739;
 
 }
 
 
 .orange {
 
-  color: #a66500;
+  color:
+    #a66500;
 
 }
 
 
 .red {
 
-  color: #b12626;
+  color:
+    #b12626;
+
+}
+
+
+/* =================================================
+   LOW STOCK BADGE
+   ================================================= */
+
+.low-stock-badge {
+
+  display:
+    inline-block;
+
+  margin-top:
+    7px;
+
+  padding:
+    6px 9px;
+
+  border-radius:
+    8px;
+
+  background:
+    #fff2d6;
+
+  color:
+    #9a6100;
+
+  font-size:
+    11px;
+
+  font-weight:
+    800;
 
 }
 
 
 .scan-next {
 
-  margin-bottom: 10px;
+  margin-bottom:
+    10px;
 
 }
 
@@ -598,60 +912,76 @@ select.input {
 
 .qr-panel {
 
-  display: none;
+  display:
+    none;
 
-  background: white;
+  background:
+    white;
 
-  border-radius: 15px;
+  border-radius:
+    15px;
 
-  padding: 18px;
+  padding:
+    18px;
 
-  margin-bottom: 10px;
+  margin-bottom:
+    10px;
 
-  text-align: center;
+  text-align:
+    center;
 
 }
 
 
 .qr-title {
 
-  font-size: 19px;
+  font-size:
+    19px;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
 }
 
 
 .qr-info {
 
-  color: #666;
+  color:
+    #666;
 
-  font-size: 13px;
+  font-size:
+    13px;
 
-  margin-top: 4px;
+  margin-top:
+    4px;
 
 }
 
 
 #qrcode {
 
-  display: flex;
+  display:
+    flex;
 
-  justify-content: center;
+  justify-content:
+    center;
 
-  margin: 16px 0;
+  margin:
+    16px 0;
 
 }
 
 
 .qr-actions {
 
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
     1fr 1fr;
 
-  gap: 7px;
+  gap:
+    7px;
 
 }
 
@@ -662,43 +992,55 @@ select.input {
 
 .loading {
 
-  background: white;
+  background:
+    white;
 
-  border-radius: 14px;
+  border-radius:
+    14px;
 
-  padding: 25px;
+  padding:
+    25px;
 
-  color: #777;
+  color:
+    #777;
 
-  text-align: center;
+  text-align:
+    center;
 
 }
 
 
 .error {
 
-  background: #fff0f0;
+  background:
+    #fff0f0;
 
-  color: #a00000;
+  color:
+    #a00000;
 
-  padding: 13px;
+  padding:
+    13px;
 
-  border-radius: 11px;
+  border-radius:
+    11px;
 
-  text-align: center;
+  text-align:
+    center;
 
 }
 
 
 /* =================================================
-   DARK
+   DARK MODE
    ================================================= */
 
 body.dark {
 
-  background: #151515;
+  background:
+    #151515;
 
-  color: #eee;
+  color:
+    #eee;
 
 }
 
@@ -718,9 +1060,11 @@ body.dark
 body.dark
 .qr-panel {
 
-  background: #222;
+  background:
+    #222;
 
-  color: #eee;
+  color:
+    #eee;
 
 }
 
@@ -731,11 +1075,14 @@ body.dark
 body.dark
 .input {
 
-  background: #171717;
+  background:
+    #171717;
 
-  color: #eee;
+  color:
+    #eee;
 
-  border-color: #444;
+  border-color:
+    #444;
 
 }
 
@@ -744,13 +1091,34 @@ body.dark
 button.secondary,
 
 body.dark
-.theme-btn {
+.theme-btn,
 
-  background: #222;
+body.dark
+.filter-tab {
 
-  color: #eee;
+  background:
+    #222;
 
-  border-color: #444;
+  color:
+    #eee;
+
+  border-color:
+    #444;
+
+}
+
+
+body.dark
+.filter-tab.active {
+
+  background:
+    #fff;
+
+  color:
+    #111;
+
+  border-color:
+    #fff;
 
 }
 
@@ -758,7 +1126,8 @@ body.dark
 body.dark
 .info {
 
-  color: #bbb;
+  color:
+    #bbb;
 
 }
 
@@ -766,7 +1135,8 @@ body.dark
 body.dark
 .info strong {
 
-  color: #eee;
+  color:
+    #eee;
 
 }
 
@@ -777,13 +1147,26 @@ body.dark
 body.dark
 .selected-product {
 
-  background: #333;
+  background:
+    #333;
+
+}
+
+
+body.dark
+.low-stock-badge {
+
+  background:
+    #4b3920;
+
+  color:
+    #ffd98a;
 
 }
 
 
 /* =================================================
-   HIGHLIGHT
+   HIGHLIGHT MODE
    ================================================= */
 
 body.highlight
@@ -811,11 +1194,14 @@ body.highlight
    MOBILE
    ================================================= */
 
-@media (max-width: 600px) {
+@media (
+  max-width: 600px
+) {
 
   .app {
 
-    padding: 10px;
+    padding:
+      10px;
 
   }
 
@@ -896,7 +1282,7 @@ body.highlight
 
 
 <!-- =================================================
-     MAIN ACTIONS
+     MAIN ACTION
      ================================================= -->
 
 <div class="actions">
@@ -904,18 +1290,7 @@ body.highlight
   <button
     onclick="openScanner()">
 
-    📷<br>
-    SCAN QR
-
-  </button>
-
-
-  <button
-    class="secondary"
-    onclick="focusSearch()">
-
-    🔎<br>
-    SEARCH
+    📷 SCAN QR
 
   </button>
 
@@ -935,6 +1310,44 @@ body.highlight
     autocomplete="off"
     oninput="searchProducts()"
   >
+
+</div>
+
+
+<!-- =================================================
+     FILTERS
+     ================================================= -->
+
+<div class="filter-tabs">
+
+  <button
+    id="filterAll"
+    class="filter-tab active"
+    onclick="setStockFilter('all')">
+
+    All
+
+  </button>
+
+
+  <button
+    id="filterInStock"
+    class="filter-tab"
+    onclick="setStockFilter('in')">
+
+    In Stock
+
+  </button>
+
+
+  <button
+    id="filterOutStock"
+    class="filter-tab"
+    onclick="setStockFilter('out')">
+
+    Out of Stock
+
+  </button>
 
 </div>
 
@@ -1052,47 +1465,53 @@ body.highlight
   </div>
 
 
-  <button
-    onclick="showOpeningStock()">
+  <div class="admin-grid">
 
-    📦 OPENING STOCK
+    <button
+      class="admin-opening"
+      onclick="showOpeningStock()">
 
-  </button>
+      📦 OPENING STOCK
 
-
-  <button
-    style="margin-top:7px;"
-    onclick="showStockIn()">
-
-    ➕ STOCK IN
-
-  </button>
+    </button>
 
 
-  <button
-    onclick="showStockOut()">
+    <button
+      class="admin-stock-in"
+      onclick="showStockIn()">
 
-    ➖ STOCK OUT
+      ➕ STOCK IN
 
-  </button>
-
-
-  <button
-    class="secondary"
-    onclick="showAddMaterial()">
-
-    ➕ ADD NEW MATERIAL
-
-  </button>
+    </button>
 
 
-  <button
-    class="secondary"
-    onclick="adminLogout()">
+    <button
+      class="admin-stock-out"
+      onclick="showStockOut()">
 
-    LOG OUT
+      ➖ STOCK OUT
 
-  </button>
+    </button>
+
+
+    <button
+      class="secondary"
+      onclick="showAddMaterial()">
+
+      ➕ ADD NEW MATERIAL
+
+    </button>
+
+
+    <button
+      class="secondary"
+      onclick="adminLogout()">
+
+      LOG OUT
+
+    </button>
+
+  </div>
 
 </div>
 
@@ -1106,14 +1525,16 @@ body.highlight
   class="panel">
 
   <div class="panel-title">
+
     📦 Opening Stock
+
   </div>
 
 
   <div class="panel-note">
 
-    Search the product by name and enter the
-    physical quantity from your register.
+    Search the product by name and enter
+    the physical quantity from your register.
 
   </div>
 
@@ -1138,7 +1559,6 @@ body.highlight
     <div
       id="selectedOpeningProduct"
       class="selected-product">
-
     </div>
 
   </div>
@@ -1218,6 +1638,7 @@ body.highlight
 
   <button
     id="stockInButton"
+    class="admin-stock-in"
     style="margin-top:8px;"
     onclick="stockIn()">
 
@@ -1228,6 +1649,7 @@ body.highlight
 
   <button
     id="stockOutButton"
+    class="admin-stock-out"
     onclick="stockOut()">
 
     ➖ STOCK OUT
@@ -1452,7 +1874,8 @@ body.highlight
      RESULTS
      ================================================= -->
 
-<div id="results">
+<div
+  id="results">
 
   <div class="loading">
     Loading inventory...
@@ -1468,11 +1891,26 @@ body.highlight
 
 
 // =====================================================
-// CONFIG
+// CONFIGURATION
 // =====================================================
 
 const API_URL =
   "https://script.google.com/macros/s/AKfycbyPhd5eC7F9lZoPfJ2KyejFVcah7VC-1k4PfmiP7tP-rmnUrlKPiCa_G_8EfrNk6sf-/exec";
+
+
+/*
+ * Change ONLY this line when you decide your unit.
+ *
+ * Examples:
+ *
+ * "units"
+ * "boxes"
+ * "sq ft"
+ * "pieces"
+ */
+
+const STOCK_UNIT =
+  "units";
 
 
 let inventory = [];
@@ -1494,9 +1932,14 @@ let currentQRBarcode = "";
 
 let currentQRVariant = "";
 
-let stockMode = "in";
+let stockMode =
+  "in";
 
-let selectedOpeningBarcode = "";
+let selectedOpeningBarcode =
+  "";
+
+let activeStockFilter =
+  "all";
 
 
 // =====================================================
@@ -1524,6 +1967,7 @@ function setTheme(
       .add(
         "dark"
       );
+
   }
 
 
@@ -1536,6 +1980,7 @@ function setTheme(
       .add(
         "highlight"
       );
+
   }
 
 
@@ -1615,7 +2060,8 @@ function callApi(
     (++apiCounter);
 
 
-  let finished = false;
+  let finished =
+    false;
 
 
   const script =
@@ -1656,10 +2102,13 @@ function callApi(
     if (finished) {
 
       return;
+
     }
 
 
-    finished = true;
+    finished =
+      true;
+
 
     cleanup();
 
@@ -1688,10 +2137,13 @@ function callApi(
       if (finished) {
 
         return;
+
       }
 
 
-      finished = true;
+      finished =
+        true;
+
 
       cleanup();
 
@@ -1709,9 +2161,12 @@ function callApi(
           failure({
 
             message:
+
               response &&
               response.error
+
                 ? response.error
+
                 : "API request failed."
 
           });
@@ -1719,6 +2174,7 @@ function callApi(
         }
 
         return;
+
       }
 
 
@@ -1869,11 +2325,11 @@ function loadInventory() {
 
       populateOpeningProducts();
 
-      renderInventory(
-        inventory
-      );
+
+      applyProductFilters();
 
     },
+
 
     function(error) {
 
@@ -1890,7 +2346,7 @@ function loadInventory() {
 
 
 // =====================================================
-// POPULATE OPENING PRODUCT SEARCH
+// OPENING PRODUCT LIST
 // =====================================================
 
 function populateOpeningProducts() {
@@ -1915,15 +2371,11 @@ function populateOpeningProducts() {
         );
 
 
-      /*
-       * Product name is what Admin searches.
-       *
-       * If multiple entries have the same product
-       * name, include the variant in the display value.
-       */
-
       let label =
-        product.product;
+        String(
+          product.product ||
+          ""
+        );
 
 
       if (
@@ -1956,7 +2408,7 @@ function populateOpeningProducts() {
 
 
 // =====================================================
-// SELECT OPENING PRODUCT
+// OPENING PRODUCT SELECTION
 // =====================================================
 
 function selectOpeningProduct() {
@@ -1990,30 +2442,39 @@ function selectOpeningProduct() {
   if (!value) {
 
     return;
+
   }
 
 
-  const option =
+  const options =
     Array.from(
+
       document
         .getElementById(
           "openingProductList"
         )
         .options
-    )
-      .find(
-        function(item) {
 
-          return item.value ===
-            value;
+    );
 
-        }
-      );
+
+  const option =
+    options.find(
+      function(item) {
+
+        return (
+          item.value ===
+          value
+        );
+
+      }
+    );
 
 
   if (!option) {
 
     return;
+
   }
 
 
@@ -2027,12 +2488,15 @@ function selectOpeningProduct() {
       function(item) {
 
         return (
+
           String(
             item.barcode
           ) ===
+
           String(
             selectedOpeningBarcode
           )
+
         );
 
       }
@@ -2042,15 +2506,18 @@ function selectOpeningProduct() {
   if (!product) {
 
     return;
+
   }
 
 
   selectedBox.innerHTML = `
 
     <strong>
+
       ${escapeHTML(
         product.product
       )}
+
     </strong>
 
     ${
@@ -2063,7 +2530,9 @@ function selectOpeningProduct() {
     }
 
     Current stock:
-    ${Number(product.stock) || 0}
+    ${Number(
+      product.stock
+    ) || 0}
 
   `;
 
@@ -2075,7 +2544,7 @@ function selectOpeningProduct() {
 
 
 // =====================================================
-// STATUS
+// STOCK STATUS
 // =====================================================
 
 function getStatus(
@@ -2112,8 +2581,11 @@ function getStatus(
 
 
   if (
+
     minimum > 0 &&
+
     stock <= minimum
+
   ) {
 
     return {
@@ -2153,33 +2625,41 @@ function variantHTML(
   if (!variant) {
 
     return "";
+
   }
 
 
-  let icon = "";
+  let icon =
+    "";
 
 
   if (
-    variant === "Light"
+    variant ===
+    "Light"
   ) {
 
-    icon = "☀️";
+    icon =
+      "☀️";
 
   }
 
   else if (
-    variant === "Dark"
+    variant ===
+    "Dark"
   ) {
 
-    icon = "🌙";
+    icon =
+      "🌙";
 
   }
 
   else if (
-    variant === "Highlight"
+    variant ===
+    "Highlight"
   ) {
 
-    icon = "🖍️";
+    icon =
+      "🖍️";
 
   }
 
@@ -2189,6 +2669,7 @@ function variantHTML(
     <div class="variant-badge">
 
       ${icon}
+
       ${escapeHTML(
         variant
       )}
@@ -2196,6 +2677,60 @@ function variantHTML(
     </div>
 
   `;
+
+}
+
+
+// =====================================================
+// LOW STOCK BADGE
+// =====================================================
+
+function lowStockHTML(
+  product
+) {
+
+  const stock =
+    Number(
+      product.stock
+    ) || 0;
+
+
+  const minimum =
+    Number(
+      product.minimumStock
+    ) || 0;
+
+
+  /*
+   * Don't show LOW STOCK badge
+   * when the product is completely out.
+   */
+
+  if (
+
+    stock <= 0 ||
+
+    minimum <= 0 ||
+
+    stock > minimum
+
+  ) {
+
+    return "";
+
+  }
+
+
+  return `
+
+    <div class="low-stock-badge">
+
+      LOW STOCK · MIN ${minimum}
+
+    </div>
+
+  `;
+
 }
 
 
@@ -2283,7 +2818,16 @@ function productCard(
 
       <div class="stock">
 
-        Stock: ${stock}
+        Stock:
+        ${stock}
+
+        <span class="stock-unit">
+
+          ${escapeHTML(
+            STOCK_UNIT
+          )}
+
+        </span>
 
       </div>
 
@@ -2295,9 +2839,15 @@ function productCard(
 
       </div>
 
+
+      ${lowStockHTML(
+        product
+      )}
+
     </div>
 
   `;
+
 }
 
 
@@ -2322,9 +2872,19 @@ function renderInventory(
   ) {
 
     results.innerHTML =
-      '<div class="product-card">No products found.</div>';
+
+      `
+
+      <div class="product-card">
+
+        No matching products found.
+
+      </div>
+
+      `;
 
     return;
+
   }
 
 
@@ -2343,86 +2903,158 @@ function renderInventory(
 
 
 // =====================================================
-// SEARCH
+// SEARCH + FILTER
 // =====================================================
+
+function setStockFilter(
+  filter
+) {
+
+  activeStockFilter =
+    filter;
+
+
+  document
+    .getElementById(
+      "filterAll"
+    )
+    .classList
+    .toggle(
+      "active",
+      filter === "all"
+    );
+
+
+  document
+    .getElementById(
+      "filterInStock"
+    )
+    .classList
+    .toggle(
+      "active",
+      filter === "in"
+    );
+
+
+  document
+    .getElementById(
+      "filterOutStock"
+    )
+    .classList
+    .toggle(
+      "active",
+      filter === "out"
+    );
+
+
+  applyProductFilters();
+
+}
+
 
 function searchProducts() {
 
+  applyProductFilters();
+
+}
+
+
+function applyProductFilters() {
+
   const query =
     String(
+
       document
         .getElementById(
           "searchInput"
         )
         .value || ""
+
     )
       .trim()
       .toLowerCase();
-
-
-  if (!query) {
-
-    renderInventory(
-      inventory
-    );
-
-    return;
-  }
 
 
   const filtered =
     inventory.filter(
       function(product) {
 
-        return (
 
-          String(
-            product.barcode || ""
-          )
-            .toLowerCase()
-            .includes(query)
+        // -------------------------------------------
+        // SEARCH BY PRODUCT NAME OR BARCODE
+        // -------------------------------------------
 
-          ||
-
+        const productName =
           String(
             product.product || ""
           )
-            .toLowerCase()
-            .includes(query)
+            .toLowerCase();
 
-          ||
 
+        const barcode =
           String(
-            product.brand || ""
+            product.barcode || ""
           )
-            .toLowerCase()
-            .includes(query)
+            .toLowerCase();
 
-          ||
 
-          String(
-            product.size || ""
-          )
-            .toLowerCase()
-            .includes(query)
+        const matchesSearch =
 
-          ||
+          !query ||
 
-          String(
-            product.finish || ""
-          )
-            .toLowerCase()
-            .includes(query)
+          productName.includes(
+            query
+          ) ||
 
-          ||
+          barcode.includes(
+            query
+          );
 
-          String(
-            product.variant || ""
-          )
-            .toLowerCase()
-            .includes(query)
 
-        );
+        if (
+          !matchesSearch
+        ) {
+
+          return false;
+
+        }
+
+
+        // -------------------------------------------
+        // STOCK FILTER
+        // -------------------------------------------
+
+        const stock =
+          Number(
+            product.stock
+          ) || 0;
+
+
+        if (
+          activeStockFilter ===
+          "in"
+        ) {
+
+          return (
+            stock > 0
+          );
+
+        }
+
+
+        if (
+          activeStockFilter ===
+          "out"
+        ) {
+
+          return (
+            stock <= 0
+          );
+
+        }
+
+
+        return true;
 
       }
     );
@@ -2431,21 +3063,6 @@ function searchProducts() {
   renderInventory(
     filtered
   );
-
-}
-
-
-// =====================================================
-// SEARCH FOCUS
-// =====================================================
-
-function focusSearch() {
-
-  document
-    .getElementById(
-      "searchInput"
-    )
-    .focus();
 
 }
 
@@ -2488,6 +3105,7 @@ async function startScanner() {
   ) {
 
     return;
+
   }
 
 
@@ -2527,6 +3145,7 @@ async function startScanner() {
       throw new Error(
         "No camera found."
       );
+
     }
 
 
@@ -2549,15 +3168,26 @@ async function startScanner() {
 
 
       if (
-        label.includes("back") ||
-        label.includes("rear") ||
-        label.includes("environment")
+
+        label.includes(
+          "back"
+        ) ||
+
+        label.includes(
+          "rear"
+        ) ||
+
+        label.includes(
+          "environment"
+        )
+
       ) {
 
         cameraId =
           cameras[i].id;
 
         break;
+
       }
 
     }
@@ -2568,20 +3198,25 @@ async function startScanner() {
       cameraId,
 
       {
+
         fps:
           10,
 
         qrbox: {
+
           width:
             250,
 
           height:
             250
+
         },
 
         aspectRatio:
           1
+
       },
+
 
       function(decodedText) {
 
@@ -2590,6 +3225,7 @@ async function startScanner() {
         );
 
       },
+
 
       function() {
 
@@ -2605,7 +3241,7 @@ async function startScanner() {
         "scannerStatus"
       )
       .textContent =
-        "Point camera at QR code.";
+      "Point camera at QR code.";
 
   }
 
@@ -2646,6 +3282,7 @@ async function handleQR(
   ) {
 
     return;
+
   }
 
 
@@ -2658,6 +3295,7 @@ async function handleQR(
   if (!barcode) {
 
     return;
+
   }
 
 
@@ -2696,13 +3334,18 @@ async function handleQR(
     inventory.find(
       function(product) {
 
-        return String(
-          product.barcode ||
-          ""
-        )
-          .trim()
-          .toLowerCase() ===
-          barcode.toLowerCase();
+        return (
+
+          String(
+            product.barcode || ""
+          )
+            .trim()
+            .toLowerCase() ===
+
+          barcode
+            .toLowerCase()
+
+        );
 
       }
     );
@@ -2717,6 +3360,7 @@ async function handleQR(
     closeScannerPanel();
 
     return;
+
   }
 
 
@@ -2743,6 +3387,7 @@ async function handleQR(
         );
 
         return;
+
       }
 
 
@@ -2763,18 +3408,22 @@ async function handleQR(
 
     },
 
+
     function(error) {
 
       closeScannerPanel();
 
       showError(
+
         error.message ||
         "Could not find product."
+
       );
 
     }
 
   );
+
 }
 
 
@@ -2869,7 +3518,7 @@ function closeScannerPanel() {
 
 
 // =====================================================
-// SCAN NEXT
+// SCAN NEXT PRODUCT
 // =====================================================
 
 async function scanNextProduct() {
@@ -2928,7 +3577,7 @@ async function scanNextProduct() {
 
 
 // =====================================================
-// ADMIN LOGIN
+// ADMIN LOGIN UI
 // =====================================================
 
 function showAdminLogin() {
@@ -2990,6 +3639,7 @@ function adminLogin() {
       "Enter Admin PIN.";
 
     return;
+
   }
 
 
@@ -3002,8 +3652,10 @@ function adminLogin() {
     "adminLogin",
 
     {
+
       pin:
         pin
+
     },
 
     function(result) {
@@ -3034,6 +3686,7 @@ function adminLogin() {
 
     },
 
+
     function(error) {
 
       message.textContent =
@@ -3043,6 +3696,7 @@ function adminLogin() {
     }
 
   );
+
 }
 
 
@@ -3057,6 +3711,7 @@ function validateStoredAdmin() {
     lockAdminUI();
 
     return;
+
   }
 
 
@@ -3080,7 +3735,9 @@ function validateStoredAdmin() {
 
         setAdminMode();
 
-      } else {
+      }
+
+      else {
 
         lockAdminUI();
 
@@ -3223,6 +3880,7 @@ function adminLogout() {
     lockAdminUI();
 
     return;
+
   }
 
 
@@ -3231,15 +3889,19 @@ function adminLogout() {
     "adminLogout",
 
     {
+
       token:
         adminToken
+
     },
+
 
     function() {
 
       lockAdminUI();
 
     },
+
 
     function() {
 
@@ -3248,6 +3910,7 @@ function adminLogout() {
     }
 
   );
+
 }
 
 
@@ -3261,10 +3924,12 @@ function handleAdminError(
 
   const text =
     String(
+
       error &&
       error.message
         ? error.message
         : ""
+
     )
       .toLowerCase();
 
@@ -3305,6 +3970,7 @@ function showOpeningStock() {
     );
 
     return;
+
   }
 
 
@@ -3326,27 +3992,30 @@ function showOpeningStock() {
 
   document
     .getElementById(
-      "openingStockPanel"
+      "openingProductInput"
     )
-    .scrollIntoView({
-      behavior:
-        "smooth",
-      block:
-        "center"
-    });
+    .focus();
 
 
   document
     .getElementById(
-      "openingProductInput"
+      "openingStockPanel"
     )
-    .focus();
+    .scrollIntoView({
+
+      behavior:
+        "smooth",
+
+      block:
+        "center"
+
+    });
 
 }
 
 
 // =====================================================
-// OPENING PRODUCT HELP
+// CLOSE OPENING STOCK
 // =====================================================
 
 function clearOpeningSelection() {
@@ -3364,10 +4033,6 @@ function clearOpeningSelection() {
 
 }
 
-
-// =====================================================
-// CLOSE OPENING STOCK
-// =====================================================
 
 function closeOpeningStock() {
 
@@ -3421,13 +4086,9 @@ function saveOpeningStock() {
     );
 
     return;
+
   }
 
-
-  /*
-   * Make sure the product is selected
-   * from the datalist and not merely typed.
-   */
 
   selectOpeningProduct();
 
@@ -3438,11 +4099,13 @@ function saveOpeningStock() {
 
   const openingStock =
     Number(
+
       document
         .getElementById(
           "openingQuantity"
         )
         .value
+
     );
 
 
@@ -3459,20 +4122,25 @@ function saveOpeningStock() {
       "Please select a product from the list.";
 
     return;
+
   }
 
 
   if (
+
     !Number.isFinite(
       openingStock
     ) ||
+
     openingStock < 0
+
   ) {
 
     message.textContent =
       "Enter a valid opening stock.";
 
     return;
+
   }
 
 
@@ -3497,12 +4165,15 @@ function saveOpeningStock() {
 
     },
 
+
     function(result) {
 
       message.textContent =
 
         result.product +
+
         " → Opening stock " +
+
         result.newStock;
 
 
@@ -3511,17 +4182,13 @@ function saveOpeningStock() {
           "openingQuantity"
         )
         .value =
-        "";
+          "";
 
-
-      /*
-       * Keep selected product so the Admin
-       * can quickly enter/fix the same item.
-       */
 
       loadInventory();
 
     },
+
 
     function(error) {
 
@@ -3542,7 +4209,7 @@ function saveOpeningStock() {
 
 
 // =====================================================
-// STOCK IN
+// SHOW STOCK IN
 // =====================================================
 
 function showStockIn() {
@@ -3554,6 +4221,7 @@ function showStockIn() {
     );
 
     return;
+
   }
 
 
@@ -3603,17 +4271,20 @@ function showStockIn() {
       "stockPanel"
     )
     .scrollIntoView({
+
       behavior:
         "smooth",
+
       block:
         "center"
+
     });
 
 }
 
 
 // =====================================================
-// STOCK OUT
+// SHOW STOCK OUT
 // =====================================================
 
 function showStockOut() {
@@ -3625,6 +4296,7 @@ function showStockOut() {
     );
 
     return;
+
   }
 
 
@@ -3674,10 +4346,13 @@ function showStockOut() {
       "stockPanel"
     )
     .scrollIntoView({
+
       behavior:
         "smooth",
+
       block:
         "center"
+
     });
 
 }
@@ -3700,7 +4375,7 @@ function closeStockPanel() {
 
 
 // =====================================================
-// STOCK IN ACTION
+// STOCK IN
 // =====================================================
 
 function stockIn() {
@@ -3712,6 +4387,7 @@ function stockIn() {
     );
 
     return;
+
   }
 
 
@@ -3726,11 +4402,13 @@ function stockIn() {
 
   const quantity =
     Number(
+
       document
         .getElementById(
           "adminQuantity"
         )
         .value
+
     );
 
 
@@ -3747,20 +4425,25 @@ function stockIn() {
       "Scan a product or enter a barcode.";
 
     return;
+
   }
 
 
   if (
+
     !Number.isFinite(
       quantity
     ) ||
+
     quantity <= 0
+
   ) {
 
     message.textContent =
       "Enter a valid quantity.";
 
     return;
+
   }
 
 
@@ -3785,6 +4468,7 @@ function stockIn() {
 
     },
 
+
     function(result) {
 
       message.textContent =
@@ -3797,12 +4481,13 @@ function stockIn() {
           "adminQuantity"
         )
         .value =
-        "";
+          "";
 
 
       loadInventory();
 
     },
+
 
     function(error) {
 
@@ -3818,11 +4503,12 @@ function stockIn() {
     }
 
   );
+
 }
 
 
 // =====================================================
-// STOCK OUT ACTION
+// STOCK OUT
 // =====================================================
 
 function stockOut() {
@@ -3834,6 +4520,7 @@ function stockOut() {
     );
 
     return;
+
   }
 
 
@@ -3848,11 +4535,13 @@ function stockOut() {
 
   const quantity =
     Number(
+
       document
         .getElementById(
           "adminQuantity"
         )
         .value
+
     );
 
 
@@ -3869,20 +4558,25 @@ function stockOut() {
       "Scan a product or enter a barcode.";
 
     return;
+
   }
 
 
   if (
+
     !Number.isFinite(
       quantity
     ) ||
+
     quantity <= 0
+
   ) {
 
     message.textContent =
       "Enter a valid quantity.";
 
     return;
+
   }
 
 
@@ -3907,6 +4601,7 @@ function stockOut() {
 
     },
 
+
     function(result) {
 
       message.textContent =
@@ -3919,12 +4614,13 @@ function stockOut() {
           "adminQuantity"
         )
         .value =
-        "";
+          "";
 
 
       loadInventory();
 
     },
+
 
     function(error) {
 
@@ -3940,6 +4636,7 @@ function stockOut() {
     }
 
   );
+
 }
 
 
@@ -3956,6 +4653,7 @@ function showAddMaterial() {
     );
 
     return;
+
   }
 
 
@@ -3977,10 +4675,13 @@ function showAddMaterial() {
       "newMaterialPanel"
     )
     .scrollIntoView({
+
       behavior:
         "smooth",
+
       block:
         "center"
+
     });
 
 }
@@ -3999,6 +4700,7 @@ function generateInternalBarcode() {
     );
 
     return;
+
   }
 
 
@@ -4024,6 +4726,7 @@ function generateInternalBarcode() {
 
     },
 
+
     function(result) {
 
       document
@@ -4031,13 +4734,14 @@ function generateInternalBarcode() {
           "newBarcode"
         )
         .value =
-        result.barcode;
+          result.barcode;
 
 
       message.textContent =
         "Internal code generated.";
 
     },
+
 
     function(error) {
 
@@ -4065,6 +4769,7 @@ function createNewMaterial() {
     );
 
     return;
+
   }
 
 
@@ -4123,21 +4828,25 @@ function createNewMaterial() {
 
   const openingStock =
     Number(
+
       document
         .getElementById(
           "newOpeningStock"
         )
         .value
+
     );
 
 
   const minimumStock =
     Number(
+
       document
         .getElementById(
           "newMinimumStock"
         )
         .value
+
     );
 
 
@@ -4154,6 +4863,7 @@ function createNewMaterial() {
       "Generate or enter a barcode.";
 
     return;
+
   }
 
 
@@ -4163,34 +4873,43 @@ function createNewMaterial() {
       "Product name is required.";
 
     return;
+
   }
 
 
   if (
+
     !Number.isFinite(
       openingStock
     ) ||
+
     openingStock < 0
+
   ) {
 
     message.textContent =
       "Enter a valid opening stock.";
 
     return;
+
   }
 
 
   if (
+
     !Number.isFinite(
       minimumStock
     ) ||
+
     minimumStock < 0
+
   ) {
 
     message.textContent =
       "Enter a valid minimum stock.";
 
     return;
+
   }
 
 
@@ -4233,6 +4952,7 @@ function createNewMaterial() {
 
     },
 
+
     function(result) {
 
       message.textContent =
@@ -4257,6 +4977,7 @@ function createNewMaterial() {
 
     },
 
+
     function(error) {
 
       message.textContent =
@@ -4276,7 +4997,7 @@ function createNewMaterial() {
 
 
 // =====================================================
-// CLEAR MATERIAL FORM
+// CLEAR NEW MATERIAL FORM
 // =====================================================
 
 function clearNewMaterialForm() {
@@ -4348,7 +5069,7 @@ function clearNewMaterialForm() {
 
 
 // =====================================================
-// CLOSE MATERIAL
+// CLOSE NEW MATERIAL
 // =====================================================
 
 function closeNewMaterial() {
@@ -4364,7 +5085,7 @@ function closeNewMaterial() {
 
 
 // =====================================================
-// QR GENERATION
+// AUTOMATIC QR GENERATION
 // =====================================================
 
 function generateProductQR(
@@ -4401,6 +5122,7 @@ function generateProductQR(
       "qrVariant"
     )
     .textContent =
+
       variant
         ? "Variant: " +
           variant
@@ -4437,7 +5159,7 @@ function generateProductQR(
         "qrPanel"
       )
       .style.display =
-      "block";
+        "block";
 
 
     document
@@ -4448,6 +5170,7 @@ function generateProductQR(
         "QR generator could not load.";
 
     return;
+
   }
 
 
@@ -4489,10 +5212,13 @@ function generateProductQR(
       "qrPanel"
     )
     .scrollIntoView({
+
       behavior:
         "smooth",
+
       block:
         "center"
+
     });
 
 }
@@ -4531,6 +5257,7 @@ function getQRDataURL_() {
     return canvas.toDataURL(
       "image/png"
     );
+
   }
 
 
@@ -4543,10 +5270,12 @@ function getQRDataURL_() {
   if (img) {
 
     return img.src;
+
   }
 
 
   return "";
+
 }
 
 
@@ -4567,6 +5296,7 @@ function downloadQR() {
     );
 
     return;
+
   }
 
 
@@ -4596,6 +5326,7 @@ function downloadQR() {
 
   link.click();
 
+
   link.remove();
 
 }
@@ -4618,6 +5349,7 @@ function printQRLabel() {
     );
 
     return;
+
   }
 
 
@@ -4648,6 +5380,7 @@ function printQRLabel() {
     );
 
     return;
+
   }
 
 
@@ -4819,7 +5552,9 @@ body {
     variant
       ? `
         <div class="variant">
-          ${escapeHTML(variant)}
+          ${escapeHTML(
+            variant
+          )}
         </div>
         `
       : ""
@@ -4891,6 +5626,7 @@ function showError(
       </div>
 
       `;
+
 }
 
 
