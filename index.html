@@ -1,6467 +1,2200 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 
-<meta charset="UTF-8">
+<meta name="theme-color" content="#111111">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SG Inventory">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
->
+<link rel="manifest" href="./manifest.webmanifest">
 
-<meta
-  name="theme-color"
-  content="#111111"
->
+<title>SHREE GANESH Inventory</title>
 
-<title>
-  SHREE GANESH Inventory
-</title>
-
-
-<!-- =================================================
-     QR SCANNER
-     ================================================= -->
-
-<script
-  src="https://unpkg.com/html5-qrcode"
-  type="text/javascript">
-</script>
-
-
-<!-- =================================================
-     QR GENERATOR
-     ================================================= -->
-
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
-</script>
-
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
-
-/* =================================================
-   BASE
-   ================================================= */
-
-* {
-  box-sizing: border-box;
-}
-
-
-body {
-
-  margin: 0;
-
-  background: #f5f5f5;
-
-  color: #111;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  min-height: 100vh;
-
-  transition:
-    background .2s,
-    color .2s;
-
-}
-
-
-.app {
-
-  width: 100%;
-
-  max-width: 900px;
-
-  margin: auto;
-
-  padding: 12px;
-
-}
-
-
-/* =================================================
-   HEADER
-   ================================================= */
-
-.header {
-
-  background: #111;
-
-  color: white;
-
-  border-radius: 16px;
-
-  padding: 18px;
-
-  margin-bottom: 8px;
-
-}
-
-
-.brand {
-
-  font-size: 24px;
-
-  font-weight: 800;
-
-}
-
-
-.subtitle {
-
-  color: #aaa;
-
-  font-size: 12px;
-
-  margin-top: 4px;
-
-}
-
-
-.mode {
-
-  color: #ddd;
-
-  font-size: 13px;
-
-  margin-top: 9px;
-
-}
-
-
-/* =================================================
-   THEME
-   ================================================= */
-
-.theme-control {
-
-  display: flex;
-
-  justify-content: flex-end;
-
-  gap: 5px;
-
-  margin: 6px 0 10px;
-
-}
-
-
-.theme-btn {
-
-  width: auto;
-
-  padding: 7px 9px;
-
-  background: white;
-
-  color: #555;
-
-  border: 1px solid #ddd;
-
-  border-radius: 8px;
-
-  font-size: 12px;
-
-}
-
-
-.theme-btn.active {
-
-  background: #111;
-
-  color: white;
-
-}
-
-
-/* =================================================
-   BUTTONS
-   ================================================= */
-
-button {
-
-  width: 100%;
-
-  border: none;
-
-  border-radius: 11px;
-
-  padding: 14px;
-
-  background: #111;
-
-  color: white;
-
-  font-size: 14px;
-
-  font-weight: 800;
-
-  cursor: pointer;
-
-}
-
-
-button:active {
-
-  transform: scale(.98);
-
-}
-
-
-button.secondary {
-
-  background: white;
-
-  color: #111;
-
-  border: 1px solid #ddd;
-
-}
-
-
-/* =================================================
-   MAIN SCAN
-   ================================================= */
-
-.actions {
-
-  display: grid;
-
-  grid-template-columns: 1fr;
-
-  gap: 9px;
-
-  margin-bottom: 10px;
-
-}
-
-
-/* =================================================
-   MAIN SEARCH
-   ================================================= */
-
-.search-box {
-
-  background: white;
-
-  padding: 11px;
-
-  border-radius: 13px;
-
-  margin-bottom: 8px;
-
-}
-
-
-.search-input {
-
-  width: 100%;
-
-  padding: 13px;
-
-  border: 1px solid #ddd;
-
-  border-radius: 9px;
-
-  font-size: 16px;
-
-  outline: none;
-
-  background: white;
-
-  color: #111;
-
-}
-
-
-/* =================================================
-   FILTER TABS
-   ================================================= */
-
-.filter-tabs {
-
-  display: grid;
-
-  grid-template-columns:
-    1fr 1fr 1fr;
-
-  gap: 6px;
-
-  margin-bottom: 10px;
-
-}
-
-
-.filter-tab {
-
-  width: 100%;
-
-  padding: 10px 7px;
-
-  background: white;
-
-  color: #666;
-
-  border: 1px solid #ddd;
-
-  border-radius: 9px;
-
-  font-size: 12px;
-
-  font-weight: 700;
-
-}
-
-
-.filter-tab.active {
-
-  background: #111;
-
-  color: white;
-
-  border-color: #111;
-
-}
-
-
-/* =================================================
-   ADMIN ENTRY
-   ================================================= */
-
-.admin-entry {
-
-  text-align: center;
-
-  margin: 2px 0 10px;
-
-}
-
-
-.admin-entry button {
-
-  width: auto;
-
-  background: transparent;
-
-  color: #777;
-
-  padding: 6px 10px;
-
-  font-size: 12px;
-
-}
-
-
-/* =================================================
-   PANELS
-   ================================================= */
-
-.panel {
-
-  display: none;
-
-  background: white;
-
-  border-radius: 15px;
-
-  padding: 15px;
-
-  margin-bottom: 10px;
-
-}
-
-
-.panel-title {
-
-  font-size: 18px;
-
-  font-weight: 800;
-
-  margin-bottom: 9px;
-
-}
-
-
-.panel-note {
-
-  color: #777;
-
-  font-size: 13px;
-
-  line-height: 1.4;
-
-  margin-bottom: 8px;
-
-}
-
-
-.input {
-
-  width: 100%;
-
-  padding: 13px;
-
-  border: 1px solid #ddd;
-
-  border-radius: 9px;
-
-  margin-top: 7px;
-
-  font-size: 15px;
-
-  background: white;
-
-  color: #111;
-
-  outline: none;
-
-}
-
-
-select.input {
-
-  appearance: auto;
-
-}
-
-
-.message {
-
-  min-height: 18px;
-
-  margin-top: 8px;
-
-  text-align: center;
-
-  color: #666;
-
-  font-size: 13px;
-
-}
-
-
-/* =================================================
-   ADMIN GRID
-   ================================================= */
-
-.admin-grid {
-
-  display: grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap: 8px;
-
-}
-
-
-.admin-opening {
-
-  background: #111;
-
-}
-
-
-.admin-stock-in {
-
-  background: #238636;
-
-}
-
-
-.admin-stock-in:hover {
-
-  background: #1c702d;
-
-}
-
-
-.admin-stock-out {
-
-  background: #c62828;
-
-}
-
-
-.admin-stock-out:hover {
-
-  background: #a91f1f;
-
-}
-
-
-/* =================================================
-   STOCK PRODUCT SEARCH
-   ================================================= */
-
-.stock-product-search {
-
-  position: relative;
-
-}
-
-
-.stock-search-results {
-
-  display: none;
-
-  margin-top: 7px;
-
-  border: 1px solid #ddd;
-
-  border-radius: 10px;
-
-  overflow: hidden;
-
-  background: white;
-
-  max-height: 250px;
-
-  overflow-y: auto;
-
-}
-
-
-.stock-result {
-
-  width: 100%;
-
-  text-align: left;
-
-  border-radius: 0;
-
-  background: white;
-
-  color: #111;
-
-  border-bottom: 1px solid #eee;
-
-  padding: 12px;
-
-  font-size: 13px;
-
-  font-weight: 600;
-
-}
-
-
-.stock-result:last-child {
-
-  border-bottom: none;
-
-}
-
-
-.stock-result:hover {
-
-  background: #f5f5f5;
-
-}
-
-
-.stock-result-name {
-
-  font-weight: 800;
-
-}
-
-
-.stock-result-meta {
-
-  display: block;
-
-  margin-top: 4px;
-
-  color: #777;
-
-  font-size: 11px;
-
-  font-weight: 500;
-
-}
-
-
-/* =================================================
-   SELECTED STOCK PRODUCT
-   ================================================= */
-
-.selected-stock-product {
-
-  display: none;
-
-  background: #f3f3f3;
-
-  border-radius: 11px;
-
-  padding: 12px;
-
-  margin-top: 8px;
-
-}
-
-
-.selected-stock-name {
-
-  font-size: 16px;
-
-  font-weight: 800;
-
-}
-
-
-.selected-stock-meta {
-
-  font-size: 12px;
-
-  color: #666;
-
-  margin-top: 4px;
-
-}
-
-
-.current-stock {
-
-  font-size: 22px;
-
-  font-weight: 800;
-
-  margin-top: 8px;
-
-}
-
-
-.current-stock-unit {
-
-  font-size: 12px;
-
-  color: #777;
-
-  font-weight: 600;
-
-}
-
-
-/* =================================================
-   STOCK ACTIONS
-   ================================================= */
-
-.stock-scan-btn {
-
-  margin-top: 8px;
-
-}
-
-
-.stock-cancel {
-
-  margin-top: 7px;
-
-}
-
-
-/* =================================================
-   OPENING STOCK PRODUCT PICKER
-   ================================================= */
-
-.opening-product-wrap {
-
-  position: relative;
-
-}
-
-
-.selected-product {
-
-  display: none;
-
-  background: #f3f3f3;
-
-  border-radius: 10px;
-
-  padding: 10px;
-
-  margin-top: 8px;
-
-  font-size: 13px;
-
-}
-
-
-.selected-product strong {
-
-  display: block;
-
-  margin-bottom: 3px;
-
-}
-
-
-/* =================================================
-   SCANNER
-   ================================================= */
-
-.scanner-panel {
-
-  display: none;
-
-  background: white;
-
-  border-radius: 15px;
-
-  padding: 11px;
-
-  margin-bottom: 10px;
-
-}
-
-
-#reader {
-
-  width: 100%;
-
-  overflow: hidden;
-
-  border-radius: 10px;
-
-}
-
-
-.scanner-status {
-
-  text-align: center;
-
-  color: #666;
-
-  font-size: 13px;
-
-  margin: 8px 0;
-
-}
-
-
-/* =================================================
-   PRODUCT CARD
-   ================================================= */
-
-.product-card {
-
-  background: white;
-
-  border-radius: 15px;
-
-  padding: 17px;
-
-  margin-bottom: 9px;
-
-  box-shadow:
-    0 2px 8px rgba(0,0,0,.05);
-
-}
-
-
-.product-name {
-
-  font-size: 21px;
-
-  font-weight: 800;
-
-}
-
-
-.variant-badge {
-
-  display: inline-block;
-
-  background: #eee;
-
-  border-radius: 8px;
-
-  padding: 6px 9px;
-
-  font-size: 12px;
-
-  font-weight: 800;
-
-  margin-top: 7px;
-
-}
-
-
-.info {
-
-  color: #666;
-
-  font-size: 13px;
-
-  margin-top: 7px;
-
-}
-
-
-.info strong {
-
-  color: #111;
-
-}
-
-
-.stock {
-
-  font-size: 28px;
-
-  font-weight: 800;
-
-  margin-top: 15px;
-
-}
-
-
-.stock-unit {
-
-  font-size: 13px;
-
-  font-weight: 600;
-
-  color: #777;
-
-}
-
-
-.status {
-
-  margin-top: 3px;
-
-  font-weight: 800;
-
-  font-size: 13px;
-
-}
-
-
-.green {
-
-  color: #218739;
-
-}
-
-
-.orange {
-
-  color: #a66500;
-
-}
-
-
-.red {
-
-  color: #b12626;
-
-}
-
-
-/* =================================================
-   LOW STOCK
-   ================================================= */
-
-.low-stock-badge {
-
-  display: inline-block;
-
-  margin-top: 7px;
-
-  padding: 6px 9px;
-
-  border-radius: 8px;
-
-  background: #fff2d6;
-
-  color: #9a6100;
-
-  font-size: 11px;
-
-  font-weight: 800;
-
-}
-
-
-.scan-next {
-
-  margin-bottom: 10px;
-
-}
-
-
-/* =================================================
-   QR
-   ================================================= */
-
-.qr-panel {
-
-  display: none;
-
-  background: white;
-
-  border-radius: 15px;
-
-  padding: 18px;
-
-  margin-bottom: 10px;
-
-  text-align: center;
-
-}
-
-
-.qr-title {
-
-  font-size: 19px;
-
-  font-weight: 800;
-
-}
-
-
-.qr-info {
-
-  color: #666;
-
-  font-size: 13px;
-
-  margin-top: 4px;
-
-}
-
-
-#qrcode {
-
-  display: flex;
-
-  justify-content: center;
-
-  margin: 16px 0;
-
-}
-
-
-.qr-actions {
-
-  display: grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap: 7px;
-
-}
-
-
-/* =================================================
-   LOADING / ERROR
-   ================================================= */
-
-.loading {
-
-  background: white;
-
-  border-radius: 14px;
-
-  padding: 25px;
-
-  color: #777;
-
-  text-align: center;
-
-}
-
-
-.error {
-
-  background: #fff0f0;
-
-  color: #a00000;
-
-  padding: 13px;
-
-  border-radius: 11px;
-
-  text-align: center;
-
-}
-
-
-/* =================================================
-   DARK MODE
-   ================================================= */
-
-body.dark {
-
-  background: #151515;
-
-  color: #eee;
-
-}
-
-
-body.dark
-.search-box,
-
-body.dark
-.panel,
-
-body.dark
-.product-card,
-
-body.dark
-.scanner-panel,
-
-body.dark
-.qr-panel {
-
-  background: #222;
-
-  color: #eee;
-
-}
-
-
-body.dark
-.search-input,
-
-body.dark
-.input {
-
-  background: #171717;
-
-  color: #eee;
-
-  border-color: #444;
-
-}
-
-
-body.dark
-button.secondary,
-
-body.dark
-.theme-btn,
-
-body.dark
-.filter-tab {
-
-  background: #222;
-
-  color: #eee;
-
-  border-color: #444;
-
-}
-
-
-body.dark
-.filter-tab.active {
-
-  background: #fff;
-
-  color: #111;
-
-  border-color: #fff;
-
-}
-
-
-body.dark
-.info {
-
-  color: #bbb;
-
-}
-
-
-body.dark
-.info strong {
-
-  color: #eee;
-
-}
-
-
-body.dark
-.variant-badge,
-
-body.dark
-.selected-product,
-
-body.dark
-.selected-stock-product {
-
-  background: #333;
-
-}
-
-
-body.dark
-.stock-search-results {
-
-  background: #222;
-
-  border-color: #444;
-
-}
-
-
-body.dark
-.stock-result {
-
-  background: #222;
-
-  color: #eee;
-
-  border-color: #444;
-
-}
-
-
-body.dark
-.stock-result:hover {
-
-  background: #333;
-
-}
-
-
-body.dark
-.stock-result-meta,
-
-body.dark
-.selected-stock-meta,
-
-body.dark
-.current-stock-unit {
-
-  color: #aaa;
-
-}
-
-
-body.dark
-.low-stock-badge {
-
-  background: #4b3920;
-
-  color: #ffd98a;
-
-}
-
-
-/* =================================================
-   HIGHLIGHT MODE
-   ================================================= */
-
-body.highlight
-.product-card {
-
-  border-left:
-    6px solid #e1a900;
-
-}
-
-
-body.highlight
-.stock {
-
-  text-decoration:
-    underline;
-
-  text-decoration-thickness:
-    2px;
-
-}
-
-
-/* =================================================
-   MOBILE
-   ================================================= */
-
-@media (
-  max-width: 600px
-) {
-
-  .app {
-
-    padding: 10px;
-
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#f5f5f5;
+  color:#111;
+  font-family:Arial,sans-serif;
+  min-height:100vh
+}
+.app{
+  max-width:900px;
+  margin:auto;
+  padding:12px
+}
+.header{
+  background:#111;
+  color:#fff;
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:8px
+}
+.brand{
+  font-size:24px;
+  font-weight:800
+}
+.subtitle{
+  color:#aaa;
+  font-size:12px;
+  margin-top:4px
+}
+.mode{
+  color:#ddd;
+  font-size:13px;
+  margin-top:9px
+}
+.theme{
+  display:flex;
+  justify-content:flex-end;
+  gap:5px;
+  margin:6px 0 10px
+}
+.theme button{
+  width:auto;
+  padding:7px 9px;
+  background:#fff;
+  color:#555;
+  border:1px solid #ddd
+}
+.theme button.on{
+  background:#111;
+  color:#fff
+}
+button{
+  width:100%;
+  border:0;
+  border-radius:11px;
+  padding:14px;
+  background:#111;
+  color:#fff;
+  font-size:14px;
+  font-weight:800
+}
+button.secondary{
+  background:#fff;
+  color:#111;
+  border:1px solid #ddd
+}
+.search,.panel,.scanner,.qr,.card,.loading{
+  background:#fff;
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:9px
+}
+.search input,.panel input,.panel select{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:9px;
+  margin-top:7px;
+  font-size:15px;
+  background:#fff;
+  color:#111
+}
+.tabs,.grid2,.qrgrid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:6px;
+  margin-bottom:9px
+}
+.tabs button{
+  padding:10px 6px;
+  background:#fff;
+  color:#666;
+  border:1px solid #ddd
+}
+.tabs button.on{
+  background:#111;
+  color:#fff
+}
+.admin{
+  margin:2px 0 10px;
+  text-align:center
+}
+.admin button{
+  width:auto;
+  background:transparent;
+  color:#777;
+  padding:6px 10px;
+  font-size:12px
+}
+.grid2{
+  grid-template-columns:1fr 1fr
+}
+.greenBtn{
+  background:#238636
+}
+.redBtn{
+  background:#c62828
+}
+.resultList{
+  display:none;
+  border:1px solid #ddd;
+  border-radius:10px;
+  overflow:auto;
+  max-height:240px;
+  margin-top:7px
+}
+.resultList button{
+  background:#fff;
+  color:#111;
+  border-radius:0;
+  text-align:left;
+  border-bottom:1px solid #eee;
+  padding:11px
+}
+.resultList small{
+  display:block;
+  color:#777;
+  margin-top:3px
+}
+.selected{
+  display:none;
+  background:#f3f3f3;
+  border-radius:10px;
+  padding:11px;
+  margin-top:7px
+}
+.selected strong{
+  display:block
+}
+.stockNow{
+  font-size:21px;
+  font-weight:800;
+  margin-top:7px
+}
+.info{
+  color:#666;
+  font-size:13px;
+  margin-top:6px
+}
+.info b{
+  color:#111
+}
+.name{
+  font-size:21px;
+  font-weight:800
+}
+.stock{
+  font-size:28px;
+  font-weight:800;
+  margin-top:14px
+}
+.unit{
+  font-size:12px;
+  color:#777
+}
+.status{
+  font-size:13px;
+  font-weight:800;
+  margin-top:3px
+}
+.in{
+  color:#218739
+}
+.low{
+  color:#a66500
+}
+.out{
+  color:#b12626
+}
+.variant{
+  display:inline-block;
+  margin-top:7px;
+  background:#eee;
+  border-radius:8px;
+  padding:6px 9px;
+  font-size:12px;
+  font-weight:800
+}
+.lowbadge{
+  display:inline-block;
+  margin-top:7px;
+  background:#fff2d6;
+  color:#9a6100;
+  border-radius:8px;
+  padding:6px 9px;
+  font-size:11px;
+  font-weight:800
+}
+.scanner{
+  display:none
+}
+.scannerStatus{
+  text-align:center;
+  color:#666;
+  font-size:13px;
+  margin:8px 0
+}
+.qr{
+  display:none;
+  text-align:center
+}
+.qrgrid{
+  grid-template-columns:1fr 1fr
+}
+.msg{
+  text-align:center;
+  color:#666;
+  font-size:13px;
+  min-height:18px;
+  margin-top:8px
+}
+.error{
+  background:#fff0f0;
+  color:#a00000;
+  padding:13px;
+  border-radius:11px;
+  text-align:center
+}
+.sync{
+  display:none;
+  background:#111;
+  color:#fff;
+  border-radius:10px;
+  padding:9px;
+  font-size:12px;
+  text-align:center;
+  margin-bottom:8px
+}
+.sync.show{
+  display:block
+}
+.offline{
+  display:none;
+  text-align:center;
+  color:#777;
+  font-size:11px;
+  margin-bottom:8px
+}
+.offline.show{
+  display:block
+}
+body.dark{
+  background:#151515;
+  color:#eee
+}
+body.dark .search,
+body.dark .panel,
+body.dark .scanner,
+body.dark .qr,
+body.dark .card,
+body.dark .loading{
+  background:#222;
+  color:#eee
+}
+body.dark .search input,
+body.dark .panel input,
+body.dark .panel select,
+body.dark button.secondary,
+body.dark .tabs button{
+  background:#171717;
+  color:#eee;
+  border-color:#444
+}
+body.dark .tabs button.on{
+  background:#fff;
+  color:#111
+}
+body.highlight .card{
+  border-left:6px solid #e1a900
+}
+body.highlight .stock{
+  text-decoration:underline
+}
+@media(max-width:600px){
+  .app{
+    padding:10px
   }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <div class="app">
 
-
-<!-- =================================================
-     HEADER
-     ================================================= -->
-
 <div class="header">
-
-  <div class="brand">
-    SHREE GANESH
-  </div>
-
-  <div class="subtitle">
-    MARBLES AND GRANITES · INVENTORY
-  </div>
-
-  <div
-    id="modeText"
-    class="mode">
-
-    Staff Mode
-
-  </div>
-
+  <div class="brand">SHREE GANESH</div>
+  <div class="subtitle">MARBLES AND GRANITES · INVENTORY</div>
+  <div id="mode" class="mode">Staff Mode</div>
 </div>
 
-
-<!-- =================================================
-     THEME
-     ================================================= -->
-
-<div class="theme-control">
-
-  <button
-    id="lightButton"
-    class="theme-btn active"
-    onclick="setTheme('light')">
-
-    ☀️
-
-  </button>
-
-
-  <button
-    id="darkButton"
-    class="theme-btn"
-    onclick="setTheme('dark')">
-
-    🌙
-
-  </button>
-
-
-  <button
-    id="highlightButton"
-    class="theme-btn"
-    onclick="setTheme('highlight')">
-
-    🖍️
-
-  </button>
-
+<div class="theme">
+  <button id="light" class="on" onclick="theme('light')">☀️</button>
+  <button id="dark" onclick="theme('dark')">🌙</button>
+  <button id="hi" onclick="theme('highlight')">🖍️</button>
 </div>
 
+<div id="offline" class="offline"></div>
+<div id="sync" class="sync"></div>
 
-<!-- =================================================
-     MAIN SCAN
-     ================================================= -->
+<button onclick="openScan()">📷 SCAN QR</button>
 
-<div class="actions">
-
-  <button
-    onclick="openScanner()">
-
-    📷 SCAN QR
-
-  </button>
-
-</div>
-
-
-<!-- =================================================
-     MAIN SEARCH
-     ================================================= -->
-
-<div class="search-box">
-
+<div class="search">
   <input
-    id="searchInput"
-    class="search-input"
+    id="q"
     placeholder="Search product or barcode..."
-    autocomplete="off"
-    oninput="searchProducts()"
+    oninput="render()"
   >
-
 </div>
 
-
-<!-- =================================================
-     FILTER TABS
-     ================================================= -->
-
-<div class="filter-tabs">
-
-  <button
-    id="filterAll"
-    class="filter-tab active"
-    onclick="setStockFilter('all')">
-
-    All
-
-  </button>
-
-
-  <button
-    id="filterInStock"
-    class="filter-tab"
-    onclick="setStockFilter('in')">
-
-    In Stock
-
-  </button>
-
-
-  <button
-    id="filterOutStock"
-    class="filter-tab"
-    onclick="setStockFilter('out')">
-
-    Out of Stock
-
-  </button>
-
+<div class="tabs">
+  <button id="all" class="on" onclick="filter('all')">All</button>
+  <button id="inst" onclick="filter('in')">In Stock</button>
+  <button id="outst" onclick="filter('out')">Out of Stock</button>
 </div>
 
-
-<!-- =================================================
-     ADMIN ENTRY
-     ================================================= -->
-
-<div
-  id="adminEntry"
-  class="admin-entry">
-
-  <button
-    onclick="showAdminLogin()">
-
-    🔐 Admin
-
-  </button>
-
+<div id="adminEntry" class="admin">
+  <button onclick="showLogin()">🔐 Admin</button>
 </div>
 
-
-<!-- =================================================
-     LOGIN
-     ================================================= -->
-
-<div
-  id="loginPanel"
-  class="panel">
-
-  <div class="panel-title">
-    Admin Login
-  </div>
-
+<div id="login" class="panel" style="display:none">
+  <b>Admin Login</b>
 
   <input
-    id="adminPin"
-    class="input"
+    id="pin"
     type="password"
     inputmode="numeric"
-    maxlength="8"
     placeholder="Admin PIN"
-    autocomplete="off"
   >
 
-
-  <button
-    style="margin-top:8px;"
-    onclick="adminLogin()">
-
+  <button style="margin-top:8px" onclick="login()">
     UNLOCK ADMIN
-
   </button>
 
-
-  <button
-    class="secondary"
-    style="margin-top:7px;"
-    onclick="closeAdminLogin()">
-
+  <button class="secondary" style="margin-top:7px" onclick="hideLogin()">
     CANCEL
-
   </button>
 
-
-  <div
-    id="loginMessage"
-    class="message">
-  </div>
-
+  <div id="loginMsg" class="msg"></div>
 </div>
 
-
-<!-- =================================================
-     SCANNER
-     ================================================= -->
-
-<div
-  id="scannerPanel"
-  class="scanner-panel">
-
+<div id="scanner" class="scanner">
   <div id="reader"></div>
 
-
-  <div
-    id="scannerStatus"
-    class="scanner-status">
-
-    Point camera at QR code.
-
+  <div id="scannerStatus" class="scannerStatus">
+    Starting camera...
   </div>
 
-
-  <button
-    class="secondary"
-    onclick="closeScanner()">
-
+  <button class="secondary" onclick="closeScanner()">
     CLOSE
-
   </button>
-
 </div>
 
+<div id="adminPanel" class="panel" style="display:none">
 
-<!-- =================================================
-     ADMIN PANEL
-     ================================================= -->
+  <b>👑 Admin</b>
 
-<div
-  id="adminPanel"
-  class="panel">
+  <div class="grid2" style="margin-top:9px">
 
-  <div class="panel-title">
-    👑 Admin
-  </div>
-
-
-  <div class="admin-grid">
-
-    <button
-      class="admin-opening"
-      onclick="showOpeningStock()">
-
+    <button onclick="openOpening()">
       📦 OPENING STOCK
-
     </button>
 
-
-    <button
-      class="admin-stock-in"
-      onclick="showStockIn()">
-
+    <button class="greenBtn" onclick="openStock('in')">
       ➕ STOCK IN
-
     </button>
 
-
-    <button
-      class="admin-stock-out"
-      onclick="showStockOut()">
-
+    <button class="redBtn" onclick="openStock('out')">
       ➖ STOCK OUT
-
     </button>
 
-
-    <button
-      class="secondary"
-      onclick="showAddMaterial()">
-
+    <button class="secondary" onclick="openNew()">
       ➕ ADD NEW MATERIAL
-
     </button>
 
+    <button class="secondary" onclick="syncNow()">
+      ↻ SYNC NOW
+    </button>
 
-    <button
-      class="secondary"
-      onclick="adminLogout()">
-
+    <button class="secondary" onclick="logout()">
       LOG OUT
-
     </button>
 
   </div>
 
 </div>
 
+<div id="opening" class="panel">
 
-<!-- =================================================
-     OPENING STOCK
-     ================================================= -->
+  <b>📦 Opening Stock</b>
 
-<div
-  id="openingStockPanel"
-  class="panel">
-
-  <div class="panel-title">
-
-    📦 Opening Stock
-
+  <div style="color:#777;font-size:13px;margin-top:7px">
+    Search product name and enter physical register quantity.
   </div>
-
-
-  <div class="panel-note">
-
-    Search the product by name and enter
-    the physical quantity from your register.
-
-  </div>
-
-
-  <div class="opening-product-wrap">
-
-    <input
-      id="openingProductInput"
-      class="input"
-      list="openingProductList"
-      placeholder="Search product name..."
-      autocomplete="off"
-      oninput="selectOpeningProduct()"
-    >
-
-
-    <datalist
-      id="openingProductList">
-    </datalist>
-
-
-    <div
-      id="selectedOpeningProduct"
-      class="selected-product">
-    </div>
-
-  </div>
-
 
   <input
-    id="openingQuantity"
-    class="input"
+    id="opSearch"
+    list="products"
+    placeholder="Search product name..."
+    oninput="pickOpening()"
+  >
+
+  <datalist id="products"></datalist>
+
+  <div id="opSelected" class="selected"></div>
+
+  <input
+    id="opQty"
     type="number"
     min="0"
-    step="1"
     placeholder="Physical opening stock"
   >
 
-
-  <button
-    style="margin-top:8px;"
-    onclick="saveOpeningStock()">
-
+  <button style="margin-top:8px" onclick="saveOpening()">
     SAVE OPENING STOCK
-
   </button>
 
-
-  <button
-    class="secondary"
-    style="margin-top:7px;"
-    onclick="closeOpeningStock()">
-
+  <button class="secondary" style="margin-top:7px" onclick="closePanels()">
     CANCEL
-
   </button>
 
-
-  <div
-    id="openingMessage"
-    class="message">
-  </div>
+  <div id="opMsg" class="msg"></div>
 
 </div>
 
+<div id="stockPanel" class="panel">
 
-<!-- =================================================
-     STOCK IN / OUT PANEL
-     ================================================= -->
-
-<div
-  id="stockPanel"
-  class="panel">
-
-  <div
-    id="stockTitle"
-    class="panel-title">
-
-    Stock Update
-
-  </div>
-
-
-  <!-- PRODUCT SEARCH -->
-
-  <div class="stock-product-search">
-
-    <input
-      id="stockProductSearch"
-      class="input"
-      placeholder="Search product or barcode..."
-      autocomplete="off"
-      oninput="searchStockProducts()"
-    >
-
-
-    <div
-      id="stockSearchResults"
-      class="stock-search-results">
-    </div>
-
-  </div>
-
-
-  <!-- SELECTED PRODUCT -->
-
-  <div
-    id="selectedStockProduct"
-    class="selected-stock-product">
-
-    <div
-      id="selectedStockName"
-      class="selected-stock-name">
-    </div>
-
-
-    <div
-      id="selectedStockMeta"
-      class="selected-stock-meta">
-    </div>
-
-
-    <div
-      id="selectedCurrentStock"
-      class="current-stock">
-    </div>
-
-  </div>
-
-
-  <!-- QR SCAN -->
-
-  <button
-    class="secondary stock-scan-btn"
-    onclick="openStockScanner()">
-
-    📷 SCAN QR
-
-  </button>
-
-
-  <!-- QUANTITY -->
+  <b id="stockTitle">
+    Stock
+  </b>
 
   <input
-    id="stockQuantity"
-    class="input"
+    id="stockSearch"
+    placeholder="Search product or barcode..."
+    oninput="searchStock()"
+  >
+
+  <div id="stockResults" class="resultList"></div>
+
+  <div id="stockSelected" class="selected">
+
+    <strong id="stockName"></strong>
+
+    <div id="stockMeta" class="info"></div>
+
+    <div id="stockNow" class="stockNow"></div>
+
+  </div>
+
+  <button class="secondary" style="margin-top:8px" onclick="openStockScan()">
+    📷 SCAN QR
+  </button>
+
+  <input
+    id="stockQty"
     type="number"
     min="1"
-    step="1"
     placeholder="Quantity"
   >
 
-
-  <!-- STOCK ACTIONS -->
-
   <button
-    id="stockInButton"
-    class="admin-stock-in"
-    style="margin-top:8px;"
-    onclick="stockIn()">
-
-    ➕ STOCK IN
-
-  </button>
-
-
-  <button
-    id="stockOutButton"
-    class="admin-stock-out"
-    style="margin-top:8px;"
-    onclick="stockOut()">
-
-    ➖ STOCK OUT
-
-  </button>
-
-
-  <button
-    class="secondary stock-cancel"
-    onclick="closeStockPanel()">
-
-    CANCEL
-
-  </button>
-
-
-  <div
-    id="adminMessage"
-    class="message">
-  </div>
-
-</div>
-
-
-<!-- =================================================
-     ADD NEW MATERIAL
-     ================================================= -->
-
-<div
-  id="newMaterialPanel"
-  class="panel">
-
-  <div class="panel-title">
-
-    Add New Material
-
-  </div>
-
-
-  <input
-    id="newBarcode"
-    class="input"
-    placeholder="Barcode"
-    autocomplete="off"
+    id="stockIn"
+    class="greenBtn"
+    style="margin-top:8px"
+    onclick="doStock('in')"
   >
+    ➕ STOCK IN
+  </button>
 
+  <button
+    id="stockOut"
+    class="redBtn"
+    style="margin-top:8px"
+    onclick="doStock('out')"
+  >
+    ➖ STOCK OUT
+  </button>
 
   <button
     class="secondary"
-    style="margin-top:7px;"
-    onclick="generateInternalBarcode()">
-
-    ⚡ GENERATE INTERNAL CODE
-
+    style="margin-top:7px"
+    onclick="closePanels()"
+  >
+    CANCEL
   </button>
 
+  <div id="stockMsg" class="msg"></div>
 
-  <input
-    id="newProduct"
-    class="input"
-    placeholder="Product name *"
-    autocomplete="off"
+</div>
+
+<div id="new" class="panel">
+
+  <b>Add New Material</b>
+
+  <input id="nb" placeholder="Barcode">
+
+  <button
+    class="secondary"
+    style="margin-top:7px"
+    onclick="newCode()"
   >
+    ⚡ GENERATE INTERNAL CODE
+  </button>
 
+  <input id="np" placeholder="Product name *">
+  <input id="nbr" placeholder="Brand">
+  <input id="ns" placeholder="Size">
+  <input id="nf" placeholder="Finish">
 
-  <input
-    id="newBrand"
-    class="input"
-    placeholder="Brand"
-    autocomplete="off"
-  >
-
-
-  <input
-    id="newSize"
-    class="input"
-    placeholder="Size"
-    autocomplete="off"
-  >
-
-
-  <input
-    id="newFinish"
-    class="input"
-    placeholder="Finish"
-    autocomplete="off"
-  >
-
-
-  <select
-    id="newVariant"
-    class="input">
-
-    <option value="">
-      Variant
-    </option>
-
-    <option value="Light">
-      ☀️ Light
-    </option>
-
-    <option value="Dark">
-      🌙 Dark
-    </option>
-
-    <option value="Highlight">
-      🖍️ Highlight
-    </option>
-
+  <select id="nv">
+    <option value="">Variant</option>
+    <option>Light</option>
+    <option>Dark</option>
+    <option>Highlight</option>
   </select>
 
+  <input id="no" type="number" min="0" placeholder="Opening stock">
+  <input id="nm" type="number" min="0" placeholder="Minimum stock">
 
-  <input
-    id="newOpeningStock"
-    class="input"
-    type="number"
-    min="0"
-    step="1"
-    placeholder="Opening stock"
-  >
-
-
-  <input
-    id="newMinimumStock"
-    class="input"
-    type="number"
-    min="0"
-    step="1"
-    placeholder="Minimum stock"
-  >
-
-
-  <button
-    style="margin-top:8px;"
-    onclick="createNewMaterial()">
-
+  <button style="margin-top:8px" onclick="saveNew()">
     SAVE NEW MATERIAL
-
   </button>
 
-
-  <button
-    class="secondary"
-    style="margin-top:7px;"
-    onclick="closeNewMaterial()">
-
+  <button class="secondary" style="margin-top:7px" onclick="closePanels()">
     CANCEL
-
   </button>
 
-
-  <div
-    id="newMaterialMessage"
-    class="message">
-  </div>
+  <div id="newMsg" class="msg"></div>
 
 </div>
 
+<div id="qrPanel" class="qr">
 
-<!-- =================================================
-     QR RESULT
-     ================================================= -->
+  <b id="qrTitle"></b>
 
-<div
-  id="qrPanel"
-  class="qr-panel">
+  <div id="qrVar" class="info"></div>
+  <div id="qrBar" class="info"></div>
 
   <div
-    id="qrTitle"
-    class="qr-title">
-  </div>
+    id="qrcode"
+    style="display:flex;justify-content:center;margin:15px 0"
+  ></div>
 
+  <div class="qrgrid">
 
-  <div
-    id="qrVariant"
-    class="qr-info">
-  </div>
-
-
-  <div
-    id="qrBarcode"
-    class="qr-info">
-  </div>
-
-
-  <div id="qrcode"></div>
-
-
-  <div class="qr-actions">
-
-    <button
-      onclick="printQRLabel()">
-
+    <button onclick="printQR()">
       🖨️ PRINT
-
     </button>
 
-
-    <button
-      class="secondary"
-      onclick="downloadQR()">
-
+    <button class="secondary" onclick="saveQR()">
       ⬇️ SAVE
-
     </button>
 
   </div>
-
 
   <button
     class="secondary"
-    style="margin-top:7px;"
-    onclick="closeQR()">
-
+    style="margin-top:7px"
+    onclick="document.getElementById('qrPanel').style.display='none'"
+  >
     CLOSE
-
   </button>
 
 </div>
 
-
-<!-- =================================================
-     RESULTS
-     ================================================= -->
-
-<div
-  id="results">
-
+<div id="results">
   <div class="loading">
-
     Loading inventory...
-
   </div>
-
 </div>
 
-
 </div>
-
 
 <script>
+const API="https://script.google.com/macros/s/AKfycbyPhd5eC7F9lZoPfJ2KyejFVcah7VC-1k4PfmiP7tP-rmnUrlKPiCa_G_8EfrNk6sf-/exec",
+UNIT="units",
+DB="SGInvOffline",
+VER=1,
+PS="p",
+QS="q",
+MS="m";
 
-/* =====================================================
-   CONFIGURATION
-   ===================================================== */
+let inv=[],
+tok=sessionStorage.getItem("sg_admin_token")||"",
+filterMode="all",
+selStock="",
+selOpen="",
+scan=null,
+scanning=false,
+scanMode="normal",
+qrProduct="",
+qrCode="",
+qrVariant="",
+device=localStorage.getItem("sg_device_id")||"";
 
-const API_URL =
-  "https://script.google.com/macros/s/AKfycbyPhd5eC7F9lZoPfJ2KyejFVcah7VC-1k4PfmiP7tP-rmnUrlKPiCa_G_8EfrNk6sf-/exec";
-
-
-const STOCK_UNIT =
-  "units";
-
-
-let inventory = [];
-
-let scanner = null;
-
-let scannerRunning = false;
-
-let apiCounter = 0;
-
-let adminToken =
-  sessionStorage.getItem(
-    "sg_admin_token"
-  ) || "";
-
-let currentQRProduct = "";
-
-let currentQRBarcode = "";
-
-let currentQRVariant = "";
-
-let stockMode = "in";
-
-let selectedOpeningBarcode = "";
-
-let selectedStockBarcode = "";
-
-let activeStockFilter = "all";
-
-
-/*
- * "normal"  = main product scanner
- * "stock"   = Stock In / Stock Out scanner
- */
-
-let scannerMode = "normal";
-
-
-/* =====================================================
-   THEME
-   ===================================================== */
-
-function setTheme(theme) {
-
-  document.body.classList.remove(
-    "dark",
-    "highlight"
-  );
-
-
-  if (theme === "dark") {
-
-    document.body.classList.add(
-      "dark"
-    );
-
-  }
-
-
-  if (theme === "highlight") {
-
-    document.body.classList.add(
-      "highlight"
-    );
-
-  }
-
-
-  localStorage.setItem(
-    "sg_theme",
-    theme
-  );
-
-
-  document
-    .getElementById(
-      "lightButton"
-    )
-    .classList.toggle(
-      "active",
-      theme === "light"
-    );
-
-
-  document
-    .getElementById(
-      "darkButton"
-    )
-    .classList.toggle(
-      "active",
-      theme === "dark"
-    );
-
-
-  document
-    .getElementById(
-      "highlightButton"
-    )
-    .classList.toggle(
-      "active",
-      theme === "highlight"
-    );
-
+if(!device){
+  device="SG-"+Date.now()+"-"+Math.random().toString(36).slice(2,8);
+  localStorage.setItem("sg_device_id",device)
 }
 
+const $=id=>document.getElementById(id);
 
-function loadTheme() {
-
-  setTheme(
-    localStorage.getItem(
-      "sg_theme"
-    ) || "light"
-  );
-
+function esc(v){
+  return String(v??"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#39;")
 }
 
+function theme(t){
+  document.body.classList.toggle("dark",t==="dark");
+  document.body.classList.toggle("highlight",t==="highlight");
 
-/* =====================================================
-   API CLIENT
-   ===================================================== */
+  localStorage.setItem("sg_theme",t);
 
-function callApi(
-  action,
-  params,
-  success,
-  failure
-) {
+  $("light").classList.toggle("on",t==="light");
+  $("dark").classList.toggle("on",t==="dark");
+  $("hi").classList.toggle("on",t==="highlight")
+}
 
-  params =
-    params || {};
+function online(){
+  return navigator.onLine
+}
 
+function setOffline(){
+  const x=$("offline");
+  x.classList.toggle("show",!online());
+  x.textContent=online()?"":"Offline mode · using saved inventory"
+}
 
-  const callbackName =
-    "sgApi_" +
-    Date.now() +
-    "_" +
-    (++apiCounter);
+function syncMsg(t,c=""){
+  const x=$("sync");
+  x.textContent=t;
+  x.className="sync"+(t?" show ":"")+(c?" "+c:"")
+}
 
+function openDB(){
+  return new Promise((res,rej)=>{
+    const r=indexedDB.open(DB,VER);
 
-  let finished =
-    false;
+    r.onupgradeneeded=e=>{
+      const d=e.target.result;
 
+      if(!d.objectStoreNames.contains(PS))
+        d.createObjectStore(PS,{keyPath:"barcode"});
 
-  const script =
-    document.createElement(
-      "script"
-    );
-
-
-  function cleanup() {
-
-    try {
-
-      delete window[
-        callbackName
-      ];
-
-    } catch (e) {}
-
-
-    if (
-      script.parentNode
-    ) {
-
-      script.parentNode
-        .removeChild(
-          script
-        );
-
-    }
-
-  }
-
-
-  function fail(message) {
-
-    if (finished) {
-
-      return;
-
-    }
-
-
-    finished =
-      true;
-
-
-    cleanup();
-
-
-    if (
-      typeof failure ===
-      "function"
-    ) {
-
-      failure({
-
-        message:
-          message ||
-          "API request failed."
-
-      });
-
-    }
-
-  }
-
-
-  window[callbackName] =
-    function(response) {
-
-      if (finished) {
-
-        return;
-
+      if(!d.objectStoreNames.contains(QS)){
+        const q=d.createObjectStore(QS,{keyPath:"clientTxnId"});
+        q.createIndex("createdAt","createdAt")
       }
 
-
-      finished =
-        true;
-
-
-      cleanup();
-
-
-      if (
-        !response ||
-        response.success !== true
-      ) {
-
-        if (
-          typeof failure ===
-          "function"
-        ) {
-
-          failure({
-
-            message:
-
-              response &&
-              response.error
-
-                ? response.error
-
-                : "API request failed."
-
-          });
-
-        }
-
-        return;
-
-      }
-
-
-      if (
-        typeof success ===
-        "function"
-      ) {
-
-        success(
-          response.data
-        );
-
-      }
-
+      if(!d.objectStoreNames.contains(MS))
+        d.createObjectStore(MS,{keyPath:"key"})
     };
 
-
-  script.onerror =
-    function() {
-
-      fail(
-        "Could not connect to inventory."
-      );
-
-    };
-
-
-  const query =
-    new URLSearchParams();
-
-
-  query.set(
-    "action",
-    action
-  );
-
-
-  query.set(
-    "callback",
-    callbackName
-  );
-
-
-  query.set(
-    "_",
-    Date.now()
-  );
-
-
-  Object.keys(
-    params
-  )
-    .forEach(
-      function(key) {
-
-        const value =
-          params[key];
-
-
-        if (
-          value !== undefined &&
-          value !== null
-        ) {
-
-          query.set(
-            key,
-            String(value)
-          );
-
-        }
-
-      }
-    );
-
-
-  script.src =
-    API_URL +
-    "?" +
-    query.toString();
-
-
-  document.body
-    .appendChild(
-      script
-    );
-
-
-  setTimeout(
-    function() {
-
-      if (!finished) {
-
-        fail(
-          "Inventory server timed out."
-        );
-
-      }
-
-    },
-    15000
-  );
-
+    r.onsuccess=()=>res(r.result);
+    r.onerror=()=>rej(r.error)
+  })
 }
 
-
-/* =====================================================
-   APP START
-   ===================================================== */
-
-function loadApp() {
-
-  loadTheme();
-
-  loadInventory();
-
-  validateStoredAdmin();
-
+async function allP(){
+  const d=await openDB();
+  return new Promise((res,rej)=>{
+    const r=d.transaction(PS).objectStore(PS).getAll();
+    r.onsuccess=()=>res(r.result||[]);
+    r.onerror=()=>rej(r.error)
+  })
 }
 
+async function putP(list){
+  const d=await openDB();
 
-/* =====================================================
-   LOAD INVENTORY
-   ===================================================== */
+  await new Promise((res,rej)=>{
+    const t=d.transaction(PS,"readwrite");
+    const s=t.objectStore(PS);
 
-function loadInventory() {
+    s.clear();
 
-  document
-    .getElementById(
-      "results"
-    )
-    .innerHTML =
-      '<div class="loading">Loading inventory...</div>';
+    list.forEach(x=>{
+      if(x&&x.barcode)s.put(x)
+    });
 
-
-  callApi(
-
-    "getInventory",
-
-    {},
-
-    function(data) {
-
-      inventory =
-        Array.isArray(data)
-          ? data
-          : [];
-
-
-      populateOpeningProducts();
-
-
-      applyProductFilters();
-
-      refreshStockSearch();
-
-    },
-
-
-    function(error) {
-
-      showError(
-        error.message ||
-        "Could not load inventory."
-      );
-
-    }
-
-  );
-
+    t.oncomplete=()=>res();
+    t.onerror=()=>rej(t.error)
+  })
 }
 
+async function allQ(){
+  const d=await openDB();
 
-/* =====================================================
-   OPENING STOCK PRODUCT LIST
-   ===================================================== */
+  return new Promise((res,rej)=>{
+    const r=d.transaction(QS).objectStore(QS).getAll();
 
-function populateOpeningProducts() {
-
-  const datalist =
-    document
-      .getElementById(
-        "openingProductList"
-      );
-
-
-  datalist.innerHTML =
-    "";
-
-
-  inventory.forEach(
-    function(product) {
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-
-      let label =
-        String(
-          product.product || ""
-        );
-
-
-      if (
-        product.variant
-      ) {
-
-        label +=
-          " — " +
-          product.variant;
-
-      }
-
-
-      option.value =
-        label;
-
-
-      option.dataset.barcode =
-        product.barcode;
-
-
-      datalist.appendChild(
-        option
-      );
-
-    }
-  );
-
-}
-
-
-/* =====================================================
-   OPENING STOCK PRODUCT SELECTION
-   ===================================================== */
-
-function selectOpeningProduct() {
-
-  const input =
-    document
-      .getElementById(
-        "openingProductInput"
-      );
-
-
-  const value =
-    input.value.trim();
-
-
-  const selectedBox =
-    document
-      .getElementById(
-        "selectedOpeningProduct"
-      );
-
-
-  selectedOpeningBarcode =
-    "";
-
-
-  selectedBox.style.display =
-    "none";
-
-
-  if (!value) {
-
-    return;
-
-  }
-
-
-  const options =
-    Array.from(
-
-      document
-        .getElementById(
-          "openingProductList"
-        )
-        .options
-
-    );
-
-
-  const option =
-    options.find(
-      function(item) {
-
-        return (
-          item.value ===
-          value
-        );
-
-      }
-    );
-
-
-  if (!option) {
-
-    return;
-
-  }
-
-
-  selectedOpeningBarcode =
-    option.dataset.barcode ||
-    "";
-
-
-  const product =
-    inventory.find(
-      function(item) {
-
-        return (
-
-          String(
-            item.barcode
-          ) ===
-
-          String(
-            selectedOpeningBarcode
+    r.onsuccess=()=>{
+      res(
+        (r.result||[])
+          .sort(
+            (a,b)=>a.createdAt-b.createdAt
           )
-
-        );
-
-      }
-    );
-
-
-  if (!product) {
-
-    return;
-
-  }
-
-
-  selectedBox.innerHTML = `
-
-    <strong>
-      ${escapeHTML(
-        product.product
-      )}
-    </strong>
-
-    ${
-      product.variant
-        ? escapeHTML(
-            product.variant
-          ) + " · "
-        : ""
-    }
-
-    Current stock:
-    ${Number(
-      product.stock
-    ) || 0}
-
-  `;
-
-
-  selectedBox.style.display =
-    "block";
-
-}
-
-
-/* =====================================================
-   STOCK SEARCH
-   ===================================================== */
-
-function searchStockProducts() {
-
-  const input =
-    document
-      .getElementById(
-        "stockProductSearch"
-      );
-
-
-  const query =
-    String(
-      input.value || ""
-    )
-      .trim()
-      .toLowerCase();
-
-
-  const resultsBox =
-    document
-      .getElementById(
-        "stockSearchResults"
-      );
-
-
-  if (!query) {
-
-    resultsBox.innerHTML =
-      "";
-
-    resultsBox.style.display =
-      "none";
-
-    return;
-
-  }
-
-
-  const matches =
-    inventory.filter(
-      function(product) {
-
-        return (
-
-          String(
-            product.product || ""
-          )
-            .toLowerCase()
-            .includes(
-              query
-            )
-
-          ||
-
-          String(
-            product.barcode || ""
-          )
-            .toLowerCase()
-            .includes(
-              query
-            )
-
-        );
-
-      }
-    )
-      .slice(
-        0,
-        20
-      );
-
-
-  if (
-    matches.length === 0
-  ) {
-
-    resultsBox.innerHTML = `
-
-      <div
-        style="
-          padding:12px;
-          color:#777;
-          font-size:13px;
-        "
-      >
-
-        No products found.
-
-      </div>
-
-    `;
-
-
-    resultsBox.style.display =
-      "block";
-
-    return;
-
-  }
-
-
-  resultsBox.innerHTML =
-    matches
-      .map(
-        function(product) {
-
-          const stock =
-            Number(
-              product.stock
-            ) || 0;
-
-
-          return `
-
-            <button
-              class="stock-result"
-              type="button"
-              onclick="selectStockProduct('${escapeJS(product.barcode)}')">
-
-              <span
-                class="stock-result-name">
-
-                ${escapeHTML(
-                  product.product
-                )}
-
-              </span>
-
-
-              <span
-                class="stock-result-meta">
-
-                ${escapeHTML(
-                  product.barcode
-                )}
-
-                ${
-                  product.variant
-                    ? " · " +
-                      escapeHTML(
-                        product.variant
-                      )
-                    : ""
-                }
-
-                · Stock:
-                ${stock}
-                ${escapeHTML(
-                  STOCK_UNIT
-                )}
-
-              </span>
-
-            </button>
-
-          `;
-
-        }
       )
-      .join("");
-
-
-  resultsBox.style.display =
-    "block";
-
-}
-
-
-/* =====================================================
-   SELECT STOCK PRODUCT
-   ===================================================== */
-
-function selectStockProduct(
-  barcode
-) {
-
-  barcode =
-    String(
-      barcode || ""
-    ).trim();
-
-
-  const product =
-    inventory.find(
-      function(item) {
-
-        return String(
-          item.barcode || ""
-        )
-          .toLowerCase() ===
-          barcode.toLowerCase();
-
-      }
-    );
-
-
-  if (!product) {
-
-    return;
-
-  }
-
-
-  selectedStockBarcode =
-    product.barcode;
-
-
-  document
-    .getElementById(
-      "stockProductSearch"
-    )
-    .value =
-      product.product;
-
-
-  document
-    .getElementById(
-      "stockSearchResults"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .getElementById(
-      "selectedStockProduct"
-    )
-    .style.display =
-      "block";
-
-
-  document
-    .getElementById(
-      "selectedStockName"
-    )
-    .textContent =
-      product.product;
-
-
-  document
-    .getElementById(
-      "selectedStockMeta"
-    )
-    .textContent =
-
-      product.barcode +
-
-      (
-        product.variant
-          ? " · " +
-            product.variant
-          : ""
-      );
-
-
-  document
-    .getElementById(
-      "selectedCurrentStock"
-    )
-    .innerHTML =
-
-      "Current Stock: " +
-
-      Number(
-        product.stock
-      ) +
-
-      ' <span class="current-stock-unit">' +
-
-      escapeHTML(
-        STOCK_UNIT
-      ) +
-
-      "</span>";
-
-
-  document
-    .getElementById(
-      "stockQuantity"
-    )
-    .focus();
-
-}
-
-
-/* =====================================================
-   CLEAR STOCK SELECTION
-   ===================================================== */
-
-function clearStockSelection() {
-
-  selectedStockBarcode =
-    "";
-
-
-  document
-    .getElementById(
-      "stockProductSearch"
-    )
-    .value =
-      "";
-
-
-  document
-    .getElementById(
-      "stockQuantity"
-    )
-    .value =
-      "";
-
-
-  document
-    .getElementById(
-      "selectedStockProduct"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .getElementById(
-      "selectedStockName"
-    )
-    .textContent =
-      "";
-
-
-  document
-    .getElementById(
-      "selectedStockMeta"
-    )
-    .textContent =
-      "";
-
-
-  document
-    .getElementById(
-      "selectedCurrentStock"
-    )
-    .textContent =
-      "";
-
-
-  document
-    .getElementById(
-      "stockSearchResults"
-    )
-    .style.display =
-      "none";
-
-}
-
-
-/* =====================================================
-   REFRESH STOCK SEARCH
-   ===================================================== */
-
-function refreshStockSearch() {
-
-  /*
-   * The selected product remains selected only
-   * if it still exists after a stock refresh.
-   */
-
-  if (!selectedStockBarcode) {
-
-    return;
-
-  }
-
-
-  const product =
-    inventory.find(
-      function(item) {
-
-        return String(
-          item.barcode || ""
-        )
-          .toLowerCase() ===
-          String(
-            selectedStockBarcode
-          )
-            .toLowerCase();
-
-      }
-    );
-
-
-  if (!product) {
-
-    clearStockSelection();
-
-    return;
-
-  }
-
-
-  document
-    .getElementById(
-      "selectedCurrentStock"
-    )
-    .innerHTML =
-
-      "Current Stock: " +
-
-      Number(
-        product.stock
-      ) +
-
-      ' <span class="current-stock-unit">' +
-
-      escapeHTML(
-        STOCK_UNIT
-      ) +
-
-      "</span>";
-
-}
-
-
-/* =====================================================
-   STATUS
-   ===================================================== */
-
-function getStatus(
-  product
-) {
-
-  const stock =
-    Number(
-      product.stock
-    ) || 0;
-
-
-  const minimum =
-    Number(
-      product.minimumStock
-    ) || 0;
-
-
-  if (
-    stock <= 0
-  ) {
-
-    return {
-
-      text:
-        "OUT OF STOCK",
-
-      cls:
-        "red"
-
     };
 
+    r.onerror=()=>rej(r.error)
+  })
+}
+
+async function putQ(x){
+  const d=await openDB();
+
+  return new Promise((res,rej)=>{
+    const t=d.transaction(QS,"readwrite");
+    t.objectStore(QS).put(x);
+    t.oncomplete=()=>res();
+    t.onerror=()=>rej(t.error)
+  })
+}
+
+async function delQ(id){
+  const d=await openDB();
+
+  return new Promise((res,rej)=>{
+    const t=d.transaction(QS,"readwrite");
+    t.objectStore(QS).delete(id);
+    t.oncomplete=()=>res();
+    t.onerror=()=>rej(t.error)
+  })
+}
+
+function api(action,p,s,f){
+  if(!online()){
+    f&&f({offline:true,message:"Offline"});
+    return
   }
 
+  const cb=
+    "sg"+
+    Date.now()+
+    Math.random()
+      .toString(36)
+      .slice(2,6);
 
-  if (
+  const sc=document.createElement("script");
 
-    minimum > 0 &&
+  let done=false;
 
-    stock <= minimum
+  window[cb]=r=>{
+    if(done)return;
 
-  ) {
+    done=true;
 
-    return {
+    sc.remove();
 
-      text:
-        "LOW STOCK",
+    delete window[cb];
 
-      cls:
-        "orange"
+    if(!r||r.success!==true){
+      f&&f({
+        message:
+          r&&r.error||
+          "API request failed."
+      });
+      return
+    }
 
-    };
-
-  }
-
-
-  return {
-
-    text:
-      "IN STOCK",
-
-    cls:
-      "green"
-
+    s&&s(r.data)
   };
 
-}
-
-
-/* =====================================================
-   VARIANT
-   ===================================================== */
-
-function variantHTML(
-  variant
-) {
-
-  if (!variant) {
-
-    return "";
-
-  }
-
-
-  let icon = "";
-
-
-  if (
-    variant ===
-    "Light"
-  ) {
-
-    icon =
-      "☀️";
-
-  }
-
-  else if (
-    variant ===
-    "Dark"
-  ) {
-
-    icon =
-      "🌙";
-
-  }
-
-  else if (
-    variant ===
-    "Highlight"
-  ) {
-
-    icon =
-      "🖍️";
-
-  }
-
-
-  return `
-
-    <div class="variant-badge">
-
-      ${icon}
-
-      ${escapeHTML(
-        variant
-      )}
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   LOW STOCK
-   ===================================================== */
-
-function lowStockHTML(
-  product
-) {
-
-  const stock =
-    Number(
-      product.stock
-    ) || 0;
-
-
-  const minimum =
-    Number(
-      product.minimumStock
-    ) || 0;
-
-
-  if (
-
-    stock <= 0 ||
-
-    minimum <= 0 ||
-
-    stock > minimum
-
-  ) {
-
-    return "";
-
-  }
-
-
-  return `
-
-    <div class="low-stock-badge">
-
-      LOW STOCK · MIN ${minimum}
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   PRODUCT CARD
-   ===================================================== */
-
-function productCard(
-  product
-) {
-
-  const status =
-    getStatus(
-      product
-    );
-
-
-  const stock =
-    Number(
-      product.stock
-    ) || 0;
-
-
-  return `
-
-    <div class="product-card">
-
-      <div class="product-name">
-
-        ${escapeHTML(
-          product.product
-        )}
-
-      </div>
-
-
-      ${variantHTML(
-        product.variant || ""
-      )}
-
-
-      <div class="info">
-
-        <strong>Barcode:</strong>
-
-        ${escapeHTML(
-          product.barcode
-        )}
-
-      </div>
-
-
-      <div class="info">
-
-        <strong>Brand:</strong>
-
-        ${escapeHTML(
-          product.brand || "-"
-        )}
-
-      </div>
-
-
-      <div class="info">
-
-        <strong>Size:</strong>
-
-        ${escapeHTML(
-          product.size || "-"
-        )}
-
-      </div>
-
-
-      <div class="info">
-
-        <strong>Finish:</strong>
-
-        ${escapeHTML(
-          product.finish || "-"
-        )}
-
-      </div>
-
-
-      <div class="stock">
-
-        Stock:
-        ${stock}
-
-        <span class="stock-unit">
-
-          ${escapeHTML(
-            STOCK_UNIT
-          )}
-
-        </span>
-
-      </div>
-
-
-      <div
-        class="status ${status.cls}">
-
-        ${status.text}
-
-      </div>
-
-
-      ${lowStockHTML(
-        product
-      )}
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   RENDER INVENTORY
-   ===================================================== */
-
-function renderInventory(
-  items
-) {
-
-  const results =
-    document
-      .getElementById(
-        "results"
-      );
-
-
-  if (
-    !items ||
-    items.length === 0
-  ) {
-
-    results.innerHTML =
-
-      `
-
-      <div class="product-card">
-
-        No matching products found.
-
-      </div>
-
-      `;
-
-    return;
-
-  }
-
-
-  results.innerHTML =
-    items
-      .slice(
-        0,
-        100
-      )
-      .map(
-        productCard
-      )
-      .join("");
-
-}
-
-
-/* =====================================================
-   MAIN SEARCH + FILTER
-   ===================================================== */
-
-function setStockFilter(
-  filter
-) {
-
-  activeStockFilter =
-    filter;
-
-
-  document
-    .getElementById(
-      "filterAll"
-    )
-    .classList
-    .toggle(
-      "active",
-      filter === "all"
-    );
-
-
-  document
-    .getElementById(
-      "filterInStock"
-    )
-    .classList
-    .toggle(
-      "active",
-      filter === "in"
-    );
-
-
-  document
-    .getElementById(
-      "filterOutStock"
-    )
-    .classList
-    .toggle(
-      "active",
-      filter === "out"
-    );
-
-
-  applyProductFilters();
-
-}
-
-
-function searchProducts() {
-
-  applyProductFilters();
-
-}
-
-
-function applyProductFilters() {
-
-  const query =
-    String(
-
-      document
-        .getElementById(
-          "searchInput"
-        )
-        .value || ""
-
-    )
-      .trim()
-      .toLowerCase();
-
-
-  const filtered =
-    inventory.filter(
-      function(product) {
-
-        const productName =
-          String(
-            product.product || ""
-          )
-            .toLowerCase();
-
-
-        const barcode =
-          String(
-            product.barcode || ""
-          )
-            .toLowerCase();
-
-
-        const matchesSearch =
-
-          !query ||
-
-          productName.includes(
-            query
-          ) ||
-
-          barcode.includes(
-            query
-          );
-
-
-        if (!matchesSearch) {
-
-          return false;
-
-        }
-
-
-        const stock =
-          Number(
-            product.stock
-          ) || 0;
-
-
-        if (
-          activeStockFilter ===
-          "in"
-        ) {
-
-          return stock > 0;
-
-        }
-
-
-        if (
-          activeStockFilter ===
-          "out"
-        ) {
-
-          return stock <= 0;
-
-        }
-
-
-        return true;
-
-      }
-    );
-
-
-  renderInventory(
-    filtered
+  sc.onerror=()=>{
+    if(done)return;
+
+    done=true;
+
+    sc.remove();
+
+    delete window[cb];
+
+    f&&f({
+      message:
+        "Could not connect to inventory."
+    })
+  };
+
+  const q=
+    new URLSearchParams({
+      action,
+      callback:cb,
+      _:Date.now()
+    });
+
+  Object.entries(p||{}).forEach(
+    ([k,v])=>{
+      if(v!=null)q.set(k,String(v))
+    }
   );
 
+  sc.src=API+"?"+q;
+  document.body.appendChild(sc);
+
+  setTimeout(()=>{
+    if(!done){
+      done=true;
+      sc.remove();
+      delete window[cb];
+
+      f&&f({
+        message:
+          "Inventory server timed out."
+      })
+    }
+  },15000)
 }
 
+function render(){
+  const q=
+    ($("q").value||"")
+      .toLowerCase()
+      .trim();
 
-/* =====================================================
-   FOCUS SEARCH
-   ===================================================== */
+  let a=inv.filter(p=>{
+    const s=Number(p.stock)||0;
 
-function focusSearch() {
-
-  document
-    .getElementById(
-      "searchInput"
+    return (
+      (!q||
+        (p.product||"")
+          .toLowerCase()
+          .includes(q)||
+        (p.barcode||"")
+          .toLowerCase()
+          .includes(q)
+      )&&
+      (
+        filterMode==="all"||
+        (filterMode==="in"?s>0:s<=0)
+      )
     )
-    .focus();
+  });
 
+  $("results").innerHTML=
+    a.length
+      ? a.slice(0,100).map(card).join("")
+      : '<div class="card">No matching products found.</div>'
 }
 
+function filter(f){
+  filterMode=f;
 
-/* =====================================================
-   NORMAL SCANNER
-   ===================================================== */
+  ["all","inst","outst"].forEach(
+    (id,i)=>
+      $(id).classList.toggle(
+        "on",
+        ["all","in","out"][i]===f
+      )
+  );
 
-function openScanner() {
+  render()
+}
 
-  scannerMode =
-    "normal";
+function card(p){
+  const s=Number(p.stock)||0;
+  const m=Number(p.minimumStock)||0;
 
+  const st=
+    s<=0
+      ?["OUT OF STOCK","out"]
+      :m>0&&s<=m
+        ?["LOW STOCK","low"]
+        :["IN STOCK","in"];
 
-  document
-    .getElementById(
-      "scannerPanel"
-    )
-    .style.display =
+  return `
+    <div class="card">
+
+      <div class="name">
+        ${esc(p.product)}
+      </div>
+
+      ${
+        p.variant
+          ?`
+            <div class="variant">
+              ${
+                p.variant==="Light"
+                  ?"☀️"
+                  :p.variant==="Dark"
+                    ?"🌙"
+                    :"🖍️"
+              }
+              ${esc(p.variant)}
+            </div>
+          `
+          :""
+      }
+
+      <div class="info">
+        <b>Barcode:</b>
+        ${esc(p.barcode)}
+      </div>
+
+      <div class="info">
+        <b>Brand:</b>
+        ${esc(p.brand||"-")}
+      </div>
+
+      <div class="info">
+        <b>Size:</b>
+        ${esc(p.size||"-")}
+      </div>
+
+      <div class="info">
+        <b>Finish:</b>
+        ${esc(p.finish||"-")}
+      </div>
+
+      <div class="stock">
+        Stock:
+        ${s}
+        <span class="unit">
+          ${UNIT}
+        </span>
+      </div>
+
+      <div class="status ${st[1]}">
+        ${st[0]}
+      </div>
+
+      ${
+        s>0&&m>0&&s<=m
+          ?`
+            <div class="lowbadge">
+              LOW STOCK · MIN ${m}
+            </div>
+          `
+          :""
+      }
+
+    </div>
+  `
+}
+
+function populate(){
+  const d=$("products");
+
+  d.innerHTML="";
+
+  inv.forEach(p=>{
+    const o=
+      document.createElement("option");
+
+    o.value=
+      p.product+
+      (p.variant?" — "+p.variant:"");
+
+    o.dataset.barcode=
+      p.barcode;
+
+    d.appendChild(o)
+  })
+}
+
+function pickOpening(){
+  const v=
+    $("opSearch").value;
+
+  const op=
+    [...$("products").options]
+      .find(
+        x=>x.value===v
+      );
+
+  selOpen=
+    op
+      ?op.dataset.barcode
+      :"";
+
+  const p=
+    inv.find(
+      x=>x.barcode===selOpen
+    );
+
+  $("opSelected").style.display=
+    p
+      ?"block"
+      :"none";
+
+  $("opSelected").innerHTML=
+    p
+      ?`
+        <strong>
+          ${esc(p.product)}
+        </strong>
+        Current stock:
+        ${p.stock}
+      `
+      :""
+}
+
+function searchStock(){
+  const q=
+    ($("stockSearch").value||"")
+      .toLowerCase()
+      .trim();
+
+  const box=$("stockResults");
+
+  if(!q){
+    box.style.display="none";
+    return
+  }
+
+  const a=
+    inv
+      .filter(
+        p=>
+          (p.product||"")
+            .toLowerCase()
+            .includes(q)||
+          (p.barcode||"")
+            .toLowerCase()
+            .includes(q)
+      )
+      .slice(0,20);
+
+  box.innerHTML=
+    a.length
+      ?a.map(
+        p=>`
+          <button
+            onclick="selectStock('${String(p.barcode).replace(/'/g,"\\'")}')"
+          >
+
+            <b>
+              ${esc(p.product)}
+            </b>
+
+            <small>
+              ${esc(p.barcode)}
+              · Stock:
+              ${p.stock}
+              ${UNIT}
+            </small>
+
+          </button>
+        `
+      ).join("")
+      :'<div style="padding:12px;color:#777">No products found.</div>';
+
+  box.style.display="block"
+}
+
+function selectStock(b){
+  const p=
+    inv.find(
+      x=>
+        String(x.barcode)
+          .toLowerCase()===
+        String(b)
+          .toLowerCase()
+    );
+
+  if(!p)return;
+
+  selStock=p.barcode;
+
+  $("stockSearch").value=
+    p.product;
+
+  $("stockResults")
+    .style.display=
+      "none";
+
+  $("stockSelected")
+    .style.display=
       "block";
 
+  $("stockName").textContent=
+    p.product;
 
-  document
-    .getElementById(
-      "scannerStatus"
-    )
-    .textContent =
-      "Starting camera...";
+  $("stockMeta").textContent=
+    p.barcode+
+    (p.variant?" · "+p.variant:"");
 
+  $("stockNow").textContent=
+    "Current Stock: "+
+    p.stock+
+    " "+
+    UNIT;
 
-  startScanner();
-
+  $("stockQty").focus()
 }
 
+function localChange(type,b,q){
+  const p=
+    inv.find(
+      x=>x.barcode===b
+    );
 
-/* =====================================================
-   STOCK SCANNER
-   ===================================================== */
+  if(!p)return;
 
-function openStockScanner() {
+  if(type==="in")
+    p.stock+=q;
+  else
+    p.stock=
+      Math.max(
+        0,
+        p.stock-q
+      );
 
-  if (!adminToken) {
+  p.status=
+    p.stock<=0
+      ?"OUT OF STOCK"
+      :p.minimumStock>0&&
+       p.stock<=p.minimumStock
+        ?"LOW STOCK"
+        :"IN STOCK";
 
+  render();
+  selectStock(b)
+}
+
+async function queue(x){
+  await putQ(x);
+  syncMsg("Pending sync","show")
+}
+
+async function syncNow(){
+  if(!online()){
+    syncMsg(
+      "No internet connection",
+      "show"
+    );
+    return
+  }
+
+  if(!tok){
     alert(
       "Please login as Admin first."
     );
-
-    return;
-
+    return
   }
 
+  const q=
+    await allQ();
 
-  scannerMode =
-    "stock";
-
-
-  document
-    .getElementById(
-      "scannerPanel"
-    )
-    .style.display =
-      "block";
-
-
-  document
-    .getElementById(
-      "scannerStatus"
-    )
-    .textContent =
-      "Scan the product QR for Stock " +
-      (
-        stockMode === "in"
-          ? "In"
-          : "Out"
-      ) +
-      ".";
-
-
-  startScanner();
-
-}
-
-
-/* =====================================================
-   START SCANNER
-   ===================================================== */
-
-async function startScanner() {
-
-  if (
-    scannerRunning
-  ) {
-
-    return;
-
-  }
-
-
-  if (scanner) {
-
-    try {
-
-      await scanner.clear();
-
-    } catch (e) {}
-
-  }
-
-
-  scanner =
-    new Html5Qrcode(
-      "reader"
+  if(!q.length){
+    syncMsg(
+      "✓ Synced",
+      "show"
     );
 
-
-  scannerRunning =
-    true;
-
-
-  try {
-
-    const cameras =
-      await Html5Qrcode
-        .getCameras();
-
-
-    if (
-      !cameras ||
-      cameras.length === 0
-    ) {
-
-      throw new Error(
-        "No camera found."
-      );
-
-    }
-
-
-    let cameraId =
-      cameras[0].id;
-
-
-    for (
-      let i = 0;
-      i < cameras.length;
-      i++
-    ) {
-
-      const label =
-        String(
-          cameras[i].label ||
-          ""
-        )
-          .toLowerCase();
-
-
-      if (
-
-        label.includes("back") ||
-
-        label.includes("rear") ||
-
-        label.includes("environment")
-
-      ) {
-
-        cameraId =
-          cameras[i].id;
-
-        break;
-
-      }
-
-    }
-
-
-    await scanner.start(
-
-      cameraId,
-
-      {
-
-        fps:
-          10,
-
-        qrbox: {
-
-          width:
-            250,
-
-          height:
-            250
-
-        },
-
-        aspectRatio:
-          1
-
-      },
-
-
-      function(decodedText) {
-
-        handleQR(
-          decodedText
-        );
-
-      },
-
-
-      function() {
-
-        // Ignore normal scanner errors.
-
-      }
-
+    setTimeout(
+      ()=>syncMsg(""),
+      1500
     );
 
-
-    document
-      .getElementById(
-        "scannerStatus"
-      )
-      .textContent =
-
-      scannerMode === "stock"
-
-        ? (
-            "Scan QR for Stock " +
-            (
-              stockMode === "in"
-                ? "In"
-                : "Out"
-            ) +
-            "."
-          )
-
-        : "Point camera at QR code.";
-
+    return
   }
 
-
-  catch (error) {
-
-    console.error(
-      error
-    );
-
-
-    scannerRunning =
-      false;
-
-
-    document
-      .getElementById(
-        "scannerStatus"
-      )
-      .textContent =
-      "Camera could not start. Please allow camera access.";
-
-  }
-
-}
-
-
-/* =====================================================
-   HANDLE QR
-   ===================================================== */
-
-async function handleQR(
-  decodedText
-) {
-
-  if (
-    !scannerRunning
-  ) {
-
-    return;
-
-  }
-
-
-  const barcode =
-    String(
-      decodedText || ""
-    ).trim();
-
-
-  if (!barcode) {
-
-    return;
-
-  }
-
-
-  document
-    .getElementById(
-      "scannerStatus"
-    )
-    .textContent =
-      "Finding product...";
-
-
-  if (scanner) {
-
-    try {
-
-      await scanner.stop();
-
-    } catch (e) {}
-
-  }
-
-
-  scannerRunning =
-    false;
-
-
-  /* -----------------------------------------------
-     STOCK MODE
-     ----------------------------------------------- */
-
-  if (
-    scannerMode ===
-    "stock"
-  ) {
-
-    const product =
-      inventory.find(
-        function(item) {
-
-          return String(
-            item.barcode || ""
-          )
-            .trim()
-            .toLowerCase() ===
-            barcode.toLowerCase();
-
-        }
-      );
-
-
-    if (product) {
-
-      selectStockProduct(
-        product.barcode
-      );
-
-
-      closeScannerPanel();
-
-      return;
-
-    }
-
-
-    callApi(
-
-      "findProduct",
-
-      {
-
-        barcode:
-          barcode
-
-      },
-
-      function(product) {
-
-        if (!product) {
-
-          closeScannerPanel();
-
-          showStockMessage(
-            "Product not found: " +
-            barcode
-          );
-
-          return;
-
-        }
-
-
-        /*
-         * Add newly fetched product to local
-         * inventory cache.
-         */
-
-        const existingIndex =
-          inventory.findIndex(
-            function(item) {
-
-              return String(
-                item.barcode
-              )
-                .toLowerCase() ===
-                String(
-                  product.barcode
-                )
-                  .toLowerCase();
-
-            }
-          );
-
-
-        if (
-          existingIndex >= 0
-        ) {
-
-          inventory[
-            existingIndex
-          ] = product;
-
-        }
-
-        else {
-
-          inventory.push(
-            product
-          );
-
-        }
-
-
-        populateOpeningProducts();
-
-
-        selectStockProduct(
-          product.barcode
-        );
-
-
-        closeScannerPanel();
-
-      },
-
-      function(error) {
-
-        closeScannerPanel();
-
-        showStockMessage(
-          error.message ||
-          "Could not find product."
-        );
-
-      }
-
-    );
-
-
-    return;
-
-  }
-
-
-  /* -----------------------------------------------
-     NORMAL PRODUCT VIEW MODE
-     ----------------------------------------------- */
-
-  document
-    .getElementById(
-      "adminBarcode"
-    );
-
-
-  const local =
-    inventory.find(
-      function(product) {
-
-        return String(
-          product.barcode ||
-          ""
-        )
-          .trim()
-          .toLowerCase() ===
-          barcode.toLowerCase();
-
-      }
-    );
-
-
-  if (local) {
-
-    showProduct(
-      local
-    );
-
-
-    closeScannerPanel();
-
-    return;
-
-  }
-
-
-  callApi(
-
-    "findProduct",
-
-    {
-
-      barcode:
-        barcode
-
-    },
-
-    function(product) {
-
-      if (!product) {
-
-        closeScannerPanel();
-
-        showError(
-          "Product not found: " +
-          barcode
-        );
-
-        return;
-
-      }
-
-
-      inventory.push(
-        product
-      );
-
-
-      populateOpeningProducts();
-
-
-      showProduct(
-        product
-      );
-
-
-      closeScannerPanel();
-
-    },
-
-
-    function(error) {
-
-      closeScannerPanel();
-
-      showError(
-        error.message ||
-        "Could not find product."
-      );
-
-    }
-
+  syncMsg(
+    "Syncing "+
+    q.length+
+    " change"+
+    (q.length===1?"":"s")+
+    "..."
   );
 
+  for(const x of q){
+    await new Promise(
+      done=>
+        api(
+          x.type==="stockIn"
+            ?"stockIn"
+            :x.type==="stockOut"
+              ?"stockOut"
+              :x.type==="openingStock"
+                ?"openingStock"
+                :"createProduct",
+          {
+            ...x,
+            token:tok,
+            deviceId
+          },
+          async()=>{
+            await delQ(
+              x.clientTxnId
+            );
+            done()
+          },
+          ()=>{
+            done()
+          }
+        )
+    )
+  }
+
+  const fresh=
+    await new Promise(
+      r=>
+        api(
+          "getInventory",
+          {},
+          r,
+          ()=>r(inv)
+        )
+    );
+
+  inv=
+    Array.isArray(fresh)
+      ?fresh
+      :inv;
+
+  await putP(inv);
+
+  populate();
+  render();
+
+  syncMsg(
+    "✓ Synced",
+    "show"
+  );
+
+  setTimeout(
+    ()=>syncMsg(""),
+    1800
+  )
 }
 
+async function saveOpening(){
+  if(!selOpen){
+    $("opMsg").textContent=
+      "Please select a product.";
+    return
+  }
 
-/* =====================================================
-   SHOW PRODUCT
-   ===================================================== */
+  const q=
+    Number(
+      $("opQty").value
+    );
 
-function showProduct(
-  product
-) {
+  if(
+    !Number.isFinite(q)||
+    q<0
+  ){
+    $("opMsg").textContent=
+      "Enter a valid opening stock.";
+    return
+  }
 
-  document
-    .getElementById(
-      "results"
-    )
-    .innerHTML =
+  const x={
+    type:"openingStock",
+    clientTxnId:txn("opening"),
+    createdAt:Date.now(),
+    barcode:selOpen,
+    quantity:Math.floor(q),
+    deviceId
+  };
 
-      productCard(
-        product
+  const p=
+    inv.find(
+      p=>p.barcode===selOpen
+    );
+
+  if(p)p.stock=Math.floor(q);
+
+  await queue(x);
+
+  populate();
+  render();
+
+  $("opMsg").textContent=
+    "Opening stock saved.";
+
+  await syncNow()
+}
+
+async function doStock(type){
+  if(!selStock){
+    $("stockMsg").textContent=
+      "Select a product or scan its QR.";
+    return
+  }
+
+  const q=
+    Math.floor(
+      Number(
+        $("stockQty").value
       )
+    );
 
-      +
-
-      `
-
-      <button
-        class="scan-next"
-        onclick="scanNextProduct()">
-
-        📷 SCAN NEXT PRODUCT
-
-      </button>
-
-      `;
-
-}
-
-
-/* =====================================================
-   SHOW STOCK MESSAGE
-   ===================================================== */
-
-function showStockMessage(
-  message
-) {
-
-  document
-    .getElementById(
-      "adminMessage"
-    )
-    .textContent =
-      message;
-
-}
-
-
-/* =====================================================
-   CLOSE SCANNER
-   ===================================================== */
-
-async function closeScanner() {
-
-  if (scanner) {
-
-    try {
-
-      if (
-        scannerRunning
-      ) {
-
-        await scanner.stop();
-
-      }
-
-    } catch (e) {}
-
-
-    try {
-
-      await scanner.clear();
-
-    } catch (e) {}
-
+  if(
+    !Number.isFinite(q)||
+    q<=0
+  ){
+    $("stockMsg").textContent=
+      "Enter a valid quantity.";
+    return
   }
 
+  const p=
+    inv.find(
+      x=>x.barcode===selStock
+    );
 
-  scanner =
-    null;
-
-
-  scannerRunning =
-    false;
-
-
-  scannerMode =
-    "normal";
-
-
-  closeScannerPanel();
-
-}
-
-
-function closeScannerPanel() {
-
-  document
-    .getElementById(
-      "scannerPanel"
-    )
-    .style.display =
-      "none";
-
-}
-
-
-/* =====================================================
-   SCAN NEXT PRODUCT
-   ===================================================== */
-
-async function scanNextProduct() {
-
-  scannerMode =
-    "normal";
-
-
-  document
-    .getElementById(
-      "results"
-    )
-    .innerHTML =
-      "";
-
-
-  document
-    .getElementById(
-      "scannerPanel"
-    )
-    .style.display =
-      "block";
-
-
-  if (scanner) {
-
-    try {
-
-      if (
-        scannerRunning
-      ) {
-
-        await scanner.stop();
-
-      }
-
-    } catch (e) {}
-
-
-    try {
-
-      await scanner.clear();
-
-    } catch (e) {}
-
+  if(
+    type==="out"&&
+    q>Number(p.stock||0)
+  ){
+    $("stockMsg").textContent=
+      "Insufficient stock. Available: "+
+      p.stock;
+    return
   }
 
+  localChange(
+    type,
+    selStock,
+    q
+  );
 
-  scanner =
-    null;
+  const x={
+    type:
+      type==="in"
+        ?"stockIn"
+        :"stockOut",
+    clientTxnId:
+      txn(type),
+    createdAt:
+      Date.now(),
+    barcode:
+      selStock,
+    quantity:
+      q,
+    deviceId
+  };
 
+  await queue(x);
 
-  scannerRunning =
-    false;
+  $("stockQty").value="";
 
+  $("stockMsg").textContent=
+    (
+      type==="in"
+        ?"Stock In"
+        :"Stock Out"
+    )+
+    " saved.";
 
-  startScanner();
-
+  await syncNow()
 }
 
-
-/* =====================================================
-   ADMIN LOGIN
-   ===================================================== */
-
-function showAdminLogin() {
-
-  document
-    .getElementById(
-      "loginPanel"
-    )
-    .style.display =
-      "block";
-
-
-  document
-    .getElementById(
-      "adminPin"
-    )
-    .focus();
-
+function txn(t){
+  return(
+    device+
+    "-"+
+    t+
+    "-"+
+    Date.now()+
+    "-"+
+    Math.random()
+      .toString(36)
+      .slice(2,8)
+  )
 }
 
+function showLogin(){
+  $("login").style.display=
+    "block";
 
-function closeAdminLogin() {
-
-  document
-    .getElementById(
-      "loginPanel"
-    )
-    .style.display =
-      "none";
-
+  $("pin").focus()
 }
 
+function hideLogin(){
+  $("login").style.display=
+    "none"
+}
 
-/* =====================================================
-   ADMIN AUTH
-   ===================================================== */
-
-function adminLogin() {
-
-  const pin =
-    document
-      .getElementById(
-        "adminPin"
-      )
-      .value
-      .trim();
-
-
-  const message =
-    document
-      .getElementById(
-        "loginMessage"
-      );
-
-
-  if (!pin) {
-
-    message.textContent =
-      "Enter Admin PIN.";
-
-    return;
-
+function login(){
+  if(!online()){
+    $("loginMsg").textContent=
+      "Connect to internet for Admin login once.";
+    return
   }
 
-
-  message.textContent =
-    "Checking PIN...";
-
-
-  callApi(
-
+  api(
     "adminLogin",
-
     {
-
       pin:
-        pin
-
+        $("pin").value.trim()
     },
-
-
-    function(result) {
-
-      adminToken =
-        result.token;
-
+    r=>{
+      tok=r.token;
 
       sessionStorage.setItem(
         "sg_admin_token",
-        adminToken
+        tok
       );
 
+      setAdmin();
 
-      setAdminMode();
+      $("pin").value="";
 
-
-      document
-        .getElementById(
-          "adminPin"
-        )
-        .value =
-          "";
-
-
-      message.textContent =
+      $("loginMsg").textContent=
         "Admin unlocked.";
 
+      syncNow()
     },
-
-
-    function(error) {
-
-      message.textContent =
-        error.message ||
-        "Incorrect Admin PIN.";
-
+    e=>{
+      $("loginMsg").textContent=
+        e.message||
+        "Login failed."
     }
-
-  );
-
+  )
 }
 
+function setAdmin(){
+  $("mode").textContent=
+    "Admin Mode";
 
-function validateStoredAdmin() {
+  $("adminEntry").style.display=
+    "none";
 
-  if (!adminToken) {
+  $("login").style.display=
+    "none";
 
-    lockAdminUI();
+  $("adminPanel").style.display=
+    "block"
+}
 
-    return;
-
+function validateAdmin(){
+  if(!tok){
+    $("adminPanel").style.display=
+      "none";
+    return
   }
 
+  if(!online()){
+    setAdmin();
+    return
+  }
 
-  callApi(
-
+  api(
     "validateAdmin",
-
     {
-
-      token:
-        adminToken
-
+      token:tok
     },
-
-
-    function(result) {
-
-      if (
-        result &&
-        result.valid
-      ) {
-
-        setAdminMode();
-
-      }
-
-      else {
-
-        lockAdminUI();
-
-      }
-
-    },
-
-
-    function() {
-
-      lockAdminUI();
-
-    }
-
-  );
-
+    r=>
+      r&&r.valid
+        ?setAdmin()
+        :logout(),
+    ()=>setAdmin()
+  )
 }
 
+function logout(){
+  if(!online()){
+    tok="";
+    sessionStorage.removeItem(
+      "sg_admin_token"
+    );
 
-/* =====================================================
-   ADMIN MODE
-   ===================================================== */
-
-function setAdminMode() {
-
-  document
-    .getElementById(
-      "modeText"
-    )
-    .textContent =
-      "Admin Mode";
-
-
-  document
-    .getElementById(
-      "adminEntry"
-    )
-    .style.display =
+    $("adminPanel").style.display=
       "none";
 
-
-  document
-    .getElementById(
-      "loginPanel"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .getElementById(
-      "adminPanel"
-    )
-    .style.display =
+    $("adminEntry").style.display=
       "block";
 
-}
-
-
-function lockAdminUI() {
-
-  adminToken =
-    "";
-
-
-  sessionStorage.removeItem(
-    "sg_admin_token"
-  );
-
-
-  document
-    .getElementById(
-      "modeText"
-    )
-    .textContent =
+    $("mode").textContent=
       "Staff Mode";
 
-
-  document
-    .getElementById(
-      "adminEntry"
-    )
-    .style.display =
-      "block";
-
-
-  document
-    .getElementById(
-      "loginPanel"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .getElementById(
-      "adminPanel"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .getElementById(
-      "openingStockPanel"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .getElementById(
-      "stockPanel"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .getElementById(
-      "newMaterialPanel"
-    )
-    .style.display =
-      "none";
-
-}
-
-
-function adminLogout() {
-
-  if (!adminToken) {
-
-    lockAdminUI();
-
-    return;
-
+    return
   }
 
-
-  callApi(
-
+  api(
     "adminLogout",
-
     {
-
-      token:
-        adminToken
-
+      token:tok
     },
+    ()=>{
+      tok="";
 
+      sessionStorage.removeItem(
+        "sg_admin_token"
+      );
 
-    function() {
+      $("adminPanel").style.display=
+        "none";
 
-      lockAdminUI();
+      $("adminEntry").style.display=
+        "block";
 
+      $("mode").textContent=
+        "Staff Mode"
     },
-
-
-    function() {
-
-      lockAdminUI();
-
-    }
-
-  );
-
+    ()=>{}
+  )
 }
 
+function openOpening(){
+  $("opening").style.display=
+    "block";
 
-/* =====================================================
-   ADMIN ERROR
-   ===================================================== */
+  $("stockPanel").style.display=
+    "none";
 
-function handleAdminError(
-  error
-) {
+  $("new").style.display=
+    "none";
 
-  const text =
-    String(
-
-      error &&
-      error.message
-        ? error.message
-        : ""
-
-    )
-      .toLowerCase();
-
-
-  if (
-
-    text.includes(
-      "session expired"
-    ) ||
-
-    text.includes(
-      "admin login required"
-    ) ||
-
-    text.includes(
-      "invalid admin session"
-    )
-
-  ) {
-
-    lockAdminUI();
-
-  }
-
+  populate()
 }
 
+function openStock(t){
+  selStock="";
 
-/* =====================================================
-   OPENING STOCK
-   ===================================================== */
+  $("stockPanel").style.display=
+    "block";
 
-function showOpeningStock() {
+  $("opening").style.display=
+    "none";
 
-  if (!adminToken) {
+  $("new").style.display=
+    "none";
 
-    alert(
-      "Please login as Admin first."
-    );
+  $("stockTitle").textContent=
+    t==="in"
+      ?"➕ Stock In"
+      :"➖ Stock Out";
 
-    return;
+  $("stockIn").style.display=
+    t==="in"
+      ?"block"
+      :"none";
 
-  }
+  $("stockOut").style.display=
+    t==="out"
+      ?"block"
+      :"none";
 
+  $("stockMsg").textContent="";
+  $("stockSearch").value="";
+  $("stockSelected").style.display=
+    "none";
 
-  closeStockPanel();
-
-  closeNewMaterial();
-
-
-  document
-    .getElementById(
-      "openingStockPanel"
-    )
-    .style.display =
-      "block";
-
-
-  populateOpeningProducts();
-
-
-  document
-    .getElementById(
-      "openingProductInput"
-    )
-    .focus();
-
-
-  document
-    .getElementById(
-      "openingStockPanel"
-    )
-    .scrollIntoView({
-
-      behavior:
-        "smooth",
-
-      block:
-        "center"
-
-    });
-
+  $("stockQty").value=""
 }
 
+function closePanels(){
+  $("opening").style.display=
+    "none";
 
-function clearOpeningSelection() {
+  $("stockPanel").style.display=
+    "none";
 
-  selectedOpeningBarcode =
-    "";
+  $("new").style.display=
+    "none";
 
-
-  document
-    .getElementById(
-      "selectedOpeningProduct"
-    )
-    .style.display =
-      "none";
-
+  $("opMsg").textContent="";
+  $("stockMsg").textContent="";
+  $("newMsg").textContent=""
 }
 
+function newCode(){
+  if(!online()){
+    const c=
+      "SGOFF"+
+      Date.now()
+        .toString(36)
+        .toUpperCase()+
+      Math.random()
+        .toString(36)
+        .slice(2,6)
+        .toUpperCase();
 
-function closeOpeningStock() {
+    $("nb").value=c;
 
-  document
-    .getElementById(
-      "openingStockPanel"
-    )
-    .style.display =
-      "none";
+    $("newMsg").textContent=
+      "Offline internal code generated.";
 
-
-  document
-    .getElementById(
-      "openingProductInput"
-    )
-    .value =
-      "";
-
-
-  document
-    .getElementById(
-      "openingQuantity"
-    )
-    .value =
-      "";
-
-
-  document
-    .getElementById(
-      "openingMessage"
-    )
-    .textContent =
-      "";
-
-
-  clearOpeningSelection();
-
-}
-
-
-function saveOpeningStock() {
-
-  if (!adminToken) {
-
-    alert(
-      "Please login as Admin first."
-    );
-
-    return;
-
+    return
   }
 
-
-  selectOpeningProduct();
-
-
-  const barcode =
-    selectedOpeningBarcode;
-
-
-  const openingStock =
-    Number(
-
-      document
-        .getElementById(
-          "openingQuantity"
-        )
-        .value
-
-    );
-
-
-  const message =
-    document
-      .getElementById(
-        "openingMessage"
-      );
-
-
-  if (!barcode) {
-
-    message.textContent =
-      "Please select a product from the list.";
-
-    return;
-
-  }
-
-
-  if (
-
-    !Number.isFinite(
-      openingStock
-    ) ||
-
-    openingStock < 0
-
-  ) {
-
-    message.textContent =
-      "Enter a valid opening stock.";
-
-    return;
-
-  }
-
-
-  message.textContent =
-    "Saving opening stock...";
-
-
-  callApi(
-
-    "openingStock",
-
-    {
-
-      barcode:
-        barcode,
-
-      openingStock:
-        openingStock,
-
-      token:
-        adminToken
-
-    },
-
-
-    function(result) {
-
-      message.textContent =
-
-        result.product +
-        " → Opening stock " +
-        result.newStock;
-
-
-      document
-        .getElementById(
-          "openingQuantity"
-        )
-        .value =
-          "";
-
-
-      loadInventory();
-
-    },
-
-
-    function(error) {
-
-      message.textContent =
-        error.message ||
-        "Could not save opening stock.";
-
-
-      handleAdminError(
-        error
-      );
-
-    }
-
-  );
-
-}
-
-
-/* =====================================================
-   STOCK PANEL
-   ===================================================== */
-
-function showStockIn() {
-
-  if (!adminToken) {
-
-    alert(
-      "Please login as Admin first."
-    );
-
-    return;
-
-  }
-
-
-  closeOpeningStock();
-
-  closeNewMaterial();
-
-
-  stockMode =
-    "in";
-
-
-  document
-    .getElementById(
-      "stockTitle"
-    )
-    .textContent =
-      "➕ Stock In";
-
-
-  document
-    .getElementById(
-      "stockInButton"
-    )
-    .style.display =
-      "block";
-
-
-  document
-    .getElementById(
-      "stockOutButton"
-    )
-    .style.display =
-      "none";
-
-
-  clearStockSelection();
-
-
-  document
-    .getElementById(
-      "stockPanel"
-    )
-    .style.display =
-      "block";
-
-
-  document
-    .getElementById(
-      "stockProductSearch"
-    )
-    .focus();
-
-
-  document
-    .getElementById(
-      "stockPanel"
-    )
-    .scrollIntoView({
-
-      behavior:
-        "smooth",
-
-      block:
-        "center"
-
-    });
-
-}
-
-
-function showStockOut() {
-
-  if (!adminToken) {
-
-    alert(
-      "Please login as Admin first."
-    );
-
-    return;
-
-  }
-
-
-  closeOpeningStock();
-
-  closeNewMaterial();
-
-
-  stockMode =
-    "out";
-
-
-  document
-    .getElementById(
-      "stockTitle"
-    )
-    .textContent =
-      "➖ Stock Out";
-
-
-  document
-    .getElementById(
-      "stockInButton"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .getElementById(
-      "stockOutButton"
-    )
-    .style.display =
-      "block";
-
-
-  clearStockSelection();
-
-
-  document
-    .getElementById(
-      "stockPanel"
-    )
-    .style.display =
-      "block";
-
-
-  document
-    .getElementById(
-      "stockProductSearch"
-    )
-    .focus();
-
-
-  document
-    .getElementById(
-      "stockPanel"
-    )
-    .scrollIntoView({
-
-      behavior:
-        "smooth",
-
-      block:
-        "center"
-
-    });
-
-}
-
-
-function closeStockPanel() {
-
-  document
-    .getElementById(
-      "stockPanel"
-    )
-    .style.display =
-      "none";
-
-
-  clearStockSelection();
-
-
-  document
-    .getElementById(
-      "adminMessage"
-    )
-    .textContent =
-      "";
-
-}
-
-
-/* =====================================================
-   STOCK IN
-   ===================================================== */
-
-function stockIn() {
-
-  if (!adminToken) {
-
-    alert(
-      "Please login as Admin first."
-    );
-
-    return;
-
-  }
-
-
-  const barcode =
-    selectedStockBarcode;
-
-
-  const quantity =
-    Number(
-
-      document
-        .getElementById(
-          "stockQuantity"
-        )
-        .value
-
-    );
-
-
-  const message =
-    document
-      .getElementById(
-        "adminMessage"
-      );
-
-
-  if (!barcode) {
-
-    message.textContent =
-      "Select a product or scan its QR.";
-
-    return;
-
-  }
-
-
-  if (
-
-    !Number.isFinite(
-      quantity
-    ) ||
-
-    quantity <= 0
-
-  ) {
-
-    message.textContent =
-      "Enter a valid quantity.";
-
-    return;
-
-  }
-
-
-  message.textContent =
-    "Updating stock...";
-
-
-  callApi(
-
-    "stockIn",
-
-    {
-
-      barcode:
-        barcode,
-
-      quantity:
-        quantity,
-
-      token:
-        adminToken
-
-    },
-
-
-    function(result) {
-
-      message.textContent =
-        "Stock In successful. New stock: " +
-        result.newStock;
-
-
-      /*
-       * Update the local product immediately.
-       */
-
-      updateLocalStock(
-        barcode,
-        result.newStock,
-        result.status
-      );
-
-
-      selectStockProduct(
-        barcode
-      );
-
-
-      document
-        .getElementById(
-          "stockQuantity"
-        )
-        .value =
-          "";
-
-
-      applyProductFilters();
-
-    },
-
-
-    function(error) {
-
-      message.textContent =
-        error.message ||
-        "Could not update stock.";
-
-
-      handleAdminError(
-        error
-      );
-
-    }
-
-  );
-
-}
-
-
-/* =====================================================
-   STOCK OUT
-   ===================================================== */
-
-function stockOut() {
-
-  if (!adminToken) {
-
-    alert(
-      "Please login as Admin first."
-    );
-
-    return;
-
-  }
-
-
-  const barcode =
-    selectedStockBarcode;
-
-
-  const quantity =
-    Number(
-
-      document
-        .getElementById(
-          "stockQuantity"
-        )
-        .value
-
-    );
-
-
-  const message =
-    document
-      .getElementById(
-        "adminMessage"
-      );
-
-
-  if (!barcode) {
-
-    message.textContent =
-      "Select a product or scan its QR.";
-
-    return;
-
-  }
-
-
-  if (
-
-    !Number.isFinite(
-      quantity
-    ) ||
-
-    quantity <= 0
-
-  ) {
-
-    message.textContent =
-      "Enter a valid quantity.";
-
-    return;
-
-  }
-
-
-  message.textContent =
-    "Updating stock...";
-
-
-  callApi(
-
-    "stockOut",
-
-    {
-
-      barcode:
-        barcode,
-
-      quantity:
-        quantity,
-
-      token:
-        adminToken
-
-    },
-
-
-    function(result) {
-
-      message.textContent =
-        "Stock Out successful. New stock: " +
-        result.newStock;
-
-
-      updateLocalStock(
-        barcode,
-        result.newStock,
-        result.status
-      );
-
-
-      selectStockProduct(
-        barcode
-      );
-
-
-      document
-        .getElementById(
-          "stockQuantity"
-        )
-        .value =
-          "";
-
-
-      applyProductFilters();
-
-    },
-
-
-    function(error) {
-
-      message.textContent =
-        error.message ||
-        "Could not update stock.";
-
-
-      handleAdminError(
-        error
-      );
-
-    }
-
-  );
-
-}
-
-
-/* =====================================================
-   UPDATE LOCAL STOCK
-   ===================================================== */
-
-function updateLocalStock(
-  barcode,
-  newStock,
-  status
-) {
-
-  const product =
-    inventory.find(
-      function(item) {
-
-        return String(
-          item.barcode || ""
-        )
-          .toLowerCase() ===
-          String(
-            barcode || ""
-          )
-            .toLowerCase();
-
-      }
-    );
-
-
-  if (!product) {
-
-    return;
-
-  }
-
-
-  product.stock =
-    Number(
-      newStock
-    ) || 0;
-
-
-  product.status =
-    status ||
-
-    getStatus(
-      product
-    ).text;
-
-}
-
-
-/* =====================================================
-   ADD NEW MATERIAL
-   ===================================================== */
-
-function showAddMaterial() {
-
-  if (!adminToken) {
-
-    alert(
-      "Please login as Admin first."
-    );
-
-    return;
-
-  }
-
-
-  closeOpeningStock();
-
-  closeStockPanel();
-
-
-  document
-    .getElementById(
-      "newMaterialPanel"
-    )
-    .style.display =
-      "block";
-
-
-  document
-    .getElementById(
-      "newMaterialPanel"
-    )
-    .scrollIntoView({
-
-      behavior:
-        "smooth",
-
-      block:
-        "center"
-
-    });
-
-}
-
-
-/* =====================================================
-   INTERNAL BARCODE
-   ===================================================== */
-
-function generateInternalBarcode() {
-
-  if (!adminToken) {
-
-    alert(
-      "Please login as Admin first."
-    );
-
-    return;
-
-  }
-
-
-  const message =
-    document
-      .getElementById(
-        "newMaterialMessage"
-      );
-
-
-  message.textContent =
-    "Generating code...";
-
-
-  callApi(
-
+  api(
     "generateInternalBarcode",
-
     {
-
-      token:
-        adminToken
-
+      token:tok
     },
+    r=>
+      $("nb").value=
+        r.barcode,
+    e=>
+      $("newMsg").textContent=
+        e.message||
+        "Could not generate code."
+  )
+}
 
+async function saveNew(){
+  const b=
+    $("nb").value.trim();
 
-    function(result) {
+  const p=
+    $("np").value.trim();
 
-      document
-        .getElementById(
-          "newBarcode"
-        )
-        .value =
-          result.barcode;
+  const brand=
+    $("nbr").value.trim();
 
+  const size=
+    $("ns").value.trim();
 
-      message.textContent =
-        "Internal code generated.";
+  const finish=
+    $("nf").value.trim();
 
-    },
+  const v=
+    $("nv").value;
 
+  const open=
+    Math.floor(
+      Number(
+        $("no").value
+      )
+    );
 
-    function(error) {
+  const min=
+    Math.floor(
+      Number(
+        $("nm").value
+      )
+    );
 
-      message.textContent =
-        error.message ||
-        "Could not generate code.";
+  if(!b||!p){
+    $("newMsg").textContent=
+      "Barcode and product name are required.";
+    return
+  }
 
-    }
+  if(
+    !Number.isFinite(open)||
+    open<0||
+    !Number.isFinite(min)||
+    min<0
+  ){
+    $("newMsg").textContent=
+      "Enter valid stock values.";
+    return
+  }
 
+  const st=
+    open<=0
+      ?"OUT OF STOCK"
+      :min>0&&open<=min
+        ?"LOW STOCK"
+        :"IN STOCK";
+
+  inv.push({
+    barcode:b,
+    product:p,
+    brand,
+    size,
+    finish,
+    openingStock:open,
+    stock:open,
+    minimumStock:min,
+    variant:v,
+    status:st,
+    unit:UNIT
+  });
+
+  await putP(inv);
+
+  populate();
+  render();
+
+  $("newMsg").textContent=
+    "Material saved.";
+
+  qr(
+    p,
+    b,
+    v
   );
 
+  const x={
+    type:"createProduct",
+    clientTxnId:txn("new"),
+    createdAt:Date.now(),
+    barcode:b,
+    product:p,
+    brand,
+    size,
+    finish,
+    openingStock:open,
+    minimumStock:min,
+    variant:v,
+    deviceId
+  };
+
+  await queue(x);
+  await syncNow()
 }
 
-
-/* =====================================================
-   CREATE NEW MATERIAL
-   ===================================================== */
-
-function createNewMaterial() {
-
-  if (!adminToken) {
-
-    alert(
-      "Please login as Admin first."
-    );
-
-    return;
-
-  }
-
-
-  const barcode =
-    document
-      .getElementById(
-        "newBarcode"
-      )
-      .value
-      .trim();
-
-
-  const product =
-    document
-      .getElementById(
-        "newProduct"
-      )
-      .value
-      .trim();
-
-
-  const brand =
-    document
-      .getElementById(
-        "newBrand"
-      )
-      .value
-      .trim();
-
-
-  const size =
-    document
-      .getElementById(
-        "newSize"
-      )
-      .value
-      .trim();
-
-
-  const finish =
-    document
-      .getElementById(
-        "newFinish"
-      )
-      .value
-      .trim();
-
-
-  const variant =
-    document
-      .getElementById(
-        "newVariant"
-      )
-      .value;
-
-
-  const openingStock =
-    Number(
-
-      document
-        .getElementById(
-          "newOpeningStock"
-        )
-        .value
-
-    );
-
-
-  const minimumStock =
-    Number(
-
-      document
-        .getElementById(
-          "newMinimumStock"
-        )
-        .value
-
-    );
-
-
-  const message =
-    document
-      .getElementById(
-        "newMaterialMessage"
-      );
-
-
-  if (!barcode) {
-
-    message.textContent =
-      "Generate or enter a barcode.";
-
-    return;
-
-  }
-
-
-  if (!product) {
-
-    message.textContent =
-      "Product name is required.";
-
-    return;
-
-  }
-
-
-  if (
-
-    !Number.isFinite(
-      openingStock
-    ) ||
-
-    openingStock < 0
-
-  ) {
-
-    message.textContent =
-      "Enter a valid opening stock.";
-
-    return;
-
-  }
-
-
-  if (
-
-    !Number.isFinite(
-      minimumStock
-    ) ||
-
-    minimumStock < 0
-
-  ) {
-
-    message.textContent =
-      "Enter a valid minimum stock.";
-
-    return;
-
-  }
-
-
-  message.textContent =
-    "Saving material...";
-
-
-  callApi(
-
-    "createProduct",
-
-    {
-
-      barcode:
-        barcode,
-
-      product:
-        product,
-
-      brand:
-        brand,
-
-      size:
-        size,
-
-      finish:
-        finish,
-
-      openingStock:
-        openingStock,
-
-      minimumStock:
-        minimumStock,
-
-      variant:
-        variant,
-
-      token:
-        adminToken
-
-    },
-
-
-    function(result) {
-
-      message.textContent =
-        "Material added successfully.";
-
-
-      generateProductQR(
-
-        result.product,
-
-        result.barcode,
-
-        result.variant
-
-      );
-
-
-      clearNewMaterialForm();
-
-
-      loadInventory();
-
-    },
-
-
-    function(error) {
-
-      message.textContent =
-        error.message ||
-        "Could not add material.";
-
-
-      handleAdminError(
-        error
-      );
-
-    }
-
-  );
-
-}
-
-
-/* =====================================================
-   CLEAR NEW MATERIAL FORM
-   ===================================================== */
-
-function clearNewMaterialForm() {
-
-  document
-    .getElementById(
-      "newBarcode"
-    )
-    .value =
-      "";
-
-
-  document
-    .getElementById(
-      "newProduct"
-    )
-    .value =
-      "";
-
-
-  document
-    .getElementById(
-      "newBrand"
-    )
-    .value =
-      "";
-
-
-  document
-    .getElementById(
-      "newSize"
-    )
-    .value =
-      "";
-
-
-  document
-    .getElementById(
-      "newFinish"
-    )
-    .value =
-      "";
-
-
-  document
-    .getElementById(
-      "newVariant"
-    )
-    .value =
-      "";
-
-
-  document
-    .getElementById(
-      "newOpeningStock"
-    )
-    .value =
-      "";
-
-
-  document
-    .getElementById(
-      "newMinimumStock"
-    )
-    .value =
-      "";
-
-}
-
-
-/* =====================================================
-   CLOSE NEW MATERIAL
-   ===================================================== */
-
-function closeNewMaterial() {
-
-  document
-    .getElementById(
-      "newMaterialPanel"
-    )
-    .style.display =
-      "none";
-
-}
-
-
-/* =====================================================
-   QR GENERATION
-   ===================================================== */
-
-function generateProductQR(
-  productName,
-  barcode,
-  variant
-) {
-
-  currentQRProduct =
-    productName ||
-    "Product";
-
-
-  currentQRBarcode =
-    barcode ||
-    "";
-
-
-  currentQRVariant =
-    variant ||
-    "";
-
-
-  document
-    .getElementById(
-      "qrTitle"
-    )
-    .textContent =
-      currentQRProduct;
-
-
-  document
-    .getElementById(
-      "qrVariant"
-    )
-    .textContent =
-
-      variant
-        ? "Variant: " +
-          variant
-        : "";
-
-
-  document
-    .getElementById(
-      "qrBarcode"
-    )
-    .textContent =
-      "Barcode: " +
-      currentQRBarcode;
-
-
-  const qrBox =
-    document
-      .getElementById(
-        "qrcode"
-      );
-
-
-  qrBox.innerHTML =
-    "";
-
-
-  if (
-    typeof QRCode ===
-    "undefined"
-  ) {
-
-    document
-      .getElementById(
-        "qrPanel"
-      )
-      .style.display =
-      "block";
-
-
-    document
-      .getElementById(
-        "qrBarcode"
-      )
-      .textContent =
-        "QR generator could not load.";
-
-    return;
-
-  }
-
+function qr(p,b,v){
+  qrProduct=p;
+  qrCode=b;
+  qrVariant=v;
+
+  $("qrTitle").textContent=p;
+  $("qrVar").textContent=
+    v
+      ?"Variant: "+v
+      :"";
+  $("qrBar").textContent=
+    "Barcode: "+b;
+
+  $("qrcode").innerHTML="";
 
   new QRCode(
-
-    qrBox,
-
+    $("qrcode"),
     {
-
-      text:
-        String(
-          currentQRBarcode
-        ),
-
-      width:
-        220,
-
-      height:
-        220,
-
+      text:b,
+      width:220,
+      height:220,
       correctLevel:
         QRCode.CorrectLevel.H
-
     }
-
   );
 
-
-  document
-    .getElementById(
-      "qrPanel"
-    )
-    .style.display =
-      "block";
-
-
-  document
-    .getElementById(
-      "qrPanel"
-    )
-    .scrollIntoView({
-
-      behavior:
-        "smooth",
-
-      block:
-        "center"
-
-    });
-
+  $("qrPanel").style.display=
+    "block"
 }
 
+function saveQR(){
+  const c=
+    $("qrcode")
+      .querySelector("canvas");
 
-/* =====================================================
-   CLOSE QR
-   ===================================================== */
+  const i=
+    $("qrcode")
+      .querySelector("img");
 
-function closeQR() {
+  const u=
+    c
+      ?c.toDataURL("image/png")
+      :i
+        ?i.src
+        :"";
 
-  document
-    .getElementById(
-      "qrPanel"
-    )
-    .style.display =
-      "none";
-
-}
-
-
-/* =====================================================
-   QR IMAGE
-   ===================================================== */
-
-function getQRDataURL_() {
-
-  const canvas =
-    document.querySelector(
-      "#qrcode canvas"
-    );
-
-
-  if (canvas) {
-
-    return canvas.toDataURL(
-      "image/png"
-    );
-
+  if(!u){
+    alert("QR code is not ready.");
+    return
   }
 
+  const a=
+    document.createElement("a");
 
-  const img =
-    document.querySelector(
-      "#qrcode img"
-    );
+  a.href=u;
 
-
-  if (img) {
-
-    return img.src;
-
-  }
-
-
-  return "";
-
-}
-
-
-/* =====================================================
-   DOWNLOAD QR
-   ===================================================== */
-
-function downloadQR() {
-
-  const dataURL =
-    getQRDataURL_();
-
-
-  if (!dataURL) {
-
-    alert(
-      "QR code is not ready."
-    );
-
-    return;
-
-  }
-
-
-  const link =
-    document.createElement(
-      "a"
-    );
-
-
-  link.href =
-    dataURL;
-
-
-  link.download =
-    (
-      currentQRBarcode ||
-      "product"
-    ) +
+  a.download=
+    (qrCode||"product")+
     "-QR.png";
 
-
-  document.body
-    .appendChild(
-      link
-    );
-
-
-  link.click();
-
-  link.remove();
-
+  a.click()
 }
 
+function printQR(){
+  const c=
+    $("qrcode")
+      .querySelector("canvas");
 
-/* =====================================================
-   PRINT QR
-   ===================================================== */
+  const i=
+    $("qrcode")
+      .querySelector("img");
 
-function printQRLabel() {
+  const u=
+    c
+      ?c.toDataURL("image/png")
+      :i
+        ?i.src
+        :"";
 
-  const dataURL =
-    getQRDataURL_();
-
-
-  if (!dataURL) {
-
-    alert(
-      "QR code is not ready."
-    );
-
-    return;
-
+  if(!u){
+    alert("QR code is not ready.");
+    return
   }
 
-
-  const product =
-    currentQRProduct;
-
-
-  const barcode =
-    currentQRBarcode;
-
-
-  const variant =
-    currentQRVariant;
-
-
-  const printWindow =
+  const w=
     window.open(
       "",
       "_blank",
       "width=500,height=700"
     );
 
+  if(!w){
+    alert("Please allow pop-ups.");
+    return
+  }
 
-  if (!printWindow) {
+  w.document.write(`
+    <style>
+      @page{size:80mm 80mm;margin:0}
+      body{margin:0;font-family:Arial}
+      .l{
+        width:80mm;
+        min-height:80mm;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        text-align:center
+      }
+      .q{
+        width:48mm;
+        height:48mm
+      }
+    </style>
 
+    <div class=l>
+      <b>SHREE GANESH</b>
+
+      <h3>
+        ${esc(qrProduct)}
+      </h3>
+
+      ${
+        qrVariant
+          ?`<b>${esc(qrVariant)}</b>`
+          :""
+      }
+
+      <img class=q src="${u}">
+
+      <b>
+        ${esc(qrCode)}
+      </b>
+    </div>
+
+    <script>
+      onload=()=>setTimeout(()=>print(),300)
+    <\/script>
+  `);
+
+  w.document.close()
+}
+
+function openScan(){
+  scanMode="normal";
+
+  $("scanner").style.display=
+    "block";
+
+  $("scannerStatus").textContent=
+    "Starting camera...";
+
+  startScan()
+}
+
+function openStockScan(){
+  if(!tok){
     alert(
-      "Please allow pop-ups."
+      "Please login as Admin first."
+    );
+    return
+  }
+
+  scanMode="stock";
+
+  $("scanner").style.display=
+    "block";
+
+  $("scannerStatus").textContent=
+    "Scan product QR.";
+
+  startScan()
+}
+
+async function startScan(){
+  if(scanning)return;
+
+  if(scan)
+    try{
+      await scan.clear()
+    }catch(e){}
+
+  scan=
+    new Html5Qrcode(
+      "reader"
     );
 
-    return;
-
-  }
-
-
-  printWindow.document.write(`
-
-<!DOCTYPE html>
-
-<html>
-
-<head>
-
-<title>
-${escapeHTML(product)}
-</title>
-
-<style>
-
-@page {
-
-  size:
-    80mm 80mm;
-
-  margin:
-    0;
-
-}
-
-
-html,
-body {
-
-  margin:
-    0;
-
-  padding:
-    0;
-
-  width:
-    80mm;
-
-  min-height:
-    80mm;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-}
-
-
-.label {
-
-  width:
-    80mm;
-
-  min-height:
-    80mm;
-
-  box-sizing:
-    border-box;
-
-  display:
-    flex;
-
-  flex-direction:
-    column;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  text-align:
-    center;
-
-  padding:
-    6mm;
-
-}
-
-
-.brand {
-
-  font-size:
-    15px;
-
-  font-weight:
-    800;
-
-  margin-bottom:
-    3mm;
-
-}
-
-
-.product {
-
-  font-size:
-    18px;
-
-  font-weight:
-    800;
-
-  margin-bottom:
-    3mm;
-
-}
-
-
-.variant {
-
-  font-size:
-    12px;
-
-  font-weight:
-    700;
-
-  margin-bottom:
-    3mm;
-
-}
-
-
-.qr {
-
-  width:
-    48mm;
-
-  height:
-    48mm;
-
-}
-
-
-.barcode {
-
-  margin-top:
-    3mm;
-
-  font-size:
-    13px;
-
-  font-weight:
-    700;
-
-  letter-spacing:
-    1px;
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="label">
-
-  <div class="brand">
-    SHREE GANESH
-  </div>
-
-  <div class="product">
-    ${escapeHTML(product)}
-  </div>
-
-  ${
-    variant
-      ? `
-        <div class="variant">
-          ${escapeHTML(
-            variant
-          )}
-        </div>
-        `
-      : ""
-  }
-
-  <img
-    class="qr"
-    src="${dataURL}"
-  >
-
-  <div class="barcode">
-    ${escapeHTML(barcode)}
-  </div>
-
-</div>
-
-<script>
-
-window.onload =
-  function() {
-
-    setTimeout(
-      function() {
-
-        window.print();
-
+  scanning=true;
+
+  try{
+    const cams=
+      await Html5Qrcode
+        .getCameras();
+
+    if(!cams.length)
+      throw Error("No camera found.");
+
+    let id=
+      cams.find(
+        c=>
+          /back|rear|environment/i
+            .test(c.label||"")
+      )?.id||
+      cams[0].id;
+
+    await scan.start(
+      id,
+      {
+        fps:10,
+        qrbox:{
+          width:250,
+          height:250
+        }
       },
-      300
+      txt=>
+        handleQR(txt),
+      ()=>{}
     );
 
-  };
+    $("scannerStatus").textContent=
+      scanMode==="stock"
+        ?"Scan product QR."
+        :"Point camera at QR code.";
 
-<\/script>
+  }catch(e){
+    scanning=false;
 
-</body>
-
-</html>
-
-`);
-
-
-  printWindow.document.close();
-
+    $("scannerStatus").textContent=
+      "Camera could not start. Please allow camera access."
+  }
 }
 
+async function handleQR(txt){
+  if(!scanning)return;
 
-/* =====================================================
-   ESCAPE HTML
-   ===================================================== */
+  const b=
+    String(
+      txt||""
+    ).trim();
 
-function escapeHTML(
-  value
-) {
+  if(scan)
+    try{
+      await scan.stop()
+    }catch(e){}
 
-  return String(
-    value == null
-      ? ""
-      : value
+  scanning=false;
+
+  if(scanMode==="stock"){
+
+    const p=
+      inv.find(
+        x=>
+          String(x.barcode)
+            .toLowerCase()===
+          b.toLowerCase()
+      );
+
+    if(p){
+      selectStock(p.barcode);
+      closeScanner();
+      return
+    }
+
+    if(!online()){
+      $("stockMsg").textContent=
+        "Product not available in offline cache.";
+      closeScanner();
+      return
+    }
+
+    api(
+      "findProduct",
+      {
+        barcode:b
+      },
+      p=>{
+        if(p){
+          inv.push(p);
+          selectStock(p.barcode)
+        }else{
+          $("stockMsg").textContent=
+            "Product not found."
+        }
+
+        closeScanner()
+      },
+      e=>{
+        $("stockMsg").textContent=
+          e.message||
+          "Could not find product.";
+
+        closeScanner()
+      }
+    );
+
+    return
+  }
+
+  const p=
+    inv.find(
+      x=>
+        String(x.barcode)
+          .toLowerCase()===
+        b.toLowerCase()
+    );
+
+  if(p){
+    $("results").innerHTML=
+      card(p);
+
+    closeScanner();
+    return
+  }
+
+  if(!online()){
+    showErr(
+      "Product not available in offline cache."
+    );
+
+    closeScanner();
+    return
+  }
+
+  api(
+    "findProduct",
+    {
+      barcode:b
+    },
+    p=>{
+      if(p)
+        $("results").innerHTML=
+          card(p);
+      else
+        showErr(
+          "Product not found: "+b
+        );
+
+      closeScanner()
+    },
+    e=>{
+      showErr(
+        e.message||
+        "Could not find product."
+      );
+
+      closeScanner()
+    }
   )
-
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-
-    .replace(
-      /</g,
-      "&lt;"
-    )
-
-    .replace(
-      />/g,
-      "&gt;"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
 }
 
+async function closeScanner(){
+  if(scan){
 
-/* =====================================================
-   ESCAPE JAVASCRIPT STRING
-   ===================================================== */
+    try{
+      if(scanning)
+        await scan.stop()
+    }catch(e){}
 
-function escapeJS(
-  value
-) {
+    try{
+      await scan.clear()
+    }catch(e){}
+  }
 
-  return String(
-    value == null
-      ? ""
-      : value
-  )
+  scan=null;
+  scanning=false;
 
-    .replace(
-      /\\/g,
-      "\\\\"
-    )
-
-    .replace(
-      /'/g,
-      "\\'"
-    )
-
-    .replace(
-      /"/g,
-      '\\"'
-    )
-
-    .replace(
-      /\r/g,
-      "\\r"
-    )
-
-    .replace(
-      /\n/g,
-      "\\n"
-    );
-
+  $("scanner").style.display=
+    "none"
 }
 
-
-/* =====================================================
-   ERROR
-   ===================================================== */
-
-function showError(
-  message
-) {
-
-  document
-    .getElementById(
-      "results"
-    )
-    .innerHTML =
-
-      `
-
-      <div class="error">
-
-        ${escapeHTML(
-          message
-        )}
-
-      </div>
-
-      `;
-
+function showErr(m){
+  $("results").innerHTML=
+    `<div class="error">${esc(m)}</div>`
 }
-
-
-/* =====================================================
-   START APP
-   ===================================================== */
 
 window.addEventListener(
-  "load",
-  function() {
+  "online",
+  async()=>{
+    setOffline();
 
-    loadApp();
-
+    if(tok)
+      await syncNow();
+    else
+      syncMsg("Online")
   }
 );
 
+window.addEventListener(
+  "offline",
+  ()=>{
+    setOffline();
+    syncMsg("Offline mode")
+  }
+);
+
+if("serviceWorker" in navigator){
+  window.addEventListener(
+    "load",
+    ()=>{
+      navigator.serviceWorker
+        .register(
+          "./sw.js",
+          {scope:"./"}
+        )
+        .catch(console.warn)
+    }
+  )
+}
+
+(async function(){
+
+  theme(
+    localStorage.getItem(
+      "sg_theme"
+    )||
+    "light"
+  );
+
+  setOffline();
+
+  try{
+    inv=
+      await allP();
+
+    populate();
+    render()
+  }catch(e){}
+
+  if(online()){
+
+    api(
+      "getInventory",
+      {},
+      async r=>{
+        inv=
+          Array.isArray(r)
+            ?r
+            :[];
+
+        await putP(inv);
+
+        populate();
+        render();
+
+        if(tok)
+          await syncNow()
+      },
+      ()=>{
+        if(!inv.length)
+          showErr(
+            "Inventory server unavailable. Open once online to create offline cache."
+          )
+      }
+    )
+  }
+
+  validateAdmin()
+
+})();
 </script>
 
 </body>
-
 </html>
