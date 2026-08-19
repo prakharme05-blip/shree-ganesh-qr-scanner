@@ -1,0 +1,9 @@
+{
+  "name": "SHREE GANESH Inventory",
+  "short_name": "SG Inventory",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#111111",
+  "description": "SHREE GANESH MARBLES AND GRANITES inventory app"
+}
